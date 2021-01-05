@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "truelinemed"
+    }
+  },
+  "defaultProject": "truelinemed",
+  "cli": {
+    "analytics": "02833725-ed8e-4c13-b6d7-577a9f921a5e"
+  }
 }
