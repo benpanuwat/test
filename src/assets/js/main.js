@@ -1416,13 +1416,17 @@
 	// Ready Event
 	jQuery(document).ready(function () {
 		// Init our app
-		Porto.init();
+		//Porto.init();
 	});
 
 	// Load Event
 	$(window).on('load', function () {
-		$('body').addClass("loaded");
 		Porto.scrollBtnAppear();
+
+		setTimeout(function(){
+			Porto.init();
+			$('body').addClass("loaded");
+		},1000);
 	});
 
 	// Scroll Event

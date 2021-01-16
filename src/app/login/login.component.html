@@ -1,0 +1,83 @@
+<main class="main">
+    <nav aria-label="breadcrumb" class="breadcrumb-nav">
+        <div class="container">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="index.html"><i class="icon-home"></i></a></li>
+                <li class="breadcrumb-item active" aria-current="page">เข้าสู่ระบบ</li>
+            </ol>
+        </div><!-- End .container -->
+    </nav>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="heading">
+                    <h2 class="title">เข้าสู่ระบบ</h2>
+                    <p>หากคุณมีบัญชีกับเรากรุณาเข้าสู่ระบบ</p>
+                </div><!-- End .heading -->
+
+                <form action="#">
+                    <input type="email" class="form-control" placeholder="อีเมล" required>
+                    <input type="password" class="form-control" placeholder="รหัสผ่าน" required>
+
+                    <div class="form-footer">
+                        <button type="submit" class="btn btn-primary">เข้าสู่ระบบ</button>
+                        <a href="#" class="forget-pass"> ลืมรหัสผ่าน</a>
+                    </div><!-- End .form-footer -->
+                    <div class="form-footer">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <a href="javascript:void(0)" class="fa fa-facebook"></a>
+                                <a href="javascript:void(0)" class="fa fa-google"></a>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div><!-- End .col-md-6 -->
+
+            <div class="col-md-6">
+                <div class="heading">
+                    <h2 class="title">สมัครสมาชิก</h2>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;การสมัครใช้งาน Truelinemed
+                        ถือว่าคุณได้ยอมรับข้อตกลงในการใช้งานและนโยบายความเป็นส่วนตัวกับทาง Truelinemed
+                        <a style="color: red;" href="termsofservice">ข้อตกลงในการให้บริการ</a> & <a style="color: red;"
+                            href="privacy">นโยบายความเป็นส่วนตัว</a>
+                </div><!-- End .heading -->
+
+                <form #createAccount="ngForm" (ngSubmit)="clickCreateAccount(createAccount)" novalidate>
+                    <input type="text" class="form-control" placeholder="ชื่อ" [(ngModel)]="member.fname" name="fname"
+                        maxlength="100" required>
+                    <input type="text" class="form-control" placeholder="นามสกุล" [(ngModel)]="member.lname"
+                        name="lname" maxlength="100" required>
+
+                    <h2 class="title mb-2">ข้อมูลเข้าระบบ</h2>
+                    <input type="email" class="form-control" placeholder="อีเมล" [(ngModel)]="member.email" name="email"
+                        email="true" maxlength="50" required>
+                    <input type="password" class="form-control" placeholder="รหัสผ่าน" [(ngModel)]="member.password"
+                        name="password" maxlength="15" required>
+
+                    <app-password-strength-bar [passwordToCheck]="member.password" [barLabel]="barLabel">
+                    </app-password-strength-bar>
+
+                    <input type="password" class="form-control" placeholder="ยืนยันรหัสผ่าน"
+                        [(ngModel)]="member.confirm_password" name="confirm_password" maxlength="15" required>
+
+                    <div class="form-footer">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div *ngIf="createValidation" class="alert alert-warning">
+                                    <strong>แจ้งเตือน!</strong> {{createMass}}
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <button type="submit" class="btn btn-primary">สร้างบัญชี</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div><!-- End .col-md-6 -->
+        </div><!-- End .row -->
+    </div><!-- End .container -->
+
+    <div class="mb-5"></div><!-- margin -->
+</main><!-- End .main -->
