@@ -156,7 +156,7 @@
                             </div><!-- End .product-ratings -->
                         </div><!-- End .product-container -->
                         <div class="price-box">
-                            <del class="old-price">฿{{product.standard_price}}</del>
+                            <del class="old-price" *ngIf="product.discount > 0 && product.discount < product.price">฿{{product.standard_price}}</del>
                             <span class="product-price">฿{{product.price}}</span>
                         </div><!-- End .price-box -->
                         <div class="product-action">
@@ -206,7 +206,7 @@
                             </div>
                         </div>
                         <div class="price-box">
-                            <del class="old-price">฿{{product.standard_price}}</del>
+                            <del class="old-price"  *ngIf="product.discount > 0 && product.discount < product.price">฿{{product.standard_price}}</del>
                             <span class="product-price">฿{{product.price}}</span>
                         </div><!-- End .price-box -->
                         <div class="product-action">
