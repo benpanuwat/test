@@ -14,6 +14,7 @@ import { FooterComponent } from './footer/footer.component';
 import { ProductComponent } from './product/product.component';
 import { LoginComponent } from './login/login.component';
 import { MyAccountComponent } from './profile/my-account/my-account.component';
+import { MyAddressComponent } from './profile/my-address/my-address.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { MyAccountComponent } from './profile/my-account/my-account.component';
     LoginComponent,
     PasswordStrengthBarComponent,
     MyAccountComponent,
+    MyAddressComponent,
   ],
   imports: [
     BrowserModule,

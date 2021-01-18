@@ -236,69 +236,14 @@
             <h2 class="section-title heading-border border-0 mb-5">หมวดหมู่สินค้า</h2>
 
             <div class="categories-slider owl-carousel owl-theme show-nav-hover nav-outer">
-                <div class="product-category">
+                <div class="product-category" *ngFor="let cat of data.category">
                     <a href="#">
                         <figure>
                             <img src="assets/images/products/categories/category-1.jpg" alt="category">
                         </figure>
                         <div class="category-content">
-                            <h3>Dress</h3>
-                            <span><mark class="count">3</mark> products</span>
-                        </div>
-                    </a>
-                </div>
-                <div class="product-category">
-                    <a href="#">
-                        <figure>
-                            <img src="assets/images/products/categories/category-2.jpg" alt="category">
-                        </figure>
-                        <div class="category-content">
-                            <h3>Watches</h3>
-                            <span><mark class="count">3</mark> products</span>
-                        </div>
-                    </a>
-                </div>
-                <div class="product-category">
-                    <a href="#">
-                        <figure>
-                            <img src="assets/images/products/categories/category-3.jpg" alt="category">
-                        </figure>
-                        <div class="category-content">
-                            <h3>Watches</h3>
-                            <span><mark class="count">3</mark> products</span>
-                        </div>
-                    </a>
-                </div>
-                <div class="product-category">
-                    <a href="#">
-                        <figure>
-                            <img src="assets/images/products/categories/category-2.jpg" alt="category">
-                        </figure>
-                        <div class="category-content">
-                            <h3>Watches</h3>
-                            <span><mark class="count">3</mark> products</span>
-                        </div>
-                    </a>
-                </div>
-                <div class="product-category">
-                    <a href="#">
-                        <figure>
-                            <img src="assets/images/products/categories/category-2.jpg" alt="category">
-                        </figure>
-                        <div class="category-content">
-                            <h3>Watches</h3>
-                            <span><mark class="count">3</mark> products</span>
-                        </div>
-                    </a>
-                </div>
-                <div class="product-category">
-                    <a href="#">
-                        <figure>
-                            <img src="assets/images/products/categories/category-2.jpg" alt="category">
-                        </figure>
-                        <div class="category-content">
-                            <h3>Watches</h3>
-                            <span><mark class="count">3</mark> products</span>
+                            <h3>{{cat.name}}</h3>
+                            <span><mark>{{cat.product_count}}</mark> สินค้า</span>
                         </div>
                     </a>
                 </div>

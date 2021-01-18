@@ -1,0 +1,133 @@
+<main class="main">
+    <nav aria-label="breadcrumb" class="breadcrumb-nav">
+        <div class="container">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="index.html"><i class="icon-home"></i></a></li>
+                <li class="breadcrumb-item active" aria-current="page">จัดการที่อยู่</li>
+            </ol>
+        </div><!-- End .container -->
+    </nav>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-9 order-lg-last dashboard-content">
+                <h2>จัดการที่อยู่</h2>
+
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div *ngIf="warnValidation" class="alert alert-warning">
+                            <strong>แจ้งเตือน!</strong> {{warnMass}}
+                        </div>
+                        <div *ngIf="succValidation" class="alert alert-success">
+                            <strong>แจ้งเตือน!</strong> {{succMass}}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" *ngFor="let add of member.address;index as i">
+                    <div class="card-header">
+                        ข้อมูลที่อยู่ {{i+1}}
+                        <a *ngIf="i != 0" href="javascript:void(0)" class="card-edit"
+                            (click)="clickDeleteAddress(add)">ลบ</a>
+                    </div>
+
+                    <div class="card-body">
+                        <div class="row">
+
+                            <div class="col-md-6">
+                                <div class="form-group required-field">
+                                    <label for="acc-name">ชื่อ</label>
+                                    <input type="text" class="form-control" [(ngModel)]="add.name">
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group required-field">
+                                    <label for="acc-lastname">หมายเลขโทรศัพท์</label>
+                                    <input type="text" class="form-control" [(ngModel)]="add.tel" maxlength="10">
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="acc-lastname">บ้านเลขที่ ถนน และอื่นๆ</label>
+                                    <input type="text" class="form-control" [(ngModel)]="add.others">
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group required-field">
+                                    <label for="acc-name">จังหวัด</label>
+                                    <select class="form-control" [(ngModel)]="add.province_code"
+                                        (change)="changeProvince(add)">
+                                        <option *ngFor="let pro of listProvince" value="{{pro.province_code}}">
+                                            {{pro.province_th}}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group required-field">
+                                    <label for="acc-name">อำเภอ/เขต</label>
+                                    <select class="form-control" [(ngModel)]="add.amphoe_code"
+                                        (change)="changeamphoe(add)">
+                                        <option *ngFor="let amp of add.listAmphoe" value="{{amp.amphoe_code}}">
+                                            {{amp.amphoe_th_s}}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group required-field">
+                                    <label for="acc-name">ตำบล/แขวง</label>
+                                    <select class="form-control" [(ngModel)]="add.district_code"
+                                        (change)="changeDistrict(add)">
+                                        <option *ngFor="let dis of add.listDistrict" value="{{dis.district_code}}">
+                                            {{dis.district_th_s}}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group required-field">
+                                    <label for="acc-lastname">รหัสไปรษณีย์</label>
+                                    <input type="text" class="form-control" maxlength="6" [(ngModel)]="add.zipcode"
+                                        numbersOnly>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div *ngIf="member.address.length < 5" class="m-t-20">
+                    <input class="btn btn-success" type="button" (click)="clickAddAddress()" value="เพิ่มที่อยู่">
+                </div>
+
+                <div class="form-footer">
+                    <div class="form-footer-right">
+                        <button type="button" class="btn btn-primary" (click)="clickSaveAddress()">บันทึก</button>
+                    </div>
+                </div><!-- End .form-footer -->
+            </div><!-- End .col-lg-9 -->
+
+            <aside class="sidebar col-lg-3">
+                <div class="widget widget-dashboard">
+                    <h3 class="widget-title">ข้อมูลส่วนตัว</h3>
+
+                    <ul class="list">
+                        <li><a href="myaccount">จัดการข้อมูลส่วนตัว</a></li>
+                        <li class="active"><a href="myaddress">จัดการที่อยู่</a></li>
+                        <li><a href="#">รายการสั่งซื้อ</a></li>
+                        <li><a href="#">เปลี่ยนรหัสผ่าน</a></li>
+                    </ul>
+                </div><!-- End .widget -->
+            </aside><!-- End .col-lg-3 -->
+        </div><!-- End .row -->
+    </div><!-- End .container -->
+
+    <div class="mb-5"></div><!-- margin -->
+</main><!-- End .main -->

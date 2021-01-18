@@ -7,6 +7,7 @@ import { HomeComponent } from './home/home.component';
 import { ProductComponent } from './product/product.component';
 
 import { MyAccountComponent } from './profile/my-account/my-account.component';
+import { MyAddressComponent } from './profile/my-address/my-address.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -14,6 +15,7 @@ const routes: Routes = [
   { path: 'product', component: ProductComponent },
   { path: 'login', component: LoginComponent },
   { path: 'myaccount', component: MyAccountComponent , canActivate: [AuthGuard]},
+  { path: 'myaddress', component: MyAddressComponent , canActivate: [AuthGuard]},
 ];
 
 @NgModule({

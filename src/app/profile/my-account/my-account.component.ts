@@ -12,8 +12,17 @@ export class MyAccountComponent implements OnInit {
   public headers: HttpHeaders;
 
   public member = {
-    id: ""
+    id: "",
+    fname: "",
+    lname: "",
+    email: "",
+    tel: ""
   };
+
+  warnValidation: boolean = false;
+  warnMass: string = "";
+  succValidation: boolean = false;
+  succMass: string = "";
 
   constructor(private http: HttpClient, private service: AppService) {
   }
@@ -22,13 +31,40 @@ export class MyAccountComponent implements OnInit {
     this.headers = new HttpHeaders();
     this.headers = this.headers.append('Authorization', localStorage.getItem('token'));
 
-    this.member.id = localStorage.getItem('id');
-
-    this.http.post<any>(this.service.url + '/api/get_accunt', this.member, { headers: this.headers }).subscribe(res => {
-      if (res.success) {
-        this.member = res.data.member;
+    this.http.post<any>(this.service.url + '/api/get_memder_account', {}, { headers: this.headers }).subscribe(res => {
+      if (res.code == 200) {
+        this.member = res.data;
       }
     });
+  }
+
+  clickSaveAccount(f) {
+    if (f.invalid === true) {
+      this.warnMessage("กรุณากรอกข้อมูลให้ครบถ้วนและถูกต้อง");
+    }
+    else {
+
+      this.http.post<any>(this.service.url + '/api/update_memder_account', this.member, { headers: this.headers }).subscribe(res => {
+        if (res.code == 200) {
+          this.succMessage("บันทึกข้อมูลสำเร็จ");
+        }
+        else {
+          this.succMessage("ระบบไม่สามารถบันทึกข้อมูลได้");
+        }
+      });
+    }
+  }
+
+  warnMessage(mass) {
+    this.succValidation = false;
+    this.warnValidation = true;
+    this.warnMass = mass;
+  }
+
+  succMessage(mass) {
+    this.warnValidation = false;
+    this.succValidation = true;
+    this.succMass = mass;
   }
 
 }
