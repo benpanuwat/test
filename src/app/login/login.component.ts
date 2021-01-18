@@ -14,6 +14,11 @@ export class LoginComponent implements OnInit {
 
   //user: SocialUser;
 
+  public userlogin = {
+    email: "",
+    password: ""
+  };
+
   public member = {
     email: "",
     password: "",
@@ -45,9 +50,36 @@ export class LoginComponent implements OnInit {
   //   this.authService.signIn(GoogleLoginProvider.PROVIDER_ID);
   // }
 
-  clickCreateAccount(f) {
+  clickLogin(f) {
+    if (f.invalid === true) {
+      this.loginValidation = true;
+      this.loginMass = "กรุณากรอกอีเมลและรหัสผ่านให้ถูกต้อง";
+    }
+    else {
+      this.http.post<any>(this.service.url + '/api/member_login', this.userlogin, {}).subscribe(res => {
+        if (res.code == 200) {
 
-    console.log(f);
+          localStorage.setItem("auth", res.status);
+          localStorage.setItem("id", res.data.id);
+          localStorage.setItem("name", res.data.fname);
+          localStorage.setItem("email", res.data.email);
+          localStorage.setItem("token", res.token);
+
+          window.history.back();
+        }
+        else if (res.code == 400) {
+          this.loginValidation = true;
+          this.loginMass = res.massage;
+        }
+        else {
+          this.loginValidation = true;
+          this.loginMass = "อีเมลหรือรหัสผ่านไม่ถูกต้อง";
+        }
+      });
+    }
+  }
+
+  clickCreateAccount(f) {
 
     if (f.invalid === true) {
       this.createValidation = true;
@@ -63,25 +95,23 @@ export class LoginComponent implements OnInit {
     }
     else {
       this.http.post<any>(this.service.url + '/api/create_member', this.member, {}).subscribe(res => {
-        if (res.status) {
+        if (res.code == 200) {
 
-          localStorage.setItem("auth", res.success);
-          localStorage.setItem("id", res.data.member.id);
-          localStorage.setItem("name", res.data.member.name);
-          localStorage.setItem("email", res.data.member.email);
-          localStorage.setItem("token", res.data.token);
+          localStorage.setItem("auth", res.status);
+          localStorage.setItem("id", res.data.id);
+          localStorage.setItem("name", res.data.fname);
+          localStorage.setItem("email", res.data.email);
+          localStorage.setItem("token", res.token);
 
-          window.location.href = "acc_information";
+          //window.location.href = "acc_information";
+        }
+        else if (res.code == 400) {
+          this.createValidation = true;
+          this.createMass = res.massage;
         }
         else {
-          if (res.message == "Email already exists.") {
-            this.createValidation = true;
-            this.createMass = "อีเมลนี้ทำการลงทะเบียนแล้ว";
-          }
-          else {
-            this.createValidation = true;
-            this.createMass = "ระบบไม่สามารถลงทะเบียนได้";
-          }
+          this.createValidation = true;
+          this.createMass = "ไม่สามารถส่งทะเบียนได้";
         }
       });
     }

@@ -1,0 +1,72 @@
+<main class="main">
+    <nav aria-label="breadcrumb" class="breadcrumb-nav">
+        <div class="container">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="index.html"><i class="icon-home"></i></a></li>
+                <li class="breadcrumb-item active" aria-current="page">ข้อมูลส่วนตัว</li>
+            </ol>
+        </div><!-- End .container -->
+    </nav>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-9 order-lg-last dashboard-content">
+                <h2>ข้อมูลส่วนตัว</h2>
+                
+                <form action="#">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group required-field">
+                                        <label for="acc-name">ชื่อ</label>
+                                        <input type="text" class="form-control" id="acc-name" name="acc-name" required>
+                                    </div><!-- End .form-group -->
+                                </div><!-- End .col-md-4 -->
+
+                                <div class="col-md-6">
+                                    <div class="form-group required-field">
+                                        <label for="acc-mname">นามสกุล</label>
+                                        <input type="text" class="form-control" id="acc-mname" name="acc-mname">
+                                    </div><!-- End .form-group -->
+                                </div><!-- End .col-md-4 -->
+                            </div><!-- End .row -->
+                        </div><!-- End .col-sm-11 -->
+                    </div><!-- End .row -->
+
+                    <div class="form-group required-field">
+                        <label for="acc-email">อีเมล</label>
+                        <input type="email" class="form-control" id="acc-email" name="acc-email" required>
+                    </div><!-- End .form-group -->
+
+                    <div class="form-group required-field">
+                        <label for="acc-email">เบอร์โทรศัพท์</label>
+                        <input type="email" class="form-control" id="acc-email" name="acc-email" required>
+                    </div><!-- End .form-group -->
+
+                    <div class="required text-right">* จำเป็นต้องกรอก</div>
+                    <div class="form-footer">
+                        <div class="form-footer-right">
+                            <button type="submit" class="btn btn-primary">บันทึก</button>
+                        </div>
+                    </div><!-- End .form-footer -->
+                </form>
+            </div><!-- End .col-lg-9 -->
+
+            <aside class="sidebar col-lg-3">
+                <div class="widget widget-dashboard">
+                    <h3 class="widget-title">ข้อมูลส่วนตัว</h3>
+
+                    <ul class="list">
+                        <li class="active"><a href="myaccount">จัดการข้อมูลส่วนตัว</a></li>
+                        <li><a href="#">จัดการที่อยู่</a></li>
+                        <li><a href="#">รายการสั่งซื้อ</a></li>
+                        <li><a href="#">เปลี่ยนรหัสผ่าน</a></li>
+                    </ul>
+                </div><!-- End .widget -->
+            </aside><!-- End .col-lg-3 -->
+        </div><!-- End .row -->
+    </div><!-- End .container -->
+
+    <div class="mb-5"></div><!-- margin -->
+</main><!-- End .main -->

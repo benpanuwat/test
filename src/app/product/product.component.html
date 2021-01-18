@@ -18,8 +18,8 @@
                         <!-- End .product-single-carousel -->
                     </div>
                     <div class="prod-thumbnail owl-dots" id='carousel-custom-dots'>
-                        <div class="owl-dot" *ngFor="let img of product.product_image">
-                            <img [src]="img.path" (click)="selectMain(img)" />
+                        <div class="owl-dot" style="flex:unset" *ngFor="let img of product.product_image">
+                            <img style="max-width: 100px;" [src]="img.path" />
                         </div>
                     </div>
                 </div><!-- End .product-single-gallery -->
