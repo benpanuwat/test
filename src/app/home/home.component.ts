@@ -9,6 +9,8 @@ import { AppService } from 'src/app/app.service';
 })
 export class HomeComponent implements OnInit {
 
+  public headers: HttpHeaders;
+
   constructor(private http: HttpClient, private service: AppService) {
   }
 
@@ -18,6 +20,9 @@ export class HomeComponent implements OnInit {
   };
 
   ngOnInit(): void {
+
+    this.headers = new HttpHeaders();
+    this.headers = this.headers.append('Authorization', localStorage.getItem('token'));
 
     this.http.post<any>(this.service.url + '/api/get_product_home', {}, {}).subscribe(res => {
       if (res.status) {
@@ -36,6 +41,25 @@ export class HomeComponent implements OnInit {
       }
     });
 
+  }
+
+  addOrder(product) {
+    if (localStorage.getItem('auth') == "true") {
+
+      let data: any = {
+        product_id: product.product_id
+      };
+
+      this.http.post<any>(this.service.url + '/api/add_cart', data, { headers: this.headers }).subscribe(res => {
+        if (res.code == 200) {
+          window.location.reload();
+        }
+      });
+
+    }
+    else {
+      window.location.href = "login";
+    }
   }
 
 }

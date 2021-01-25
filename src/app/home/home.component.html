@@ -139,7 +139,8 @@
                             <img [src]="product.path" alt="product">
                         </a>
                         <div class="label-group">
-                            <div *ngIf="product.discount > 0" class="product-label label-sale">ลด {{product.discount}}%</div>
+                            <div *ngIf="product.discount > 0" class="product-label label-sale">ลด {{product.discount}}%
+                            </div>
                         </div>
                     </figure>
                     <div class="product-details">
@@ -156,11 +157,12 @@
                             </div><!-- End .product-ratings -->
                         </div><!-- End .product-container -->
                         <div class="price-box">
-                            <del class="old-price" *ngIf="product.discount > 0 && product.discount < product.price">฿{{product.standard_price}}</del>
-                            <span class="product-price">฿{{product.price}}</span>
+                            <del class="old-price"
+                                *ngIf="product.discount > 0 && product.discount < product.price">฿{{product.standard_price| number:'1.0-2'}}</del>
+                            <span class="product-price">฿{{product.price| number:'1.0-2'}}</span>
                         </div><!-- End .price-box -->
                         <div class="product-action">
-                            <button class="btn-icon btn-add-cart" >สั่งซื้อสินค้า</button>
+                            <button class="btn-icon btn-add-cart" (click)="addOrder(product)">สั่งซื้อสินค้า</button>
                         </div>
                     </div><!-- End .product-details -->
                 </div>
@@ -189,7 +191,8 @@
                         </a>
                         <div class="label-group">
                             <div class="product-label label-hot">ใหม่</div>
-                            <div *ngIf="product.discount > 0" class="product-label label-sale">ลด {{product.discount}}%</div>
+                            <div *ngIf="product.discount > 0" class="product-label label-sale">ลด {{product.discount}}%
+                            </div>
                         </div>
                     </figure>
                     <div class="product-details">
@@ -206,11 +209,12 @@
                             </div>
                         </div>
                         <div class="price-box">
-                            <del class="old-price"  *ngIf="product.discount > 0 && product.discount < product.price">฿{{product.standard_price}}</del>
-                            <span class="product-price">฿{{product.price}}</span>
+                            <del class="old-price"
+                                *ngIf="product.discount > 0 && product.discount < product.price">฿{{product.standard_price| number:'1.0-2'}}</del>
+                            <span class="product-price">฿{{product.price| number:'1.0-2'}}</span>
                         </div><!-- End .price-box -->
                         <div class="product-action">
-                            <button class="btn-icon btn-add-cart" >สั่งซื้อ</button>
+                            <button class="btn-icon btn-add-cart">สั่งซื้อ</button>
                         </div>
                     </div><!-- End .product-details -->
                 </div>
@@ -256,15 +260,13 @@
             <div class="row">
                 <div class="col-md-4">
                     <div class="feature-box px-sm-5 feature-box-simple text-center">
-                        <i class="icon-earphones-alt"></i>
+                        <i class="fa fa-shopping-cart"></i>
 
                         <div class="feature-box-content">
-                            <h3 class="m-b-1">Customer Support</h3>
-                            <h5 class="m-b-3">You Won't Be Alone</h5>
+                            <h3 class="m-b-1">เลือกสินค้าบนเว็บไซต์</h3>
+                            <h5 class="m-b-3"></h5>
 
-                            <p>We really care about you and your website as much as you do. Purchasing Porto or any
-                                other theme
-                                from us you get 100% free support.</p>
+                            <p>สามารถรับทราบข้อมูลสินค้าและคุณสมบัติได้จากเว็บไซต์ของเรา</p>
                         </div><!-- End .feature-box-content -->
                     </div><!-- End .feature-box -->
                 </div><!-- End .col-md-4 -->
@@ -274,27 +276,23 @@
                         <i class="icon-credit-card"></i>
 
                         <div class="feature-box-content">
-                            <h3 class="m-b-1">Fully Customizable</h3>
-                            <h5 class="m-b-3">Tons Of Options</h5>
+                            <h3 class="m-b-1">สั่งซื้อและชำระเงิน</h3>
+                            <h5 class="m-b-3"></h5>
 
-                            <p>With Porto you can customize the layout, colors and styles within only a few minutes.
-                                Start
-                                creating an amazing website right now!</p>
+                            <p>ติดต่อผู้แทนขายเพื่อสอบถามโปรโมชั่น ราคา และเงื่อนไขการชำระเงิน</p>
                         </div><!-- End .feature-box-content -->
                     </div><!-- End .feature-box -->
                 </div><!-- End .col-md-4 -->
 
                 <div class="col-md-4">
                     <div class="feature-box px-sm-5 feature-box-simple text-center">
-                        <i class="icon-action-undo"></i>
+                        <i class="fa fa-truck"></i>
 
                         <div class="feature-box-content">
-                            <h3 class="m-b-1">Powerful Admin</h3>
-                            <h5 class="m-b-3">Made To Help You</h5>
+                            <h3 class="m-b-1">การขนส่งสินค้า</h3>
+                            <h5 class="m-b-3"></h5>
 
-                            <p>Porto has very powerful admin features to help customer to build their own shop in
-                                minutes without
-                                any special skills in web development.</p>
+                            <p>เรามีบริการจัดส่งสินค้าทั่วประเทศ</p>
                         </div><!-- End .feature-box-content -->
                     </div><!-- End .feature-box -->
                 </div><!-- End .col-md-4 -->

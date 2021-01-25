@@ -74,7 +74,7 @@
                             <div class="select-custom">
                                 <select id="cat" name="cat">
                                     <option value="">สินค้าทั่งหมด</option>
-                                    <option *ngFor="let cat of category" value="{{cat.id}}">{{cat.name}}
+                                    <option *ngFor="let cat of data.category" value="{{cat.id}}">{{cat.name}}
                                     </option>
                                 </select>
                             </div><!-- End .select-custom -->
@@ -96,69 +96,47 @@
                     <a href="#" class="dropdown-toggle dropdown-arrow" role="button" data-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false" data-display="static">
                         <i class="icon-shopping-cart"></i>
-                        <span class="cart-count badge-circle">2</span>
+                        <span class="cart-count badge-circle">{{data.cart.count_total}}</span>
                     </a>
 
                     <div class="dropdown-menu">
                         <div class="dropdownmenu-wrapper">
                             <div class="dropdown-cart-header">
-                                <span>2 Items</span>
+                                <span>{{data.cart.count_total}} รายการ</span>
 
-                                <a href="cart.html" class="float-right">View Cart</a>
+                                <a href="checkout" class="float-right">ตะกร้าสินค้า</a>
                             </div><!-- End .dropdown-cart-header -->
 
                             <div class="dropdown-cart-products">
-                                <div class="product">
+                                <div class="product" *ngFor="let order of data.cart.products">
                                     <div class="product-details">
                                         <h4 class="product-title">
-                                            <a href="product.html">Woman Ring</a>
+                                            <a href="product?p={{ order.url }}">{{order.name}}</a>
                                         </h4>
 
                                         <span class="cart-product-info">
-                                            <span class="cart-product-qty">1</span>
-                                            x $99.00
+                                            <span class="cart-product-qty">{{order.count}}</span>
+                                            x ฿{{order.price| number:'1.0-2'}}
                                         </span>
                                     </div><!-- End .product-details -->
 
                                     <figure class="product-image-container">
-                                        <a href="product.html" class="product-image">
-                                            <img src="assets/images/products/cart/product-1.jpg" alt="product"
-                                                width="80" height="80">
+                                        <a href="product?p={{ order.url }}" class="product-image">
+                                            <img [src]="order.path" alt="product" width="80" height="80">
                                         </a>
-                                        <a href="#" class="btn-remove icon-cancel" title="Remove Product"></a>
+                                        <a href="#" class="btn-remove icon-cancel" title="ยกเลิกรายการสั่งซื้อ"></a>
                                     </figure>
-                                </div><!-- End .product -->
-
-                                <div class="product">
-                                    <div class="product-details">
-                                        <h4 class="product-title">
-                                            <a href="product.html">Woman Necklace</a>
-                                        </h4>
-
-                                        <span class="cart-product-info">
-                                            <span class="cart-product-qty">1</span>
-                                            x $35.00
-                                        </span>
-                                    </div><!-- End .product-details -->
-
-                                    <figure class="product-image-container">
-                                        <a href="product.html" class="product-image">
-                                            <img src="assets/images/products/cart/product-2.jpg" alt="product"
-                                                width="80" height="80">
-                                        </a>
-                                        <a href="#" class="btn-remove icon-cancel" title="Remove Product"></a>
-                                    </figure>
-                                </div><!-- End .product -->
+                                </div>
                             </div><!-- End .cart-product -->
 
                             <div class="dropdown-cart-total">
-                                <span>Total</span>
+                                <span>ราคารวม</span>
 
-                                <span class="cart-total-price float-right">$134.00</span>
+                                <span class="cart-total-price float-right">{{data.cart.price_total| number:'1.0-2'}}</span>
                             </div><!-- End .dropdown-cart-total -->
 
                             <div class="dropdown-cart-action">
-                                <a href="checkout-shipping.html" class="btn btn-dark btn-block">Checkout</a>
+                                <a href="checkout-shipping.html" class="btn btn-dark btn-block">ชำระเงิน</a>
                             </div><!-- End .dropdown-cart-total -->
                         </div><!-- End .dropdownmenu-wrapper -->
                     </div><!-- End .dropdown-menu -->
@@ -181,83 +159,14 @@
                                 <div class="col-lg-12">
                                     <!-- <a href="#" class="nolink">VARIATION 1</a> -->
                                     <ul class="submenu">
-                                        <li *ngFor="let cat of category"><a href="#">{{cat.name}}</a></li>
+                                        <li *ngFor="let cat of data.category"><a href="#">{{cat.name}}</a></li>
                                     </ul>
                                 </div>
                             </div>
                         </div><!-- End .megamenu -->
                     </li>
-                    <li>
-                        <a href="product.html">Products</a>
-                        <div class="megamenu megamenu-fixed-width">
-                            <div class="row">
-                                <div class="col-lg-3">
-                                    <a href="#" class="nolink">Variations 1</a>
-                                    <ul class="submenu">
-                                        <li><a href="product.html">Horizontal Thumbs</a></li>
-                                        <li><a href="product-full-width.html">Vertical Thumbnails</a></li>
-                                        <li><a href="product.html">Inner Zoom</a></li>
-                                        <li><a href="product-addcart-sticky.html">Addtocart Sticky</a></li>
-                                        <li><a href="product-sidebar-left.html">Accordion Tabs</a></li>
-                                    </ul>
-                                </div><!-- End .col-lg-4 -->
-                                <div class="col-lg-3">
-                                    <a href="#" class="nolink">Variations 2</a>
-                                    <ul class="submenu">
-                                        <li><a href="product-sticky-tab.html">Sticky Tabs</a></li>
-                                        <li><a href="product-simple.html">Simple Product</a></li>
-                                        <li><a href="product-sidebar-left.html">With Left Sidebar</a></li>
-                                    </ul>
-                                </div><!-- End .col-lg-4 -->
-                                <div class="col-lg-3">
-                                    <a href="#" class="nolink">Product Layout Types</a>
-                                    <ul class="submenu">
-                                        <li><a href="product.html">Default Layout</a></li>
-                                        <li><a href="product-extended-layout.html">Extended Layout</a></li>
-                                        <li><a href="product-full-width.html">Full Width Layout</a></li>
-                                        <li><a href="product-grid-layout.html">Grid Images Layout</a></li>
-                                        <li><a href="product-sticky-both.html">Sticky Both Side Info</a></li>
-                                        <li><a href="product-sticky-info.html">Sticky Right Side Info</a></li>
-                                    </ul>
-                                </div><!-- End .col-lg-4 -->
-
-                                <div class="col-lg-3 p-0">
-                                    <img src="assets/images/menu-bg.png" alt="Menu banner" class="product-promo">
-                                </div><!-- End .col-lg-4 -->
-                            </div><!-- End .row -->
-                        </div><!-- End .megamenu -->
-                    </li>
-                    <li>
-                        <a href="#">Pages</a>
-                        <ul>
-                            <li><a href="cart.html">Shopping Cart</a></li>
-                            <li><a href="#">Checkout</a>
-                                <ul>
-                                    <li><a href="checkout-shipping.html">Checkout Shipping</a></li>
-                                    <li><a href="checkout-shipping-2.html">Checkout Shipping 2</a></li>
-                                    <li><a href="checkout-review.html">Checkout Review</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="#">Dashboard</a>
-                                <ul>
-                                    <li><a href="dashboard.html">Dashboard</a></li>
-                                    <li><a href="my-account.html">My Account</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="about.html">About Us</a></li>
-                            <li><a href="#">Blog</a>
-                                <ul>
-                                    <li><a href="blog.html">Blog</a></li>
-                                    <li><a href="single.html">Blog Post</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="contact.html">Contact Us</a></li>
-                            <li><a href="#" class="login-link">Login</a></li>
-                            <li><a href="forgot-password.html">Forgot Password</a></li>
-                        </ul>
-                    </li>
                     <li><a href="blog.html">Blog</a></li>
-                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="about">เกี่ยวกับเรา</a></li>
                     <li><a href="contact.html">Contact Us</a></li>
 
                     <li *ngIf="userLogin.auth!='true'" class="float-right mr-0"><a href="login"

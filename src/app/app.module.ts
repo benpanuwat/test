@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SocialLoginModule, SocialAuthServiceConfig, FacebookLoginProvider, GoogleLoginProvider } from 'angularx-social-login';
+import { QRCodeModule } from 'angularx-qrcode';
 
 import { PasswordStrengthBarComponent } from './password-strength-bar/password-strength-bar.component';
 
@@ -15,6 +16,8 @@ import { ProductComponent } from './product/product.component';
 import { LoginComponent } from './login/login.component';
 import { MyAccountComponent } from './profile/my-account/my-account.component';
 import { MyAddressComponent } from './profile/my-address/my-address.component';
+import { CheckoutComponent } from './checkout/checkout.component';
+import { AboutComponent } from './about/about.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +30,8 @@ import { MyAddressComponent } from './profile/my-address/my-address.component';
     PasswordStrengthBarComponent,
     MyAccountComponent,
     MyAddressComponent,
+    CheckoutComponent,
+    AboutComponent,
   ],
   imports: [
     BrowserModule,
@@ -34,7 +39,8 @@ import { MyAddressComponent } from './profile/my-address/my-address.component';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    SocialLoginModule
+    SocialLoginModule,
+    QRCodeModule,
   ],
   providers: [
     {

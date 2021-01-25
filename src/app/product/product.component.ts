@@ -10,8 +10,10 @@ import { AppService } from 'src/app/app.service';
 })
 export class ProductComponent implements OnInit {
 
+  public headers: HttpHeaders;
+
   public product: any = {
-    product_id: "",
+    id: "",
     name: "",
     description: "",
     detail: "",
@@ -31,6 +33,10 @@ export class ProductComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+    this.headers = new HttpHeaders();
+    this.headers = this.headers.append('Authorization', localStorage.getItem('token'));
+
     this.activatedRoute.queryParams.subscribe(params => {
       const p = params['p'];
       if (p != "")
@@ -40,6 +46,7 @@ export class ProductComponent implements OnInit {
     this.http.post<any>(this.service.url + '/api/get_product_detail', this.product, {}).subscribe(res => {
       if (res.status) {
         this.product = res.data;
+        this.product.count = 1;
 
         let that = this;
         this.product.product_image.forEach(function (value) {
@@ -56,11 +63,51 @@ export class ProductComponent implements OnInit {
     this.changeCount();
   }
 
+  changeCountReduce() {
+    if (this.product.count > 1) {
+      this.product.count--;
+      //this.changePrice();
+    }
+  }
+
+  changeCountIncrease() {
+    this.product.count++;
+    //this.changePrice();
+
+    if (this.product.count > this.productTypeSelect.stock)
+      this.product.count = this.productTypeSelect.stock;
+  }
+
   changeCount() {
     if (this.product.count > this.productTypeSelect.stock)
       this.product.count = this.productTypeSelect.stock;
 
-    if (this.productTypeSelect.stock > 0)
-      this.productTypeSelect.disabled = true;
+    if (this.product.count <= 0) {
+      this.product.count = 1;
+    }
+    //this.changePrice();
+  }
+
+  addOrder() {
+
+    if (localStorage.getItem('auth') == "true") {
+
+      let data: any = {
+        product_id: this.product.id,
+        product_type_id: this.productTypeSelect.id,
+        price: this.productTypeSelect.price,
+        count: this.product.count
+      };
+
+      this.http.post<any>(this.service.url + '/api/add_cart', data, { headers: this.headers }).subscribe(res => {
+        if (res.code == 200) {
+          window.location.reload();
+        }
+      });
+
+    }
+    else {
+      window.location.href = "login";
+    }
   }
 }

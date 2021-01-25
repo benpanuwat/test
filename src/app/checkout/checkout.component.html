@@ -1,0 +1,305 @@
+<main class="main">
+    <nav aria-label="breadcrumb" class="breadcrumb-nav">
+        <div class="container">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="index.html"><i class="icon-home"></i></a></li>
+                <li class="breadcrumb-item active" aria-current="page">สั่งซื้อสินค้า</li>
+            </ol>
+        </div><!-- End .container -->
+    </nav>
+
+    <div class="container" *ngIf="checkout.step==1">
+        <ul class="checkout-progress-bar">
+            <li class="active">
+                <span>เลือกรายการสินค้า</span>
+            </li>
+            <li>
+                <span>เลือกที่อยู่การจัดส่ง</span>
+            </li>
+            <li>
+                <span>เลือกการชำระเงิน</span>
+            </li>
+            <li>
+                <span>ชำระเงิน</span>
+            </li>
+        </ul>
+        <div class="row">
+            <div class="col-lg-8">
+                <ul class="checkout-steps">
+                    <li>
+                        <h2 class="step-title">เลือกรายการสินค้า</h2>
+
+                        <div class="shipping-step-addresses" style="cursor: pointer;"
+                            *ngFor="let pro of data.cart.products" (click)="clickSelectProduct(pro)">
+                            <div class="shipping-address-box" [ngClass]="{'active': pro.select==true}">
+                                <div class="row">
+                                    <div class="col-lg-2">
+                                        <a href="product?p={{ pro.url }}">
+                                            <img width="80" [src]="pro.path"></a>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <a href="product?p={{ pro.url }}">{{pro.name}}</a>
+                                    </div>
+                                    <div class="col-lg-3">{{pro.type_name}}</div>
+                                    <div class="col-lg-2">จำนวน {{pro.count}} x {{pro.price| number:'1.0-2'}}</div>
+                                    <div class="col-lg-2">ราคา {{pro.count *pro.price| number:'1.0-2'}} บาท</div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div><!-- End .col-lg-8 -->
+
+            <div class="col-lg-4">
+                <div class="order-summary">
+                    <h3>สรุป</h3>
+                    <h5>สั่งซื้อทั้งหมด {{checkout.count_total}} รายการ</h5>
+                    <h5>ราคารวม {{checkout.price_total | number:'1.0-2'}} บาท</h5>
+                </div><!-- End .order-summary -->
+            </div><!-- End .col-lg-4 -->
+        </div>
+
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="checkout-steps-action">
+                    <button class="btn btn-primary float-right" [disabled]="checkout.next_product"
+                        (click)="clickNextSelectProduct()">ถัดไป</button>
+                </div><!-- End .checkout-steps-action -->
+            </div><!-- End .col-lg-8 -->
+        </div><!-- End .row -->
+    </div>
+    <div class="container" *ngIf="checkout.step==2">
+        <ul class="checkout-progress-bar">
+            <li>
+                <span>เลือกรายการสินค้า</span>
+            </li>
+            <li class="active">
+                <span>เลือกที่อยู่การจัดส่ง</span>
+            </li>
+            <li>
+                <span>เลือกการชำระเงิน</span>
+            </li>
+            <li>
+                <span>ชำระเงิน</span>
+            </li>
+        </ul>
+        <div class="row">
+            <div class="col-lg-8">
+                <ul class="checkout-steps">
+                    <li>
+                        <h2 class="step-title">เลือกที่อยู่การจัดส่ง</h2>
+
+                        <div class="shipping-step-addresses" style="cursor: pointer;" *ngFor="let add of data.address"
+                            (click)="clickSelectAddress(add)">
+                            <div class="shipping-address-box" [ngClass]="{'active': add.select==true}">
+                                <h5>{{add.name}}</h5>
+                                ที่อยู่ : {{add.others}} {{add.district}}, {{add.amphoe}}, {{add.province}},
+                                {{add.zipcode}}<br>
+                                เบอร์โทรศัพท์ : {{add.tel}}
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div><!-- End .col-lg-8 -->
+
+            <div class="col-lg-4">
+                <div class="order-summary">
+                    <h3>สรุป</h3>
+                    <h5>สั่งซื้อทั้งหมด {{checkout.count_total}} รายการ</h5>
+                    <h5>ราคารวม {{checkout.price_total | number:'1.0-2'}} บาท</h5>
+                </div><!-- End .order-summary -->
+            </div><!-- End .col-lg-4 -->
+        </div>
+
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="checkout-steps-action">
+                    <button class="btn btn-dark float-left" (click)="clickBackSelectAddress()">กลับ</button>
+                    <button class="btn btn-primary float-right" [disabled]="checkout.next_address"
+                        (click)="clickNextSelectAddress()">ถัดไป</button>
+                </div><!-- End .checkout-steps-action -->
+            </div><!-- End .col-lg-8 -->
+        </div><!-- End .row -->
+    </div>
+    <div class="container" *ngIf="checkout.step==3">
+        <ul class="checkout-progress-bar">
+            <li>
+                <span>เลือกรายการสินค้า</span>
+            </li>
+            <li>
+                <span>เลือกที่อยู่การจัดส่ง</span>
+            </li>
+            <li class="active">
+                <span>เลือกการชำระเงิน</span>
+            </li>
+            <li>
+                <span>ชำระเงิน</span>
+            </li>
+        </ul>
+        <div class="row">
+            <div class="col-lg-8">
+                <ul class="checkout-steps">
+                    <li>
+
+                        <h2 class="step-title">เลือกการชำระเงิน</h2>
+
+                        <div class="shipping-step-addresses" style="cursor: pointer;" (click)="clickSelectPayment(pay)"
+                            *ngFor="let pay of data.payment">
+                            <div class="shipping-address-box" [ngClass]="{'active': pay.select==true}">
+                                <div class="row">
+                                    <div class="col-lg-4"><img [src]="pay.image"></div>
+                                    <div class="col-lg-8"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div><!-- End .col-lg-8 -->
+
+            <div class="col-lg-4">
+                <div class="order-summary">
+                    <h3>สรุป</h3>
+                    <h5>สั่งซื้อทั้งหมด {{checkout.count_total}} รายการ</h5>
+                    <h5>ราคารวม {{checkout.price_total | number:'1.0-2'}} บาท</h5>
+                </div><!-- End .order-summary -->
+            </div><!-- End .col-lg-4 -->
+        </div>
+
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="checkout-steps-action">
+                    <button class="btn btn-dark float-left" (click)="clickBackSelectPayment()">กลับ</button>
+                    <button class="btn btn-primary float-right" [disabled]="checkout.next_select_payment"
+                        (click)="clickNextSelectPayment()">ถัดไป</button>
+                </div><!-- End .checkout-steps-action -->
+            </div><!-- End .col-lg-8 -->
+        </div><!-- End .row -->
+    </div>
+    <div class="container" *ngIf="checkout.step==4">
+        <ul class="checkout-progress-bar">
+            <li>
+                <span>เลือกรายการสินค้า</span>
+            </li>
+            <li>
+                <span>เลือกที่อยู่การจัดส่ง</span>
+            </li>
+            <li>
+                <span>เลือกการชำระเงิน</span>
+            </li>
+            <li class="active">
+                <span>ชำระเงิน</span>
+            </li>
+        </ul>
+        <div class="row">
+            <div class="col-lg-8">
+                <ul class="checkout-steps">
+                    <li>
+                        <h2 class="step-title">ชำระเงิน</h2>
+
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div
+                                    style="width: 256px;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);text-align: center;margin: auto;padding-bottom: 5px;">
+                                    <img style="width: 256px;" src="assets/images/PromptPay-logo.jpg">
+                                    <qrcode [qrdata]="checkout.payment" [width]="256" [errorCorrectionLevel]="'M'"
+                                        [elementType]="'svg'"></qrcode>
+                                    <h4>ยอดชำระ {{checkout.price_total| number:'1.0-2'}} บาท</h4>
+                                    <button class="btn btn-success" (click)="ckickUploadSlip()">อัพโหลดสลิป</button>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div><!-- End .col-lg-8 -->
+
+            <div class="col-lg-4">
+                <div class="order-summary">
+                    <h3>สรุป</h3>
+                    <h5>สั่งซื้อทั้งหมด {{checkout.count_total}} รายการ</h5>
+                    <h5>ราคารวม {{checkout.price_total | number:'1.0-2'}} บาท</h5>
+                </div><!-- End .order-summary -->
+            </div><!-- End .col-lg-4 -->
+        </div>
+
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="checkout-steps-action">
+                    <button class="btn btn-dark float-left" (click)="clickBackPayment()">กลับ</button>
+                    <button class="btn btn-primary float-right" [disabled]="checkout.new_order"
+                        (click)="clickConfirmPayment()">ชำระเงิน</button>
+                </div><!-- End .checkout-steps-action -->
+            </div><!-- End .col-lg-8 -->
+        </div><!-- End .row -->
+    </div>
+    <div class="container" *ngIf="checkout.step==5">
+        <ul class="checkout-progress-bar">
+            <li>
+                <span>เลือกรายการสินค้า</span>
+            </li>
+            <li>
+                <span>เลือกที่อยู่การจัดส่ง</span>
+            </li>
+            <li>
+                <span>เลือกการชำระเงิน</span>
+            </li>
+            <li class="active">
+                <span>ชำระเงิน</span>
+            </li>
+        </ul>
+        <div class="row">
+            <div class="col-lg-12">
+                <ul class="checkout-steps">
+                    <li>
+                        <div class="checkout-step-shipping">
+                            <h2 class="step-title">ชำระเงิน</h2>
+    
+                            <div class="card" style="cursor: pointer;">
+    
+                                <div class="card-body" style="min-height: auto;">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <img src="assets/images/payment/check.jpg" width="300"
+                                                style="margin: 0 auto;padding: 13px;">
+                                        </div>
+                                        <div class="col-md-12" style="text-align: center;">
+                                            <h1 style="color: rgb(35, 211, 35);">การสั่งซื้อสำเร็จ</h1>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+    
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="checkout-steps-action">
+                    <a href="" class="btn btn-dark float-left">กลับหน้าหลัก</a>
+                    <a href="" class="btn btn-primary float-right">ตรวจสอบสถานะการสั่งซื้อ</a>
+                </div><!-- End .checkout-steps-action -->
+            </div><!-- End .col-lg-8 -->
+        </div><!-- End .row -->
+    </div>
+
+    <input id="uploadSlip" type="file" class="form-control" accept="image/*" (change)="onFileChange($event)" hidden>
+
+    <div class="mb-6"></div><!-- margin -->
+</main><!-- End .main -->
+
+<div class="modal fade" id="confirmPayment" tabindex="-1" role="dialog" aria-labelledby="confirmPayment" aria-hidden="true">
+    <div class="modal-dialog" role="document" style="width: 350px;">
+        <div class="modal-content">
+            <div class="modal-body add-cart-box text-center">
+                <p>ท่านต้อการยืนยันการชำระเงินเพื่อสั่งซื้อสินค้าหรือไม่</p>
+                <h4 id="productTitle"></h4>
+                <div class="btn-actions">
+                    <a href="javascript:void(0);"><button class="btn-dark" data-dismiss="modal">ยกเลิก</button></a>
+                    <a href="javascript:void(0);"><button class="btn-primary" (click)="clickPayment()">ยืนยัน</button></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

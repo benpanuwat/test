@@ -103,11 +103,14 @@ export class LoginComponent implements OnInit {
           localStorage.setItem("email", res.data.email);
           localStorage.setItem("token", res.token);
 
-          //window.location.href = "acc_information";
+          window.location.href = "myaccount";
         }
         else if (res.code == 400) {
           this.createValidation = true;
           this.createMass = res.massage;
+        }
+        else if (res.code == 401) {
+          window.location.href = "login";
         }
         else {
           this.createValidation = true;

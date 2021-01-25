@@ -38,7 +38,7 @@
                     <hr class="short-divider">
 
                     <div class="price-box">
-                        <span class="product-price">฿{{productTypeSelect.price}}</span>
+                        <span class="product-price">฿{{productTypeSelect.price| number:'1.0-2'}}</span>
                     </div><!-- End .price-box -->
 
                     <div class="product-desc">
@@ -69,14 +69,33 @@
                             </div>
 
                             <div class="col-md-12">
-                                <div class="product-single-qty">
-                                    <input class="horizontal-quantity form-control" type="text" (change)="changeCount()"
-                                        [(ngModel)]="product.count" numbersOnly>
-                                </div><!-- End .product-single-qty -->
 
-                                <button class="btn btn-dark add-cart icon-shopping-cart"
-                                    [disabled]="!productTypeSelect.disabled"
-                                    title="สั่งซื้อสินค้า">สั่งซื้อสินค้า</button>
+                                <div style="display: inline-block;">
+                                    <button class="form-control"
+                                        style="width: 50px;display: inline-block;cursor: pointer;"
+                                        (click)="changeCountReduce()"><i class="fa fa-minus"></i></button>
+                                </div>
+
+                                <div style="display: inline-block;">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control"
+                                            style="width: 70px;display: inline-block;text-align: center;"
+                                            [(ngModel)]="product.count" name="count" (change)="changeCount()"
+                                            numbersOnly>
+                                    </div>
+                                </div>
+
+                                <div style="display: inline-block;">
+                                    <button class="form-control"
+                                        style="width: 50px;display: inline-block;cursor: pointer;"
+                                        (click)="changeCountIncrease()"><i class="fa fa-plus"></i></button>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+
+                                <button class="btn btn-dark add-cart icon-shopping-cart" style="width: 170px;" (click)="addOrder()">
+                                    สั่งซื้อสินค้า</button>
+
                             </div>
                         </div>
                     </div><!-- End .product-action -->
