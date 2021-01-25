@@ -32,11 +32,17 @@ export class HomeComponent implements OnInit {
         this.data.product_recommend.forEach(function (value) {
           value.path = that.service.url + "/" + value.path
           value.url = btoa(value.product_id);
+          value.cat_url = btoa(value.category_id);
         });
 
         this.data.product_new.forEach(function (value) {
           value.path = that.service.url + "/" + value.path
           value.url = btoa(value.product_id);
+          value.cat_url = btoa(value.category_id);
+        });
+
+        this.data.category.forEach(function (value) {
+          value.cat_url = btoa(value.category_id);
         });
       }
     });

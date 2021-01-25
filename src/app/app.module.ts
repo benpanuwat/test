@@ -18,6 +18,8 @@ import { MyAccountComponent } from './profile/my-account/my-account.component';
 import { MyAddressComponent } from './profile/my-address/my-address.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { AboutComponent } from './about/about.component';
+import { ContactComponent } from './contact/contact.component';
+import { CategoryComponent } from './category/category.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +34,8 @@ import { AboutComponent } from './about/about.component';
     MyAddressComponent,
     CheckoutComponent,
     AboutComponent,
+    ContactComponent,
+    CategoryComponent,
   ],
   imports: [
     BrowserModule,

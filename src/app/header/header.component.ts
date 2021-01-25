@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { ActivatedRoute } from '@angular/router';
 import { AppService } from 'src/app/app.service';
+import { isUndefined } from 'util';
 
 @Component({
   selector: 'app-header',
@@ -26,10 +28,25 @@ export class HeaderComponent implements OnInit {
     category: []
   };
 
-  constructor(private http: HttpClient, private service: AppService) {
+  public search_data = {
+    search:'',
+    category_id:''
+  };
+
+  constructor(private activatedRoute: ActivatedRoute,private http: HttpClient, private service: AppService) {
   }
 
   ngOnInit(): void {
+    this.activatedRoute.queryParams.subscribe(params => {
+      const c = params['c'];
+      
+      if (c != "" && c != undefined)
+        this.search_data.category_id = atob(c);
+
+      const s = params['s'];
+      if (s != ""  && s != undefined)
+        this.search_data.search = s;
+    });
 
     this.headers = new HttpHeaders();
     this.headers = this.headers.append('Authorization', localStorage.getItem('token'));
@@ -62,6 +79,11 @@ export class HeaderComponent implements OnInit {
         }
       });
     }
+  }
+
+  clickSearch()
+  {
+    window.location.href = "category?c="+btoa(this.search_data.category_id)+"&s="+this.search_data.search;
   }
 
   clickLogout() {

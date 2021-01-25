@@ -145,7 +145,7 @@
                     </figure>
                     <div class="product-details">
                         <div class="category-list">
-                            <a href="category.html" class="product-category">{{product.category_name}}</a>
+                            <a href="category?c={{ product.cat_url }}" class="product-category">{{product.category_name}}</a>
                         </div>
                         <h3 class="product-title">
                             <a href="product?p={{ product.url }}">{{product.name}}</a>
@@ -197,7 +197,7 @@
                     </figure>
                     <div class="product-details">
                         <div class="category-list">
-                            <a href="category.html" class="product-category">{{product.category_name}}</a>
+                            <a href="category?c={{ product.cat_url }}" class="product-category">{{product.category_name}}</a>
                         </div>
                         <h3 class="product-title">
                             <a href="product?p={{ product.url }}">{{product.name}}</a>
@@ -214,7 +214,7 @@
                             <span class="product-price">฿{{product.price| number:'1.0-2'}}</span>
                         </div><!-- End .price-box -->
                         <div class="product-action">
-                            <button class="btn-icon btn-add-cart">สั่งซื้อ</button>
+                            <button class="btn-icon btn-add-cart" (click)="addOrder(product)">สั่งซื้อ</button>
                         </div>
                     </div><!-- End .product-details -->
                 </div>
@@ -241,7 +241,7 @@
 
             <div class="categories-slider owl-carousel owl-theme show-nav-hover nav-outer">
                 <div class="product-category" *ngFor="let cat of data.category">
-                    <a href="#">
+                    <a href="category?c={{ cat.cat_url }}">
                         <figure>
                             <img src="assets/images/products/categories/category-1.jpg" alt="category">
                         </figure>
