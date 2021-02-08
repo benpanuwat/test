@@ -12,6 +12,11 @@ export class CategoryComponent implements OnInit {
 
   public headers: HttpHeaders;
 
+  public data: any = [{
+    category: [],
+    product_recommend: []
+  }];
+
   public category: any = [{
     id: '',
     name: '',
@@ -41,7 +46,8 @@ export class CategoryComponent implements OnInit {
     category_name: '',
     length: 12,
     search: '',
-    start: 0
+    start: 0,
+    order_by: ''
   }
 
   public product_list = false;
@@ -61,15 +67,25 @@ export class CategoryComponent implements OnInit {
         this.filter.search = s;
     });
 
-    this.http.post<any>(this.service.url + '/api/get_category', this.filter, {}).subscribe(res => {
+    this.http.post<any>(this.service.url + '/api/get_data_page', this.filter, {}).subscribe(res => {
       if (res.status) {
-        this.category = res.data;
+        this.data = res.data;
 
-        let category = this.category.find(e => e.id == this.filter.category_id);
+        let category = this.data.category.find(e => e.id == this.filter.category_id);
 
         if (category != undefined) {
           this.filter.category_name = category.name;
         }
+
+        this.data.category.forEach(function (value) {
+          value.url = btoa(value.id);
+        });
+
+        let that = this;
+        this.data.product_recommend.forEach(function (value) {
+          value.path = that.service.url + "/" + value.path
+          value.url = btoa(value.product_id);
+        });
       }
     });
 
@@ -87,7 +103,7 @@ export class CategoryComponent implements OnInit {
       this.products.forEach(function (value) {
         value.path = that.service.url + "/" + value.path
         value.url = btoa(value.product_id);
-        value.cat_url = btoa(value.category_id);
+        value.cat_url = btoa(value.id);
       });
 
       this.page.page_button = [];
@@ -120,12 +136,16 @@ export class CategoryComponent implements OnInit {
     this.product_list = true;
   }
 
-  clickCategory(cat) {
-    this.filter.category_id = cat.id;
+  changeOrderBy() {
+    this.loadProduct()
   }
 
+  // clickCategory(cat) {
+  //   this.filter.category_id = cat.id;
+  //   this.loadProduct()
+  // }
+
   changeLength() {
-    console.log(this.filter);
     this.loadProduct()
   }
 

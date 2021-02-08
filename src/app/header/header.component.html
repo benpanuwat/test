@@ -10,12 +10,12 @@
                     <a href="#">Links</a>
                     <div class="header-menu">
                         <ul>
-                            <li><a href="order">รายการสั่งซื้อสินค้า </a></li>
-                            <li><a href="category.html">ใบรับประกันสินค้า</a></li>
-                            <li><a href="blog.html">Blog</a></li>
+                            <li><a href="myorder">รายการสั่งซื้อสินค้า </a></li>
+                            <li><a href="#">ใบรับประกันสินค้า</a></li>
+                            <li><a href="blog">บล็อก</a></li>
                             <li><a href="about">เกี่ยวกับเรา</a></li>
                             <li><a href="contact">ติดต่อเรา</a></li>
-                            <li><a href="#">Help &amp; FAQs</a></li>
+                            <li><a href="help">ช่วยเหลือ</a></li>
                         </ul>
                     </div><!-- End .header-menu -->
                 </div><!-- End .header-dropown -->
@@ -77,8 +77,8 @@
                     <img alt="phone" src="assets/images/phone.png" width="30" height="30" class="pb-1">
                     <h6>ติดต่อฉัน<a href="tel:#" class="text-dark font1">02 9185241-2</a></h6>
                 </div>
-
-                <a href="myaccount" class="header-icon"><i class="icon-user-2"></i></a>
+                <a href="myaccount" class="header-icon" title="ข้อมูลส่วนตัว"><i class="icon-user-2"></i></a>
+                <a href="myorder" class="header-icon" title="รายการสั่งซื่อ"><i class="icon-truck"></i></a>
 
                 <!-- <a href="#" class="header-icon"><i class="icon-wishlist-2"></i></a> -->
 
@@ -98,23 +98,23 @@
                             </div><!-- End .dropdown-cart-header -->
 
                             <div class="dropdown-cart-products">
-                                <div class="product" *ngFor="let order of data.cart.products">
+                                <div class="product" *ngFor="let pro of data.cart.products">
                                     <div class="product-details">
                                         <h4 class="product-title">
-                                            <a href="product?p={{ order.url }}">{{order.name}}</a>
+                                            <a href="product?p={{ pro.url }}">{{pro.name}}</a>
                                         </h4>
 
                                         <span class="cart-product-info">
-                                            <span class="cart-product-qty">{{order.count}}</span>
-                                            x ฿{{order.price| number:'1.0-2'}}
+                                            <span class="cart-product-qty">{{pro.count}}</span>
+                                            x ฿{{pro.price| number:'1.0-2'}}
                                         </span>
                                     </div><!-- End .product-details -->
 
                                     <figure class="product-image-container">
-                                        <a href="product?p={{ order.url }}" class="product-image">
-                                            <img [src]="order.path" alt="product" width="80" height="80">
+                                        <a href="product?p={{ pro.url }}" class="product-image">
+                                            <img [src]="pro.path" alt="product" width="80" height="80">
                                         </a>
-                                        <a href="#" class="btn-remove icon-cancel" title="ยกเลิกรายการสั่งซื้อ"></a>
+                                        <a href="javascript:void(0)" class="btn-remove icon-cancel" title="ยกเลิกรายการสั่งซื้อ" (click)="clickDelectCart(pro)"></a>
                                     </figure>
                                 </div>
                             </div><!-- End .cart-product -->
@@ -126,7 +126,7 @@
                             </div><!-- End .dropdown-cart-total -->
 
                             <div class="dropdown-cart-action">
-                                <a href="checkout-shipping.html" class="btn btn-dark btn-block">ชำระเงิน</a>
+                                <a href="checkout?step=3" class="btn btn-dark btn-block">ชำระเงิน</a>
                             </div><!-- End .dropdown-cart-total -->
                         </div><!-- End .dropdownmenu-wrapper -->
                     </div><!-- End .dropdown-menu -->
@@ -149,13 +149,13 @@
                                 <div class="col-lg-12">
                                     <!-- <a href="#" class="nolink">VARIATION 1</a> -->
                                     <ul class="submenu">
-                                        <li *ngFor="let cat of data.category"><a href="#">{{cat.name}}</a></li>
+                                        <li *ngFor="let cat of data.category"><a href="category?c={{ cat.url }}">{{cat.name}}</a></li>
                                     </ul>
                                 </div>
                             </div>
                         </div><!-- End .megamenu -->
                     </li>
-                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="blog">บล๊อก</a></li>
                     <li><a href="about">เกี่ยวกับเรา</a></li>
                     <li><a href="contact">ติดต่อเรา</a></li>
 

@@ -1,0 +1,135 @@
+<main class="main">
+    <nav aria-label="breadcrumb" class="breadcrumb-nav">
+        <div class="container">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="index.html"><i class="icon-home"></i></a></li>
+                <li class="breadcrumb-item active" aria-current="page">รายการสั่งซื้อ</li>
+            </ol>
+        </div><!-- End .container -->
+    </nav>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-9 order-lg-last dashboard-content">
+                <h2>รายการสั่งซื้อ</h2>
+
+                <div class="home-product-tabs">
+                    <ul class="nav nav-tabs mb-3" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" id="all-tab" data-toggle="tab" href="#all" role="tab"
+                                aria-controls="all" aria-selected="true" (click)="clickTab('all')">ทั้งหมด</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="payment-tab" data-toggle="tab" href="#payment" role="tab"
+                                aria-controls="payment" aria-selected="false" (click)="clickTab('payment')">รออนุมัติ
+                                <span *ngIf="data.status_count.payment > 0">({{data.status_count.payment}})</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="packing-tab" data-toggle="tab" href="#packing" role="tab"
+                                aria-controls="packing" aria-selected="false" (click)="clickTab('packing')">รอจัดส่ง
+                                <span *ngIf="data.status_count.packing > 0">({{data.status_count.packing}})</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="delivery-tab" data-toggle="tab" href="#delivery" role="tab"
+                                aria-controls="delivery" aria-selected="false"
+                                (click)="clickTab('delivery')">กำลังจัดส่ง
+                                <span *ngIf="data.status_count.delivery > 0">({{data.status_count.delivery}})</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="finish-tab" data-toggle="tab" href="#finish" role="tab"
+                                aria-controls="finish" aria-selected="false" (click)="clickTab('finish')">จัดส่งสำเร็จ
+                                <span *ngIf="data.status_count.finish > 0">({{data.status_count.finish}})</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="cancel-tab" data-toggle="tab" href="#cancel" role="tab"
+                                aria-controls="cancel" aria-selected="false" (click)="clickTab('cancel')">ยกเลิกจัดส่ง
+                                <span *ngIf="data.status_count.cancel > 0">({{data.status_count.cancel}})</span>
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="card" style="cursor: pointer;" *ngFor="let ord of data.orders;">
+                            <div class="card-header">
+                                รายการสั่งซื้อ {{ord.code}}
+                                <strong *ngIf="ord.status =='payment'" class="card-edit"
+                                    style="margin-left: 10px;">รออนุมัติ</strong>
+                                <strong *ngIf="ord.status =='packing'" class="card-edit"
+                                    style="margin-left: 10px;color: #008BFF;">รอจัดส่ง</strong>
+                                <strong *ngIf="ord.status =='delivery'" class="card-edit"
+                                    style="margin-left: 10px;color: #A200FF;">กำลังจัดส่ง</strong>
+                                <strong *ngIf="ord.status =='finish'" class="card-edit"
+                                    style="margin-left: 10px;color: green;">จัดส่งสำเร็จ</strong>
+                                <strong *ngIf="ord.status =='cancel'" class="card-edit"
+                                    style="margin-left: 10px;color: red;">ยกเลิกจัดส่ง</strong>
+                            </div>
+
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <h5>ที่อยู่ผู้รับของ</h5>
+                                        <address>
+                                            {{ord.address.name}}
+                                            {{ord.address.district}} {{ord.address.amphoe}} {{ord.address.province}}
+                                            {{ord.address.zipcode}}
+                                        </address>
+
+                                        <h2 class="step-title"></h2>
+
+                                    </div>
+                                    <div class="col-md-12" *ngFor="let pro of ord.products;index as i">
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <div style="padding: 5px;">
+                                                    <a href="product?p={{ pro.url }}"> <img [src]="pro.path" width="100" alt="product"></a>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-8">
+                                                <address>
+                                                    <a style="text-decoration: none;" href="product?p={{ pro.url }}">{{pro.product_name}}</a>
+                                                    <br>
+                                                    รูปแบบ : {{pro.product_type_name}}
+                                                    <br>
+                                                    ราคา : {{pro.price| number:'1.0-2'}} บาท
+                                                    <br>
+                                                    จำนวน : {{pro.count| number:'1.0-2'}} ชิ้น
+                                                    <br>
+                                                    ราคารวม : {{pro.price * pro.count| number:'1.0-2'}} บาท
+                                                </address>
+                                            </div>
+                                        </div>
+
+                                        <h2 class="step-title"></h2>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <strong style="float: right;color: red;">ราคารวม {{ord.price_total|
+                                            number:'1.0-2'}} บาท</strong>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div><!-- End .col-lg-9 -->
+
+            <aside class="sidebar col-lg-3">
+                <div class="widget widget-dashboard">
+                    <h3 class="widget-title">ข้อมูลส่วนตัว</h3>
+
+                    <ul class="list">
+                        <li><a href="myaccount">จัดการข้อมูลส่วนตัว</a></li>
+                        <li><a href="myaddress">จัดการที่อยู่</a></li>
+                        <li class="active"><a href="myorder">รายการสั่งซื้อ</a></li>
+                        <li><a href="mypassword">เปลี่ยนรหัสผ่าน</a></li>
+                    </ul>
+                </div><!-- End .widget -->
+            </aside><!-- End .col-lg-3 -->
+        </div><!-- End .row -->
+    </div><!-- End .container -->
+
+    <div class="mb-5"></div><!-- margin -->
+</main><!-- End .main -->

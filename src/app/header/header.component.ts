@@ -69,6 +69,10 @@ export class HeaderComponent implements OnInit {
               value.name = value.name.substring(0, 40) + "..";
             }
           });
+
+          this.data.category.forEach(function (value) {
+            value.url = btoa(value.id);
+          });
         }
       });
     }
@@ -76,6 +80,10 @@ export class HeaderComponent implements OnInit {
       this.http.post<any>(this.service.url + '/api/get_header', {}, {}).subscribe(res => {
         if (res.code == 200) {
           this.data = res.data;
+
+          this.data.category.forEach(function (value) {
+            value.url = btoa(value.id);
+          });
         }
       });
     }
@@ -91,4 +99,12 @@ export class HeaderComponent implements OnInit {
     window.location.href = "login";
   }
 
+  clickDelectCart(pro)
+  {
+    this.http.post<any>(this.service.url + '/api/delete_cart', pro, { headers: this.headers }).subscribe(res => {
+      if (res.code == 200) {
+        window.location.reload();
+      }
+    });
+  }
 }

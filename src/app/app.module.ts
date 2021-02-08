@@ -16,6 +16,8 @@ import { ProductComponent } from './product/product.component';
 import { LoginComponent } from './login/login.component';
 import { MyAccountComponent } from './profile/my-account/my-account.component';
 import { MyAddressComponent } from './profile/my-address/my-address.component';
+import { MyOrderComponent } from './profile/my-order/my-order.component';
+import { MyPasswordComponent } from './profile/my-password/my-password.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';
@@ -32,6 +34,8 @@ import { CategoryComponent } from './category/category.component';
     PasswordStrengthBarComponent,
     MyAccountComponent,
     MyAddressComponent,
+    MyOrderComponent,
+    MyPasswordComponent,
     CheckoutComponent,
     AboutComponent,
     ContactComponent,

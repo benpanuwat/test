@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { ActivatedRoute } from '@angular/router';
 import { AppService } from 'src/app/app.service';
 
 declare const $: any;
@@ -35,7 +36,17 @@ export class CheckoutComponent implements OnInit {
     new_order: true
   };
 
-  constructor(private http: HttpClient, private service: AppService) {
+  public addressSelect: any = {
+    name: '',
+    others: '',
+    district: '',
+    amphoe: '',
+    province: '',
+    zipcode: '',
+    tel: ''
+  }
+
+  constructor(private activatedRoute: ActivatedRoute, private http: HttpClient, private service: AppService) {
   }
 
   ngOnInit(): void {
@@ -65,6 +76,14 @@ export class CheckoutComponent implements OnInit {
 
         if (this.data.address.length > 0) {
           this.data.address[0].select = true;
+
+          this.addressSelect.name = this.data.address[0].name;
+          this.addressSelect.others = this.data.address[0].others;
+          this.addressSelect.district = this.data.address[0].district;
+          this.addressSelect.amphoe = this.data.address[0].amphoe;
+          this.addressSelect.province = this.data.address[0].province;
+          this.addressSelect.tel = this.data.address[0].tel;
+
           this.checkout.next_address = false;
         }
 
@@ -74,6 +93,12 @@ export class CheckoutComponent implements OnInit {
         }
 
         this.sumary()
+
+        this.activatedRoute.queryParams.subscribe(params => {
+          const step = params['step'];
+          if (step != "" && step != undefined)
+            this.checkout.step = step;
+        });
 
       }
     });
@@ -119,6 +144,13 @@ export class CheckoutComponent implements OnInit {
       value.select = false;
     });
     add.select = true;
+
+    this.addressSelect.name = add.name;
+    this.addressSelect.others = add.others;
+    this.addressSelect.district = add.district;
+    this.addressSelect.amphoe = add.amphoe;
+    this.addressSelect.province = add.province;
+    this.addressSelect.tel = add.tel;
   }
 
   clickNextSelectAddress() {

@@ -55,7 +55,7 @@
                     <h3>สรุป</h3>
                     <h5>สั่งซื้อทั้งหมด {{checkout.count_total}} รายการ</h5>
                     <h5>ราคารวม {{checkout.price_total | number:'1.0-2'}} บาท</h5>
-                </div><!-- End .order-summary -->
+                </div>
             </div><!-- End .col-lg-4 -->
         </div>
 
@@ -161,7 +161,11 @@
                     <h3>สรุป</h3>
                     <h5>สั่งซื้อทั้งหมด {{checkout.count_total}} รายการ</h5>
                     <h5>ราคารวม {{checkout.price_total | number:'1.0-2'}} บาท</h5>
-                </div><!-- End .order-summary -->
+
+                    <h3>ที่อยู่จัดส่ง</h3>
+                    <h5>{{addressSelect.name}} {{addressSelect.others}} {{addressSelect.district}} {{addressSelect.amphoe}} {{addressSelect.province}}</h5>
+                    <h5>{{addressSelect.tel}}</h5>
+                </div>
             </div><!-- End .col-lg-4 -->
         </div>
 
@@ -200,11 +204,13 @@
                             <div class="col-lg-12">
                                 <div
                                     style="width: 256px;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);text-align: center;margin: auto;padding-bottom: 5px;">
-                                    <img style="width: 256px;" src="assets/images/PromptPay-logo.jpg">
-                                    <qrcode [qrdata]="checkout.payment" [width]="256" [errorCorrectionLevel]="'M'"
-                                        [elementType]="'svg'"></qrcode>
-                                    <h4>ยอดชำระ {{checkout.price_total| number:'1.0-2'}} บาท</h4>
-                                    <button class="btn btn-success" (click)="ckickUploadSlip()">อัพโหลดสลิป</button>
+                                    <div style="padding: 5px;">
+                                        <img style="width: 256px;" src="assets/images/PromptPay-logo.jpg">
+                                        <qrcode [qrdata]="checkout.payment" [width]="250" [errorCorrectionLevel]="'M'"
+                                            [elementType]="'svg'"></qrcode>
+                                        <h4>ยอดชำระ {{checkout.price_total| number:'1.0-2'}} บาท</h4>
+                                        <button class="btn btn-success" (click)="ckickUploadSlip()">อัพโหลดสลิป</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -217,7 +223,11 @@
                     <h3>สรุป</h3>
                     <h5>สั่งซื้อทั้งหมด {{checkout.count_total}} รายการ</h5>
                     <h5>ราคารวม {{checkout.price_total | number:'1.0-2'}} บาท</h5>
-                </div><!-- End .order-summary -->
+
+                    <h3>ที่อยู่จัดส่ง</h3>
+                    <h5>{{addressSelect.name}} {{addressSelect.others}} {{addressSelect.district}} {{addressSelect.amphoe}} {{addressSelect.province}}</h5>
+                    <h5>{{addressSelect.tel}}</h5>
+                </div>
             </div><!-- End .col-lg-4 -->
         </div>
 
@@ -252,9 +262,9 @@
                     <li>
                         <div class="checkout-step-shipping">
                             <h2 class="step-title">ชำระเงิน</h2>
-    
+
                             <div class="card" style="cursor: pointer;">
-    
+
                                 <div class="card-body" style="min-height: auto;">
                                     <div class="row">
                                         <div class="col-md-12">
@@ -267,7 +277,7 @@
                                     </div>
                                 </div>
                             </div>
-    
+
                         </div>
                     </li>
                 </ul>
@@ -289,7 +299,8 @@
     <div class="mb-6"></div><!-- margin -->
 </main><!-- End .main -->
 
-<div class="modal fade" id="confirmPayment" tabindex="-1" role="dialog" aria-labelledby="confirmPayment" aria-hidden="true">
+<div class="modal fade" id="confirmPayment" tabindex="-1" role="dialog" aria-labelledby="confirmPayment"
+    aria-hidden="true">
     <div class="modal-dialog" role="document" style="width: 350px;">
         <div class="modal-content">
             <div class="modal-body add-cart-box text-center">
@@ -297,7 +308,8 @@
                 <h4 id="productTitle"></h4>
                 <div class="btn-actions">
                     <a href="javascript:void(0);"><button class="btn-dark" data-dismiss="modal">ยกเลิก</button></a>
-                    <a href="javascript:void(0);"><button class="btn-primary" (click)="clickPayment()">ยืนยัน</button></a>
+                    <a href="javascript:void(0);"><button class="btn-primary"
+                            (click)="clickPayment()">ยืนยัน</button></a>
                 </div>
             </div>
         </div>

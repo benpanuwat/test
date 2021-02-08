@@ -12,6 +12,8 @@ import { CategoryComponent } from './category/category.component';
 
 import { MyAccountComponent } from './profile/my-account/my-account.component';
 import { MyAddressComponent } from './profile/my-address/my-address.component';
+import { MyOrderComponent } from './profile/my-order/my-order.component';
+import { MyPasswordComponent } from './profile/my-password/my-password.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -24,6 +26,8 @@ const routes: Routes = [
   { path: 'checkout', component: CheckoutComponent , canActivate: [AuthGuard]},
   { path: 'myaccount', component: MyAccountComponent , canActivate: [AuthGuard]},
   { path: 'myaddress', component: MyAddressComponent , canActivate: [AuthGuard]},
+  { path: 'myorder', component: MyOrderComponent , canActivate: [AuthGuard]},
+  { path: 'mypassword', component: MyPasswordComponent , canActivate: [AuthGuard]},
 ];
 
 @NgModule({

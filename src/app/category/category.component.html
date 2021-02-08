@@ -38,13 +38,10 @@
                             <label>จัดเรียงโดย</label>
 
                             <div class="select-custom">
-                                <select name="orderby" class="form-control">
-                                    <option value="menu_order" selected="selected">Default sorting</option>
-                                    <option value="popularity">Sort by popularity</option>
-                                    <option value="rating">Sort by average rating</option>
-                                    <option value="date">Sort by newness</option>
-                                    <option value="price">Sort by price: low to high</option>
-                                    <option value="price-desc">Sort by price: high to low</option>
+                                <select name="orderby" class="form-control"  [(ngModel)]="filter.order_by" (change)="changeOrderBy()">
+                                    <option value="">สินค้าใหม่</option>
+                                    <option value="price">ราคาจากน้อยไปมาก</option>
+                                    <option value="price-desc">ราคาจากมากไปน้อย</option>
                                 </select>
                             </div><!-- End .select-custom -->
 
@@ -205,8 +202,11 @@
                         <div class="collapse show" id="widget-body-2">
                             <div class="widget-body">
                                 <ul class="cat-list">
-                                    <li *ngFor="let cat of category">
-                                        <a href="javascript:void(0);" (click)="clickCategory(cat)">{{cat.name}}</a>
+                                    <li>
+                                        <a href="category?c=">สินค้าทั้งหมด</a>
+                                    </li>
+                                    <li *ngFor="let cat of data.category">
+                                        <a href="category?c={{ cat.url }}">{{cat.name}}</a>
                                     </li>
                                 </ul>
                             </div><!-- End .widget-body -->
@@ -214,20 +214,20 @@
                     </div><!-- End .widget -->
 
                     <div class="widget widget-featured">
-                        <h3 class="widget-title">Featured</h3>
+                        <h3 class="widget-title">สินค้าแนะนำ</h3>
 
                         <div class="widget-body">
                             <div class="owl-carousel widget-featured-products">
                                 <div class="featured-col">
-                                    <div class="product-default left-details product-widget">
+                                    <div class="product-default left-details product-widget" *ngFor="let product of data.product_recommend">
                                         <figure>
-                                            <a href="product.html">
-                                                <img src="assets/images/products/product-10.jpg">
+                                            <a href="product?p={{ product.url }}">
+                                                <img [src]="product.path" alt="product">
                                             </a>
                                         </figure>
                                         <div class="product-details">
                                             <h2 class="product-title">
-                                                <a href="product.html">Product Short Name</a>
+                                                <a href="product?p={{ product.url }}">{{product.name}}</a>
                                             </h2>
                                             <div class="ratings-container">
                                                 <div class="product-ratings">
@@ -237,57 +237,13 @@
                                                 </div><!-- End .product-ratings -->
                                             </div><!-- End .product-container -->
                                             <div class="price-box">
-                                                <span class="product-price">$49.00</span>
-                                            </div><!-- End .price-box -->
-                                        </div><!-- End .product-details -->
-                                    </div>
-                                    <div class="product-default left-details product-widget">
-                                        <figure>
-                                            <a href="product.html">
-                                                <img src="assets/images/products/product-11.jpg">
-                                            </a>
-                                        </figure>
-                                        <div class="product-details">
-                                            <h2 class="product-title">
-                                                <a href="product.html">Product Short Name</a>
-                                            </h2>
-                                            <div class="ratings-container">
-                                                <div class="product-ratings">
-                                                    <span class="ratings" style="width:100%"></span>
-                                                    <!-- End .ratings -->
-                                                    <span class="tooltiptext tooltip-top"></span>
-                                                </div><!-- End .product-ratings -->
-                                            </div><!-- End .product-container -->
-                                            <div class="price-box">
-                                                <span class="product-price">$49.00</span>
-                                            </div><!-- End .price-box -->
-                                        </div><!-- End .product-details -->
-                                    </div>
-                                    <div class="product-default left-details product-widget">
-                                        <figure>
-                                            <a href="product.html">
-                                                <img src="assets/images/products/product-12.jpg">
-                                            </a>
-                                        </figure>
-                                        <div class="product-details">
-                                            <h2 class="product-title">
-                                                <a href="product.html">Product Short Name</a>
-                                            </h2>
-                                            <div class="ratings-container">
-                                                <div class="product-ratings">
-                                                    <span class="ratings" style="width:100%"></span>
-                                                    <!-- End .ratings -->
-                                                    <span class="tooltiptext tooltip-top"></span>
-                                                </div><!-- End .product-ratings -->
-                                            </div><!-- End .product-container -->
-                                            <div class="price-box">
-                                                <span class="product-price">$49.00</span>
+                                                <span class="product-price">฿{{product.price| number:'1.0-2'}}</span>
                                             </div><!-- End .price-box -->
                                         </div><!-- End .product-details -->
                                     </div>
                                 </div><!-- End .featured-col -->
 
-                                <div class="featured-col">
+                                <!-- <div class="featured-col">
                                     <div class="product-default left-details product-widget">
                                         <figure>
                                             <a href="product.html">
@@ -301,14 +257,13 @@
                                             <div class="ratings-container">
                                                 <div class="product-ratings">
                                                     <span class="ratings" style="width:100%"></span>
-                                                    <!-- End .ratings -->
                                                     <span class="tooltiptext tooltip-top"></span>
-                                                </div><!-- End .product-ratings -->
-                                            </div><!-- End .product-container -->
+                                                </div>
+                                            </div>
                                             <div class="price-box">
                                                 <span class="product-price">$49.00</span>
-                                            </div><!-- End .price-box -->
-                                        </div><!-- End .product-details -->
+                                            </div>
+                                        </div>
                                     </div>
                                     <div class="product-default left-details product-widget">
                                         <figure>
@@ -323,14 +278,13 @@
                                             <div class="ratings-container">
                                                 <div class="product-ratings">
                                                     <span class="ratings" style="width:100%"></span>
-                                                    <!-- End .ratings -->
                                                     <span class="tooltiptext tooltip-top"></span>
-                                                </div><!-- End .product-ratings -->
-                                            </div><!-- End .product-container -->
+                                                </div>
+                                            </div>
                                             <div class="price-box">
                                                 <span class="product-price">$49.00</span>
-                                            </div><!-- End .price-box -->
-                                        </div><!-- End .product-details -->
+                                            </div>
+                                        </div>
                                     </div>
                                     <div class="product-default left-details product-widget">
                                         <figure>
@@ -345,16 +299,15 @@
                                             <div class="ratings-container">
                                                 <div class="product-ratings">
                                                     <span class="ratings" style="width:100%"></span>
-                                                    <!-- End .ratings -->
                                                     <span class="tooltiptext tooltip-top"></span>
-                                                </div><!-- End .product-ratings -->
-                                            </div><!-- End .product-container -->
+                                                </div>
+                                            </div>
                                             <div class="price-box">
                                                 <span class="product-price">$49.00</span>
-                                            </div><!-- End .price-box -->
-                                        </div><!-- End .product-details -->
+                                            </div>
+                                        </div>
                                     </div>
-                                </div><!-- End .featured-col -->
+                                </div> -->
                             </div><!-- End .widget-featured-slider -->
                         </div><!-- End .widget-body -->
                     </div><!-- End .widget -->

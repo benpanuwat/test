@@ -42,7 +42,7 @@ export class HomeComponent implements OnInit {
         });
 
         this.data.category.forEach(function (value) {
-          value.cat_url = btoa(value.category_id);
+          value.cat_url = btoa(value.id);
         });
       }
     });
