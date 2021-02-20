@@ -12,4 +12,9 @@ export class AppService {
 
   constructor() { }
 
+  loaded() {
+
+      localStorage.setItem('load', 'true');
+  }
+
 }

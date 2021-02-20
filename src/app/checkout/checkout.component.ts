@@ -100,6 +100,7 @@ export class CheckoutComponent implements OnInit {
             this.checkout.step = step;
         });
 
+        this.service.loaded();
       }
     });
   }

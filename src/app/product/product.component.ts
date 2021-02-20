@@ -54,6 +54,8 @@ export class ProductComponent implements OnInit {
         });
         this.product.product_type_id = this.product.product_type[0].id;
         this.changeType();
+
+        this.service.loaded();
       }
     });
   }

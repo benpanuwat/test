@@ -9,6 +9,8 @@ import { CheckoutComponent } from './checkout/checkout.component';
 import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';
 import { CategoryComponent } from './category/category.component';
+import { BlogComponent } from './blog/blog.component';
+import { BlogDetailComponent } from './blog-detail/blog-detail.component';
 
 import { MyAccountComponent } from './profile/my-account/my-account.component';
 import { MyAddressComponent } from './profile/my-address/my-address.component';
@@ -23,6 +25,8 @@ const routes: Routes = [
   { path: 'about', component: AboutComponent },
   { path: 'contact', component: ContactComponent },
   { path: 'category', component: CategoryComponent },
+  { path: 'blog', component: BlogComponent },
+  { path: 'blog_detail', component: BlogDetailComponent },
   { path: 'checkout', component: CheckoutComponent , canActivate: [AuthGuard]},
   { path: 'myaccount', component: MyAccountComponent , canActivate: [AuthGuard]},
   { path: 'myaddress', component: MyAddressComponent , canActivate: [AuthGuard]},

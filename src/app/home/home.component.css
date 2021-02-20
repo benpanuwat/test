@@ -1,0 +1,3 @@
+.home-slide:after, .home-slide:before, .category-slide:after, .category-slide:before{
+    display: none;
+}

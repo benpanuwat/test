@@ -27,7 +27,7 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" id="packing-tab" data-toggle="tab" href="#packing" role="tab"
-                                aria-controls="packing" aria-selected="false" (click)="clickTab('packing')">รอจัดส่ง
+                                aria-controls="packing" aria-selected="false" (click)="clickTab('packing')">บรรจุสินค้า
                                 <span *ngIf="data.status_count.packing > 0">({{data.status_count.packing}})</span>
                             </a>
                         </li>
@@ -58,7 +58,7 @@
                                 <strong *ngIf="ord.status =='payment'" class="card-edit"
                                     style="margin-left: 10px;">รออนุมัติ</strong>
                                 <strong *ngIf="ord.status =='packing'" class="card-edit"
-                                    style="margin-left: 10px;color: #008BFF;">รอจัดส่ง</strong>
+                                    style="margin-left: 10px;color: #008BFF;">บรรจุสินค้า</strong>
                                 <strong *ngIf="ord.status =='delivery'" class="card-edit"
                                     style="margin-left: 10px;color: #A200FF;">กำลังจัดส่ง</strong>
                                 <strong *ngIf="ord.status =='finish'" class="card-edit"

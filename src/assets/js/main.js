@@ -478,11 +478,11 @@
 			
 			var sliderCustomOptionsArray = {
 				'.home-slider': {
-					lazyLoad: true,
-					autoplay: false,
+					lazyLoad: false,
+					autoplay: true,
 					dots: false,
 					nav: true,
-					autoplayTimeout: 12000,
+					autoplayTimeout: 5000,
 					animateOut: 'fadeOut',
 					navText: ['<i class="icon-angle-left">', '<i class="icon-angle-right">'],
 					loop: true
@@ -1414,19 +1414,44 @@
 	var $loadButton = $('.loadmore');
 
 	// Ready Event
-	jQuery(document).ready(function () {
+	//jQuery(document).ready(function () {
 		// Init our app
 		//Porto.init();
-	});
+	//});
+
+	function checkLoad() {
+		setTimeout(function(){
+			var load = localStorage.getItem("load");
+			if(load == 'true')
+			{
+				setTimeout(function(){
+				Porto.init();
+				$('body').addClass("loaded");
+				},200);
+			}
+			else
+			{
+				checkLoad();
+			}
+		},500)
+	}
+
 
 	// Load Event
 	$(window).on('load', function () {
 		Porto.scrollBtnAppear();
 
-		setTimeout(function(){
+		var path = window.location.pathname;
+		if(path == '/' || path == '/product' || path == '/category'|| path == '/blog')
+		{
+			localStorage.setItem('load', 'false');
+			checkLoad();
+		}
+		else
+		{
 			Porto.init();
 			$('body').addClass("loaded");
-		},1000);
+		}
 	});
 
 	// Scroll Event

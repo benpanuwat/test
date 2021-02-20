@@ -1,44 +1,15 @@
 <main class="main">
-    <div class="home-slider owl-carousel owl-theme owl-carousel-lazy show-nav-hover nav-big mb-2 text-uppercase"
+     <div class="home-slider owl-carousel owl-theme owl-carousel-lazy show-nav-hover nav-big mb-2 text-uppercase"
         data-owl-options="{
-              'loop': false
+              'loop': true
           }">
-        <div class="home-slide home-slide1 banner">
-            <img class="owl-lazy slide-bg" src="assets/images/lazy.png" data-src="assets/images/slider/slide-1.jpg"
-                alt="slider image">
-            <div class="container">
-                <div class="banner-layer banner-layer-middle">
-                    <h4 class="text-transform-none m-b-3">Find the Boundaries. Push Through!</h4>
-                    <h2 class="text-transform-none mb-0">Summer Sale</h2>
-                    <h3 class="m-b-3">70% Off</h3>
-                    <h5 class="d-inline-block mb-0">
-                        Starting At
-                        <b class="coupon-sale-text ml-4 mr-1 text-white bg-secondary align-middle">$<em
-                                class="align-text-top">199</em>99</b>
-                    </h5>
-                    <a href="category.html" class="btn btn-dark btn-lg ls-10">Shop Now!</a>
-                </div><!-- End .banner-layer -->
-            </div>
-        </div><!-- End .home-slide -->
+        <div class="home-slide home-slide1" *ngFor="let banner of data.banners">
+            <img class="slide-bg" [src]="banner.path" >
+        </div>
+    </div>
 
-        <div class="home-slide home-slide2 banner banner-md-vw">
-            <img class="owl-lazy slide-bg" src="assets/images/lazy.png" data-src="assets/images/slider/slide-2.jpg"
-                alt="slider image">
-            <div class="container">
-                <div class="banner-layer banner-layer-middle d-flex justify-content-center">
-                    <div class="mx-auto">
-                        <h4 class="m-b-1">Extra</h4>
-                        <h3 class="m-b-2">20% off</h3>
-                        <h3 class="mb-2 heading-border">Accessories</h3>
-                        <h2 class="text-transform-none m-b-4">Summer Sale</h2>
-                        <a href="category.html" class="btn btn-block btn-dark">Shop All Sale</a>
-                    </div>
-                </div><!-- End .banner-layer -->
-            </div>
-        </div><!-- End .home-slide -->
-    </div><!-- End .home-slider -->
 
-    <!-- <div class="container">
+        <!-- <div class="container">
         <div class="info-boxes-slider owl-carousel owl-theme mb-2" data-owl-options="{
                   'dots': false,
                   'loop': false,
@@ -124,58 +95,62 @@
         </div>
     </div>End .container -->
 
-    <section class="featured-products-section">
-        <div class="container">
-            <h2 class="section-title heading-border ls-20 border-0">สินค้าแนะนำ</h2>
+        <section class="featured-products-section">
+            <div class="container">
+                <h2 class="section-title heading-border ls-20 border-0">สินค้าแนะนำ</h2>
 
-            <div class="products-slider custom-products owl-carousel owl-theme nav-outer show-nav-hover nav-image-center"
-                data-owl-options="{
+                <div class="products-slider custom-products owl-carousel owl-theme nav-outer show-nav-hover nav-image-center"
+                    data-owl-options="{
                       'dots': false,
                       'nav': true
                   }">
-                <div class="product-default" *ngFor="let product of data.product_recommend">
-                    <figure>
-                        <a href="product?p={{ product.url }}">
-                            <img [src]="product.path" alt="product">
-                        </a>
-                        <div class="label-group">
-                            <div *ngIf="product.discount > 0" class="product-label label-sale">ลด {{product.discount}}%
+                    <div class="product-default" *ngFor="let product of data.product_recommend">
+                        <figure>
+                            <a href="product?p={{ product.url }}">
+                                <img [src]="product.path" alt="product">
+                            </a>
+                            <div class="label-group">
+                                <div *ngIf="product.discount > 0" class="product-label label-sale">ลด
+                                    {{product.discount}}%
+                                </div>
                             </div>
-                        </div>
-                    </figure>
-                    <div class="product-details">
-                        <div class="category-list">
-                            <a href="category?c={{ product.cat_url }}" class="product-category">{{product.category_name}}</a>
-                        </div>
-                        <h3 class="product-title">
-                            <a href="product?p={{ product.url }}">{{product.name}}</a>
-                        </h3>
-                        <div class="ratings-container">
-                            <div class="product-ratings">
-                                <span class="ratings" style="width:80%"></span><!-- End .ratings -->
-                                <span class="tooltiptext tooltip-top"></span>
-                            </div><!-- End .product-ratings -->
-                        </div><!-- End .product-container -->
-                        <div class="price-box">
-                            <del class="old-price"
-                                *ngIf="product.discount > 0 && product.discount < product.price">฿{{product.standard_price| number:'1.0-2'}}</del>
-                            <span class="product-price">฿{{product.price| number:'1.0-2'}}</span>
-                        </div><!-- End .price-box -->
-                        <div class="product-action">
-                            <button class="btn-icon btn-add-cart" (click)="addOrder(product)">สั่งซื้อสินค้า</button>
-                        </div>
-                    </div><!-- End .product-details -->
-                </div>
-            </div><!-- End .featured-proucts -->
-        </div>
-    </section>
+                        </figure>
+                        <div class="product-details">
+                            <div class="category-list">
+                                <a href="category?c={{ product.cat_url }}"
+                                    class="product-category">{{product.category_name}}</a>
+                            </div>
+                            <h3 class="product-title">
+                                <a href="product?p={{ product.url }}">{{product.name}}</a>
+                            </h3>
+                            <div class="ratings-container">
+                                <div class="product-ratings">
+                                    <span class="ratings" style="width:80%"></span><!-- End .ratings -->
+                                    <span class="tooltiptext tooltip-top"></span>
+                                </div><!-- End .product-ratings -->
+                            </div><!-- End .product-container -->
+                            <div class="price-box">
+                                <del class="old-price"
+                                    *ngIf="product.discount > 0 && product.discount < product.price">฿{{product.standard_price|
+                                    number:'1.0-2'}}</del>
+                                <span class="product-price">฿{{product.price| number:'1.0-2'}}</span>
+                            </div><!-- End .price-box -->
+                            <div class="product-action">
+                                <button class="btn-icon btn-add-cart"
+                                    (click)="addOrder(product)">สั่งซื้อสินค้า</button>
+                            </div>
+                        </div><!-- End .product-details -->
+                    </div>
+                </div><!-- End .featured-proucts -->
+            </div>
+        </section>
 
-    <section class="new-products-section">
-        <div class="container">
-            <h2 class="section-title heading-border ls-20 border-0">สินค้าใหม่</h2>
+        <section class="new-products-section">
+            <div class="container">
+                <h2 class="section-title heading-border ls-20 border-0">สินค้าใหม่</h2>
 
-            <div class="products-slider custom-products owl-carousel owl-theme nav-outer show-nav-hover nav-image-center"
-                data-owl-options="{
+                <div class="products-slider custom-products owl-carousel owl-theme nav-outer show-nav-hover nav-image-center"
+                    data-owl-options="{
                       'dots': false,
                       'nav': true,
                       'responsive': {
@@ -184,44 +159,47 @@
                           }
                       }
                   }">
-                <div class="product-default" *ngFor="let product of data.product_new">
-                    <figure>
-                        <a href="product?p={{ product.url }}">
-                            <img [src]="product.path" alt="product">
-                        </a>
-                        <div class="label-group">
-                            <div class="product-label label-hot">ใหม่</div>
-                            <div *ngIf="product.discount > 0" class="product-label label-sale">ลด {{product.discount}}%
+                    <div class="product-default" *ngFor="let product of data.product_new">
+                        <figure>
+                            <a href="product?p={{ product.url }}">
+                                <img [src]="product.path" alt="product">
+                            </a>
+                            <div class="label-group">
+                                <div class="product-label label-hot">ใหม่</div>
+                                <div *ngIf="product.discount > 0" class="product-label label-sale">ลด
+                                    {{product.discount}}%
+                                </div>
                             </div>
-                        </div>
-                    </figure>
-                    <div class="product-details">
-                        <div class="category-list">
-                            <a href="category?c={{ product.cat_url }}" class="product-category">{{product.category_name}}</a>
-                        </div>
-                        <h3 class="product-title">
-                            <a href="product?p={{ product.url }}">{{product.name}}</a>
-                        </h3>
-                        <div class="ratings-container">
-                            <div class="product-ratings">
-                                <span class="ratings" style="width:80%"></span>
-                                <span class="tooltiptext tooltip-top"></span>
+                        </figure>
+                        <div class="product-details">
+                            <div class="category-list">
+                                <a href="category?c={{ product.cat_url }}"
+                                    class="product-category">{{product.category_name}}</a>
                             </div>
-                        </div>
-                        <div class="price-box">
-                            <del class="old-price"
-                                *ngIf="product.discount > 0 && product.discount < product.price">฿{{product.standard_price| number:'1.0-2'}}</del>
-                            <span class="product-price">฿{{product.price| number:'1.0-2'}}</span>
-                        </div><!-- End .price-box -->
-                        <div class="product-action">
-                            <button class="btn-icon btn-add-cart" (click)="addOrder(product)">สั่งซื้อ</button>
-                        </div>
-                    </div><!-- End .product-details -->
-                </div>
+                            <h3 class="product-title">
+                                <a href="product?p={{ product.url }}">{{product.name}}</a>
+                            </h3>
+                            <div class="ratings-container">
+                                <div class="product-ratings">
+                                    <span class="ratings" style="width:80%"></span>
+                                    <span class="tooltiptext tooltip-top"></span>
+                                </div>
+                            </div>
+                            <div class="price-box">
+                                <del class="old-price"
+                                    *ngIf="product.discount > 0 && product.discount < product.price">฿{{product.standard_price|
+                                    number:'1.0-2'}}</del>
+                                <span class="product-price">฿{{product.price| number:'1.0-2'}}</span>
+                            </div><!-- End .price-box -->
+                            <div class="product-action">
+                                <button class="btn-icon btn-add-cart" (click)="addOrder(product)">สั่งซื้อ</button>
+                            </div>
+                        </div><!-- End .product-details -->
+                    </div>
 
-            </div><!-- End .featured-proucts -->
+                </div><!-- End .featured-proucts -->
 
-            <!-- <div class="banner banner-big-sale mb-5"
+                <!-- <div class="banner banner-big-sale mb-5"
                 style="background: #2A95CB center/cover url('assets/images/banners/banner-4.jpg');">
                 <div class="banner-content row align-items-center py-4 mx-0">
                     <div class="col-md-9">
@@ -237,70 +215,70 @@
                 </div>
             </div> -->
 
-            <h2 class="section-title heading-border border-0 mb-5">หมวดหมู่สินค้า</h2>
+                <h2 class="section-title heading-border border-0 mb-5">หมวดหมู่สินค้า</h2>
 
-            <div class="categories-slider owl-carousel owl-theme show-nav-hover nav-outer">
-                <div class="product-category" *ngFor="let cat of data.category">
-                    <a href="category?c={{ cat.cat_url }}">
-                        <figure>
-                            <img src="assets/images/products/categories/category-1.jpg" alt="category">
-                        </figure>
-                        <div class="category-content">
-                            <h3>{{cat.name}}</h3>
-                            <span><mark>{{cat.product_count}}</mark> สินค้า</span>
-                        </div>
-                    </a>
+                <div class="categories-slider owl-carousel owl-theme show-nav-hover nav-outer">
+                    <div class="product-category" *ngFor="let cat of data.category">
+                        <a href="category?c={{ cat.cat_url }}">
+                            <figure>
+                                <img [src]="cat.path" alt="category">
+                            </figure>
+                            <div class="category-content">
+                                <h3>{{cat.name}}</h3>
+                                <span><mark>{{cat.product_count}}</mark> สินค้า</span>
+                            </div>
+                        </a>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section class="feature-boxes-container">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="feature-box px-sm-5 feature-box-simple text-center">
-                        <i class="fa fa-shopping-cart"></i>
+        <section class="feature-boxes-container">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="feature-box px-sm-5 feature-box-simple text-center">
+                            <i class="fa fa-shopping-cart"></i>
 
-                        <div class="feature-box-content">
-                            <h3 class="m-b-1">เลือกสินค้าบนเว็บไซต์</h3>
-                            <h5 class="m-b-3"></h5>
+                            <div class="feature-box-content">
+                                <h3 class="m-b-1">เลือกสินค้าบนเว็บไซต์</h3>
+                                <h5 class="m-b-3"></h5>
 
-                            <p>สามารถรับทราบข้อมูลสินค้าและคุณสมบัติได้จากเว็บไซต์ของเรา</p>
-                        </div><!-- End .feature-box-content -->
-                    </div><!-- End .feature-box -->
-                </div><!-- End .col-md-4 -->
+                                <p>สามารถรับทราบข้อมูลสินค้าและคุณสมบัติได้จากเว็บไซต์ของเรา</p>
+                            </div><!-- End .feature-box-content -->
+                        </div><!-- End .feature-box -->
+                    </div><!-- End .col-md-4 -->
 
-                <div class="col-md-4">
-                    <div class="feature-box px-sm-5 feature-box-simple text-center">
-                        <i class="icon-credit-card"></i>
+                    <div class="col-md-4">
+                        <div class="feature-box px-sm-5 feature-box-simple text-center">
+                            <i class="icon-credit-card"></i>
 
-                        <div class="feature-box-content">
-                            <h3 class="m-b-1">สั่งซื้อและชำระเงิน</h3>
-                            <h5 class="m-b-3"></h5>
+                            <div class="feature-box-content">
+                                <h3 class="m-b-1">สั่งซื้อและชำระเงิน</h3>
+                                <h5 class="m-b-3"></h5>
 
-                            <p>ติดต่อผู้แทนขายเพื่อสอบถามโปรโมชั่น ราคา และเงื่อนไขการชำระเงิน</p>
-                        </div><!-- End .feature-box-content -->
-                    </div><!-- End .feature-box -->
-                </div><!-- End .col-md-4 -->
+                                <p>ติดต่อผู้แทนขายเพื่อสอบถามโปรโมชั่น ราคา และเงื่อนไขการชำระเงิน</p>
+                            </div><!-- End .feature-box-content -->
+                        </div><!-- End .feature-box -->
+                    </div><!-- End .col-md-4 -->
 
-                <div class="col-md-4">
-                    <div class="feature-box px-sm-5 feature-box-simple text-center">
-                        <i class="fa fa-truck"></i>
+                    <div class="col-md-4">
+                        <div class="feature-box px-sm-5 feature-box-simple text-center">
+                            <i class="fa fa-truck"></i>
 
-                        <div class="feature-box-content">
-                            <h3 class="m-b-1">การขนส่งสินค้า</h3>
-                            <h5 class="m-b-3"></h5>
+                            <div class="feature-box-content">
+                                <h3 class="m-b-1">การขนส่งสินค้า</h3>
+                                <h5 class="m-b-3"></h5>
 
-                            <p>เรามีบริการจัดส่งสินค้าทั่วประเทศ</p>
-                        </div><!-- End .feature-box-content -->
-                    </div><!-- End .feature-box -->
-                </div><!-- End .col-md-4 -->
-            </div><!-- End .row -->
-        </div><!-- End .container-->
-    </section><!-- End .feature-boxes-container -->
+                                <p>เรามีบริการจัดส่งสินค้าทั่วประเทศ</p>
+                            </div><!-- End .feature-box-content -->
+                        </div><!-- End .feature-box -->
+                    </div><!-- End .col-md-4 -->
+                </div><!-- End .row -->
+            </div><!-- End .container-->
+        </section><!-- End .feature-boxes-container -->
 
-    <!-- <section class="promo-section bg-dark" data-parallax="{'speed': 1.8, 'enableOnMobile': true}"
+        <!-- <section class="promo-section bg-dark" data-parallax="{'speed': 1.8, 'enableOnMobile': true}"
         data-image-src="assets/images/banners/banner-5.jpg">
         <div class="promo-banner banner container text-uppercase">
             <div class="banner-content row align-items-center text-center">
@@ -319,11 +297,11 @@
         </div>
     </section> -->
 
-    <section class="blog-section">
-        <div class="container">
-            <h2 class="section-title heading-border border-0 mb-2">ข่าวสาร</h2>
+        <section class="blog-section">
+            <div class="container">
+                <h2 class="section-title heading-border border-0 mb-2">ข่าวสาร</h2>
 
-            <div class="owl-carousel owl-theme" data-owl-options="{
+                <div class="owl-carousel owl-theme" data-owl-options="{
                       'loop': false,
                       'margin': 20,
                       'autoHeight': true,
@@ -339,117 +317,116 @@
                           }
                       }
                   }">
-                <article class="post">
-                    <div class="post-media">
-                        <a href="single.html">
-                            <img src="assets/images/blog/home/post-1.jpg" alt="Post" width="225" height="280">
-                        </a>
-                        <div class="post-date">
-                            <span class="day">26</span>
-                            <span class="month">Feb</span>
-                        </div>
-                    </div><!-- End .post-media -->
+                    <article class="post">
+                        <div class="post-media">
+                            <a href="single.html">
+                                <img src="assets/images/blog/home/post-1.jpg" alt="Post" width="225" height="280">
+                            </a>
+                            <div class="post-date">
+                                <span class="day">26</span>
+                                <span class="month">Feb</span>
+                            </div>
+                        </div><!-- End .post-media -->
 
-                    <div class="post-body">
-                        <h2 class="post-title">
-                            <a href="single.html">Top New Collection</a>
-                        </h2>
-                        <div class="post-content">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras non placerat mi. Etiam non
-                                tellus
-                                sem. Aenean...</p>
-                        </div><!-- End .post-content -->
-                        <a href="single.html" class="post-comment">0 Comments</a>
-                    </div><!-- End .post-body -->
-                </article><!-- End .post -->
+                        <div class="post-body">
+                            <h2 class="post-title">
+                                <a href="single.html">Top New Collection</a>
+                            </h2>
+                            <div class="post-content">
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras non placerat mi. Etiam
+                                    non
+                                    tellus
+                                    sem. Aenean...</p>
+                            </div><!-- End .post-content -->
+                            <a href="single.html" class="post-comment">0 Comments</a>
+                        </div><!-- End .post-body -->
+                    </article><!-- End .post -->
 
-                <article class="post">
-                    <div class="post-media">
-                        <a href="single.html">
-                            <img src="assets/images/blog/home/post-2.jpg" alt="Post" width="225" height="280">
-                        </a>
-                        <div class="post-date">
-                            <span class="day">26</span>
-                            <span class="month">Feb</span>
-                        </div>
-                    </div><!-- End .post-media -->
+                    <article class="post">
+                        <div class="post-media">
+                            <a href="single.html">
+                                <img src="assets/images/blog/home/post-2.jpg" alt="Post" width="225" height="280">
+                            </a>
+                            <div class="post-date">
+                                <span class="day">26</span>
+                                <span class="month">Feb</span>
+                            </div>
+                        </div><!-- End .post-media -->
 
-                    <div class="post-body">
-                        <h2 class="post-title">
-                            <a href="single.html">Fashion Trends</a>
-                        </h2>
-                        <div class="post-content">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras non placerat mi. Etiam non
-                                tellus
-                                sem. Aenean...</p>
-                        </div><!-- End .post-content -->
-                        <a href="single.html" class="post-comment">0 Comments</a>
-                    </div><!-- End .post-body -->
-                </article><!-- End .post -->
+                        <div class="post-body">
+                            <h2 class="post-title">
+                                <a href="single.html">Fashion Trends</a>
+                            </h2>
+                            <div class="post-content">
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras non placerat mi. Etiam
+                                    non
+                                    tellus
+                                    sem. Aenean...</p>
+                            </div><!-- End .post-content -->
+                            <a href="single.html" class="post-comment">0 Comments</a>
+                        </div><!-- End .post-body -->
+                    </article><!-- End .post -->
 
-                <article class="post">
-                    <div class="post-media">
-                        <a href="single.html">
-                            <img src="assets/images/blog/home/post-3.jpg" alt="Post" width="225" height="280">
-                        </a>
-                        <div class="post-date">
-                            <span class="day">26</span>
-                            <span class="month">Feb</span>
-                        </div>
-                    </div><!-- End .post-media -->
+                    <article class="post">
+                        <div class="post-media">
+                            <a href="single.html">
+                                <img src="assets/images/blog/home/post-3.jpg" alt="Post" width="225" height="280">
+                            </a>
+                            <div class="post-date">
+                                <span class="day">26</span>
+                                <span class="month">Feb</span>
+                            </div>
+                        </div><!-- End .post-media -->
 
-                    <div class="post-body">
-                        <h2 class="post-title">
-                            <a href="single.html">Right Choices</a>
-                        </h2>
-                        <div class="post-content">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras non placerat mi. Etiam non
-                                tellus
-                                sem. Aenean...</p>
-                        </div><!-- End .post-content -->
-                        <a href="single.html" class="post-comment">0 Comments</a>
-                    </div><!-- End .post-body -->
-                </article><!-- End .post -->
+                        <div class="post-body">
+                            <h2 class="post-title">
+                                <a href="single.html">Right Choices</a>
+                            </h2>
+                            <div class="post-content">
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras non placerat mi. Etiam
+                                    non
+                                    tellus
+                                    sem. Aenean...</p>
+                            </div><!-- End .post-content -->
+                            <a href="single.html" class="post-comment">0 Comments</a>
+                        </div><!-- End .post-body -->
+                    </article><!-- End .post -->
 
-                <article class="post">
-                    <div class="post-media">
-                        <a href="single.html">
-                            <img src="assets/images/blog/home/post-4.jpg" alt="Post" width="225" height="280">
-                        </a>
-                        <div class="post-date">
-                            <span class="day">26</span>
-                            <span class="month">Feb</span>
-                        </div>
-                    </div><!-- End .post-media -->
+                    <article class="post">
+                        <div class="post-media">
+                            <a href="single.html">
+                                <img src="assets/images/blog/home/post-4.jpg" alt="Post" width="225" height="280">
+                            </a>
+                            <div class="post-date">
+                                <span class="day">26</span>
+                                <span class="month">Feb</span>
+                            </div>
+                        </div><!-- End .post-media -->
 
-                    <div class="post-body">
-                        <h2 class="post-title">
-                            <a href="single.html">Perfect Accessories</a>
-                        </h2>
-                        <div class="post-content">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras non placerat mi. Etiam non
-                                tellus
-                                sem. Aenean...</p>
-                        </div><!-- End .post-content -->
-                        <a href="single.html" class="post-comment">0 Comments</a>
-                    </div><!-- End .post-body -->
-                </article><!-- End .post -->
-            </div>
+                        <div class="post-body">
+                            <h2 class="post-title">
+                                <a href="single.html">Perfect Accessories</a>
+                            </h2>
+                            <div class="post-content">
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras non placerat mi. Etiam
+                                    non
+                                    tellus
+                                    sem. Aenean...</p>
+                            </div><!-- End .post-content -->
+                            <a href="single.html" class="post-comment">0 Comments</a>
+                        </div><!-- End .post-body -->
+                    </article><!-- End .post -->
+                </div>
 
-            <hr class="mt-0 m-b-5">
+                <hr class="mt-0 m-b-5">
 
-            <div class="brands-slider owl-carousel owl-theme images-center pb-2">
-                <img src="assets/images/brands/brand1.png" width="140" height="60" alt="brand">
-                <img src="assets/images/brands/brand2.png" width="140" height="60" alt="brand">
-                <img src="assets/images/brands/brand3.png" width="140" height="60" alt="brand">
-                <img src="assets/images/brands/brand4.png" width="140" height="60" alt="brand">
-                <img src="assets/images/brands/brand5.png" width="140" height="60" alt="brand">
-                <img src="assets/images/brands/brand6.png" width="140" height="60" alt="brand">
-            </div><!-- End .brands-slider -->
+                <div class="brands-slider owl-carousel owl-theme images-center pb-2">
+                    <img [src]="par.path" width="140" height="60" alt="brand" *ngFor="let par of data.partner">
+                </div><!-- End .brands-slider -->
 
-            <!-- <hr class="mt-4 m-b-5"> -->
+                <!-- <hr class="mt-4 m-b-5"> -->
 
-            <!-- <div class="product-widgets-container row mb-2 pb-2">
+                <!-- <div class="product-widgets-container row mb-2 pb-2">
                 <div class="col-lg-3 col-sm-6 pb-5 pb-md-0">
                     <h4 class="section-sub-title mb-2">Featured Products</h4>
                     <div class="product-default left-details product-widget">
@@ -715,6 +692,6 @@
                     </div>
                 </div>
             </div> -->
-        </div>
-    </section>
+            </div>
+        </section>
 </main><!-- End .main -->

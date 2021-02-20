@@ -5,6 +5,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SocialLoginModule, SocialAuthServiceConfig, FacebookLoginProvider, GoogleLoginProvider } from 'angularx-social-login';
 import { QRCodeModule } from 'angularx-qrcode';
 
+
+
 import { PasswordStrengthBarComponent } from './password-strength-bar/password-strength-bar.component';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -22,6 +24,9 @@ import { CheckoutComponent } from './checkout/checkout.component';
 import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';
 import { CategoryComponent } from './category/category.component';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { BlogComponent } from './blog/blog.component';
+import { BlogDetailComponent } from './blog-detail/blog-detail.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +45,8 @@ import { CategoryComponent } from './category/category.component';
     AboutComponent,
     ContactComponent,
     CategoryComponent,
+    BlogComponent,
+    BlogDetailComponent,
   ],
   imports: [
     BrowserModule,
@@ -49,6 +56,7 @@ import { CategoryComponent } from './category/category.component';
     ReactiveFormsModule,
     SocialLoginModule,
     QRCodeModule,
+    NoopAnimationsModule,
   ],
   providers: [
     {

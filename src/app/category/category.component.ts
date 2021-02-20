@@ -53,6 +53,7 @@ export class CategoryComponent implements OnInit {
   public product_list = false;
 
   constructor(private activatedRoute: ActivatedRoute, private http: HttpClient, private service: AppService) {
+    
   }
 
   ngOnInit(): void {
@@ -86,6 +87,8 @@ export class CategoryComponent implements OnInit {
           value.path = that.service.url + "/" + value.path
           value.url = btoa(value.product_id);
         });
+
+        this.service.loaded();
       }
     });
 
@@ -104,6 +107,10 @@ export class CategoryComponent implements OnInit {
         value.path = that.service.url + "/" + value.path
         value.url = btoa(value.product_id);
         value.cat_url = btoa(value.id);
+      });
+
+      this.data.banner_category.forEach(function (value) {
+        value.path = that.service.url + "/" + value.path
       });
 
       this.page.page_button = [];

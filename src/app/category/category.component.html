@@ -1,21 +1,8 @@
 <main class="main">
-    <div class="category-banner-container bg-gray">
+    <div class="category-banner-container bg-gray" *ngFor="let bc of data.banner_category">
         <div class="category-banner banner text-uppercase"
-            style="background: no-repeat 60%/cover url('assets/images/banners/banner-top.jpg');">
+            style="background: no-repeat 100%/cover url('{{bc.path}}');">
             <div class="container position-relative">
-                <div class="row">
-                    <div class="pl-lg-5 pb-5 pb-md-0 col-md-5 col-xl-4 col-lg-4 offset-1">
-                        <h3 class="ml-lg-5 mb-2 ls-10">Electronic<br>Deals</h3>
-                        <a href="#" class="ml-lg-5 btn btn-dark btn-black ls-10">Get Yours!</a>
-                    </div>
-                    <div class="pl-lg-5 col-md-4 offset-md-0 offset-1 pt-4">
-                        <div class="coupon-sale-content">
-                            <h4 class="m-b-2 coupon-sale-text bg-white ls-10 text-transform-none">Exclusive COUPON</h4>
-                            <h5 class="mb-2 coupon-sale-text d-block ls-10 p-0"><i class="ls-0">UP TO</i><b
-                                    class="text-dark">$100</b> OFF</h5>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </div>

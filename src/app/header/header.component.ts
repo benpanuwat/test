@@ -29,22 +29,22 @@ export class HeaderComponent implements OnInit {
   };
 
   public search_data = {
-    search:'',
-    category_id:''
+    search: '',
+    category_id: ''
   };
 
-  constructor(private activatedRoute: ActivatedRoute,private http: HttpClient, private service: AppService) {
+  constructor(private activatedRoute: ActivatedRoute, private http: HttpClient, private service: AppService) {
   }
 
   ngOnInit(): void {
     this.activatedRoute.queryParams.subscribe(params => {
       const c = params['c'];
-      
+
       if (c != "" && c != undefined)
         this.search_data.category_id = atob(c);
 
       const s = params['s'];
-      if (s != ""  && s != undefined)
+      if (s != "" && s != undefined)
         this.search_data.search = s;
     });
 
@@ -74,6 +74,10 @@ export class HeaderComponent implements OnInit {
             value.url = btoa(value.id);
           });
         }
+        else if (res.code == 401) {
+          localStorage.clear();
+          window.location.href = "login";
+        }
       });
     }
     else {
@@ -89,9 +93,8 @@ export class HeaderComponent implements OnInit {
     }
   }
 
-  clickSearch()
-  {
-    window.location.href = "category?c="+btoa(this.search_data.category_id)+"&s="+this.search_data.search;
+  clickSearch() {
+    window.location.href = "category?c=" + btoa(this.search_data.category_id) + "&s=" + this.search_data.search;
   }
 
   clickLogout() {
@@ -99,8 +102,7 @@ export class HeaderComponent implements OnInit {
     window.location.href = "login";
   }
 
-  clickDelectCart(pro)
-  {
+  clickDelectCart(pro) {
     this.http.post<any>(this.service.url + '/api/delete_cart', pro, { headers: this.headers }).subscribe(res => {
       if (res.code == 200) {
         window.location.reload();
