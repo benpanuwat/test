@@ -13,7 +13,7 @@
             <div class="col-lg-9">
                 <article class="post" *ngFor="let blog of blogs">
                     <div class="post-media">
-                        <a href="single.html">
+                        <a href="blog_detail?b={{blog.url}}">
                             <img [src]="blog.path" alt="Post">
                         </a>
                     </div>
@@ -25,19 +25,19 @@
                         </div>
 
                         <h2 class="post-title">
-                            <a href="single.html">{{blog.title}}</a>
+                            <a href="blog_detail?b={{blog.url}}">{{blog.title}}</a>
                         </h2>
 
                         <div class="post-content">
                             <p>{{blog.detail}}</p>
 
-                            <a href="single.html" class="read-more">อ่านเพิ่มเติม <i
+                            <a href="blog_detail?b={{blog.url}}" class="read-more">อ่านเพิ่มเติม <i
                                     class="icon-angle-double-right"></i></a>
                         </div>
 
                         <div class="post-meta">
                             <span><i class="icon-calendar"></i>{{blog.day}} {{blog.month}} {{blog.year}}</span>
-                            <span><i class="icon-user"></i>โดย <a href="#">{{blog.user.fname}} {{blog.user.lname}}</a></span>
+                            <span><i class="icon-user"></i>โดย <a href="javascript:void(0)">{{blog.user.fname}} {{blog.user.lname}}</a></span>
                             <!-- <span><i class="fa fa-tags"></i>
                                 <a href="#">Haircuts & hairstyles</a>,
                                 <a href="#">Fashion trends</a>,
@@ -71,7 +71,7 @@
                 <div class="sidebar-wrapper">
                     <div class="widget widget-search">
                         <form role="search" method="get" class="search-form" action="#">
-                            <input type="search" class="form-control" name="search"  [(ngModel)]="filter.search">
+                            <input type="search" class="form-control" name="search"  placeholder="ค้นหา" [(ngModel)]="filter.search">
                             <button type="button" class="search-submit" title="ค้นหา" (click)="clickSearch()">
                                 <i class="icon-search"></i>
                                 <span class="sr-only">ค้นหา</span>
@@ -79,7 +79,7 @@
                         </form>
                     </div><!-- End .widget -->
 
-                    <div class="widget widget-categories">
+                    <!-- <div class="widget widget-categories">
                         <h4 class="widget-title">Blog Categories</h4>
 
                         <ul class="list">
@@ -89,9 +89,9 @@
                             <li><a href="#">Fashion trends</a></li>
                             <li><a href="#">Haircuts &amp; hairstyles</a></li>
                         </ul>
-                    </div><!-- End .widget -->
+                    </div> -->
 
-                    <div class="widget">
+                    <!-- <div class="widget">
                         <h4 class="widget-title">Recent Posts</h4>
 
                         <ul class="simple-post-list">
@@ -100,13 +100,12 @@
                                     <a href="single.html">
                                         <img src="assets/images/blog/widget/post-1.jpg" alt="Post">
                                     </a>
-                                </div><!-- End .post-media -->
+                                </div>
                                 <div class="post-info">
                                     <a href="single.html">Post Format - Video</a>
                                     <div class="post-meta">
                                         April 08, 2018
-                                    </div><!-- End .post-meta -->
-                                </div><!-- End .post-info -->
+                                    </div>
                             </li>
 
                             <li>
@@ -114,18 +113,18 @@
                                     <a href="single.html">
                                         <img src="assets/images/blog/widget/post-2.jpg" alt="Post">
                                     </a>
-                                </div><!-- End .post-media -->
+                                </div>
                                 <div class="post-info">
                                     <a href="single.html">Post Format - Image</a>
                                     <div class="post-meta">
                                         March 23, 2016
-                                    </div><!-- End .post-meta -->
-                                </div><!-- End .post-info -->
+                                    </div>
+                                </div>
                             </li>
                         </ul>
-                    </div><!-- End .widget -->
+                    </div> -->
 
-                    <div class="widget">
+                    <!-- <div class="widget">
                         <h4 class="widget-title">Tagcloud</h4>
 
                         <div class="tagcloud">
@@ -134,25 +133,24 @@
                             <a href="#">Skirts</a>
                             <a href="#">Dresses</a>
                             <a href="#">Bags</a>
-                        </div><!-- End .tagcloud -->
-                    </div><!-- End .widget -->
+                        </div>
+                    </div> -->
 
                     <div class="widget">
-                        <h4 class="widget-title">Archive</h4>
+                        <h4 class="widget-title">บทความ</h4>
 
                         <ul class="list">
-                            <li><a href="#">April 2018</a></li>
-                            <li><a href="#">March 2018</a></li>
-                            <li><a href="#">February 2018</a></li>
+                            <li [ngClass]="filter.month === '' && filter.year === ''? 'active' : 'null'"><a href="blog" >บทความทั้งหมด</a></li>
+                            <li *ngFor="let bd of blog_date"  [ngClass]="filter.month == bd.blog_month && filter.year == bd.blog_year? 'active' : 'null'"><a href="blog?month={{bd.blog_month}}&year={{bd.blog_year}}&" >{{bd.blog_month_th}} {{bd.blog_year}} ({{bd.count}})</a></li>
                         </ul>
                     </div><!-- End .widget -->
 
 
-                    <div class="widget widget_compare">
+                    <!-- <div class="widget widget_compare">
                         <h4 class="widget-title">Compare Products</h4>
 
                         <p>You have no items to compare.</p>
-                    </div><!-- End .widget -->
+                    </div> -->
                 </div><!-- End .sidebar-wrapper -->
             </aside><!-- End .col-lg-3 -->
         </div><!-- End .row -->

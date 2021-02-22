@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AppService } from 'src/app/app.service';
-//import { SocialAuthService, FacebookLoginProvider, GoogleLoginProvider, SocialUser } from "angularx-social-login";
+import { SocialAuthService, FacebookLoginProvider, GoogleLoginProvider, SocialUser } from "angularx-social-login";
 
 @Component({
   selector: 'app-login',
@@ -12,7 +12,7 @@ export class LoginComponent implements OnInit {
 
   public barLabel: string = "ความปลอดภัยของรหัสผ่าน :";
 
-  //user: SocialUser;
+  user: SocialUser;
 
   public userlogin = {
     email: "",
@@ -20,11 +20,13 @@ export class LoginComponent implements OnInit {
   };
 
   public member = {
+    provider_id: "",
     email: "",
     password: "",
     confirm_password: "",
     fname: "",
-    lname: ""
+    lname: "",
+    provider: ""
   };
 
   loginValidation: boolean = false;
@@ -32,23 +34,50 @@ export class LoginComponent implements OnInit {
   createValidation: boolean = false;
   createMass: string = "";
 
-  constructor(private http: HttpClient, private service: AppService) {
+  constructor(private http: HttpClient, private service: AppService, private authService: SocialAuthService) {
   }
 
   ngOnInit(): void {
-    // this.authService.authState.subscribe((user) => {
+    this.authService.authState.subscribe((user) => {
 
+      this.member.provider_id = user.id;
+      this.member.fname = user.firstName;
+      this.member.lname = user.lastName;
+      this.member.email = user.email;
+      this.member.provider = user.provider;//"GOOGLE FACEBOOK"
 
-    // });
+      this.http.post<any>(this.service.url + '/api/member_login_social', this.member, {}).subscribe(res => {
+        if (res.code == 200) {
+
+          localStorage.setItem("auth", res.status);
+          localStorage.setItem("id", res.data.id);
+          localStorage.setItem("name", res.data.fname);
+          localStorage.setItem("email", res.data.email);
+          localStorage.setItem("token", res.token);
+
+          window.history.back();
+        }
+        else if (res.code == 400) {
+          this.createValidation = true;
+          this.createMass = res.massage;
+        }
+        else {
+          this.createValidation = true;
+          this.createMass = "ไม่สามารถส่งทะเบียนได้";
+        }
+      });
+
+      console.log(user);
+    });
   }
 
-  // signInWithFB(): void {
-  //   this.authService.signIn(FacebookLoginProvider.PROVIDER_ID);
-  // }
+  signInWithFB(): void {
+    this.authService.signIn(FacebookLoginProvider.PROVIDER_ID);
+  }
 
-  // signInWithGoogle(): void {
-  //   this.authService.signIn(GoogleLoginProvider.PROVIDER_ID);
-  // }
+  signInWithGoogle(): void {
+    this.authService.signIn(GoogleLoginProvider.PROVIDER_ID);
+  }
 
   clickLogin(f) {
     if (f.invalid === true) {
@@ -108,9 +137,6 @@ export class LoginComponent implements OnInit {
         else if (res.code == 400) {
           this.createValidation = true;
           this.createMass = res.massage;
-        }
-        else if (res.code == 401) {
-          window.location.href = "login";
         }
         else {
           this.createValidation = true;

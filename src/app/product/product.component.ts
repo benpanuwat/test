@@ -55,6 +55,12 @@ export class ProductComponent implements OnInit {
         this.product.product_type_id = this.product.product_type[0].id;
         this.changeType();
 
+        this.product.category_product.forEach(function (value) {
+          value.path = that.service.url + "/" + value.path
+          value.url = btoa(value.product_id);
+          value.cat_url = btoa(value.category_id);
+        });
+
         this.service.loaded();
       }
     });
@@ -112,4 +118,5 @@ export class ProductComponent implements OnInit {
       window.location.href = "login";
     }
   }
+  
 }

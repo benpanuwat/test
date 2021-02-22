@@ -12,18 +12,26 @@ export class BlogComponent implements OnInit {
 
   public headers: HttpHeaders;
 
+  public blog_date: any = [{
+    blog_month: '',
+    blog_year: '',
+    count: 0,
+    blog_month_th: ''
+  }];
+
+
   public blogs: any = [{
     id: '',
     title: '',
     detail: '',
     created_at: '',
     user_id: '',
-    user:{
-      fname:'',
-      lname:''
+    user: {
+      fname: '',
+      lname: ''
     }
   }];
-  
+
   public page: any = {
     page_count: 0,
     page_current: 1,
@@ -35,9 +43,9 @@ export class BlogComponent implements OnInit {
   };
 
   public filter: any = {
-    category_id: '',
-    category_name: '',
-    length: 1,
+    month: '',
+    year: '',
+    length: 5,
     search: '',
     start: 0,
     order_by: ''
@@ -47,6 +55,27 @@ export class BlogComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+    this.activatedRoute.queryParams.subscribe(params => {
+      const search = params['search'];
+      if (search != "" && search != undefined)
+        this.filter.search = search;
+
+      const month = params['month'];
+      if (month != "" && month != undefined)
+        this.filter.month = month;
+
+      const year = params['year'];
+      if (year != "" && year != undefined)
+        this.filter.year = year;
+    });
+
+    this.http.post<any>(this.service.url + '/api/get_blog_date', {}, { headers: this.headers }).subscribe(res => {
+      if (res.code == 200) {
+        this.blog_date = res.data;
+      }
+    });
+
     this.loadBlog();
   }
 
@@ -62,10 +91,6 @@ export class BlogComponent implements OnInit {
         value.path = that.service.url + "/" + value.path
         value.url = btoa(value.id);
       });
-
-      // this.data.banner_category.forEach(function (value) {
-      //   value.path = that.service.url + "/" + value.path
-      // });
 
       this.page.page_button = [];
       this.page.page_count = res.last_page;
@@ -87,13 +112,12 @@ export class BlogComponent implements OnInit {
       else
         this.page.page_button_last = false;
 
-        this.service.loaded();
+      this.service.loaded();
     });
   }
 
-  clickSearch()
-  {
-    this.loadBlog();
+  clickSearch() {
+    window.location.href = 'blog?search=' + this.filter.search;
   }
 
   clickPage(but) {
@@ -109,6 +133,10 @@ export class BlogComponent implements OnInit {
   clickLast() {
     this.page.page_current = this.page.page_count;
     this.loadBlog()
+  }
+
+  clickDate(bd) {
+    this.loadBlog();
   }
 
 }

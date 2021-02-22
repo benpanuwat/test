@@ -66,11 +66,11 @@ import { BlogDetailComponent } from './blog-detail/blog-detail.component';
         providers: [
           {
             id: GoogleLoginProvider.PROVIDER_ID,
-            provider: new GoogleLoginProvider('126141149991-eaitar1dv2e9l8d9iltvj315cqvopg0o.apps.googleusercontent.com'),
+            provider: new GoogleLoginProvider('894464140949-48fm8r2cts5thdnih542idv5k5j90p2r.apps.googleusercontent.com'),
           },
           {
             id: FacebookLoginProvider.PROVIDER_ID,
-            provider: new FacebookLoginProvider('379931666337591'),
+            provider: new FacebookLoginProvider('359033835095116'),
           }
         ],
       } as SocialAuthServiceConfig,
