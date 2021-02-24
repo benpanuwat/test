@@ -1442,7 +1442,7 @@
 		Porto.scrollBtnAppear();
 
 		var path = window.location.pathname;
-		if(path == '/' || path == '/product' || path == '/category'|| path == '/blog' || path == '/blog_detail')
+		if(path == '/' || path == '/product' || path == '/category'|| path == '/blog' || path == '/blog_detail' || path == '/news' || path == '/news_detail')
 		{
 			localStorage.setItem('load', 'false');
 			checkLoad();

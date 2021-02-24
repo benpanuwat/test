@@ -317,105 +317,27 @@
                           }
                       }
                   }">
-                    <article class="post">
+                    <article class="post" *ngFor="let n of data.news">
                         <div class="post-media">
-                            <a href="single.html">
-                                <img src="assets/images/blog/home/post-1.jpg" alt="Post" width="225" height="280">
+                            <a href="news_detail?b={{n.url}}">
+                                <img [src]="n.path" alt="Post" width="225" height="280">
                             </a>
                             <div class="post-date">
-                                <span class="day">26</span>
-                                <span class="month">Feb</span>
+                                <span class="day">{{n.day}}</span>
+                                <span class="month">{{n.month}}</span>
                             </div>
                         </div><!-- End .post-media -->
 
                         <div class="post-body">
                             <h2 class="post-title">
-                                <a href="single.html">Top New Collection</a>
+                                <a href="news_detail?b={{n.url}}">{{n.title}}</a>
                             </h2>
                             <div class="post-content">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras non placerat mi. Etiam
-                                    non
-                                    tellus
-                                    sem. Aenean...</p>
+                                <p style="white-space: pre-line;">{{n.detail}}</p>
                             </div><!-- End .post-content -->
-                            <a href="single.html" class="post-comment">0 Comments</a>
                         </div><!-- End .post-body -->
                     </article><!-- End .post -->
 
-                    <article class="post">
-                        <div class="post-media">
-                            <a href="single.html">
-                                <img src="assets/images/blog/home/post-2.jpg" alt="Post" width="225" height="280">
-                            </a>
-                            <div class="post-date">
-                                <span class="day">26</span>
-                                <span class="month">Feb</span>
-                            </div>
-                        </div><!-- End .post-media -->
-
-                        <div class="post-body">
-                            <h2 class="post-title">
-                                <a href="single.html">Fashion Trends</a>
-                            </h2>
-                            <div class="post-content">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras non placerat mi. Etiam
-                                    non
-                                    tellus
-                                    sem. Aenean...</p>
-                            </div><!-- End .post-content -->
-                            <a href="single.html" class="post-comment">0 Comments</a>
-                        </div><!-- End .post-body -->
-                    </article><!-- End .post -->
-
-                    <article class="post">
-                        <div class="post-media">
-                            <a href="single.html">
-                                <img src="assets/images/blog/home/post-3.jpg" alt="Post" width="225" height="280">
-                            </a>
-                            <div class="post-date">
-                                <span class="day">26</span>
-                                <span class="month">Feb</span>
-                            </div>
-                        </div><!-- End .post-media -->
-
-                        <div class="post-body">
-                            <h2 class="post-title">
-                                <a href="single.html">Right Choices</a>
-                            </h2>
-                            <div class="post-content">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras non placerat mi. Etiam
-                                    non
-                                    tellus
-                                    sem. Aenean...</p>
-                            </div><!-- End .post-content -->
-                            <a href="single.html" class="post-comment">0 Comments</a>
-                        </div><!-- End .post-body -->
-                    </article><!-- End .post -->
-
-                    <article class="post">
-                        <div class="post-media">
-                            <a href="single.html">
-                                <img src="assets/images/blog/home/post-4.jpg" alt="Post" width="225" height="280">
-                            </a>
-                            <div class="post-date">
-                                <span class="day">26</span>
-                                <span class="month">Feb</span>
-                            </div>
-                        </div><!-- End .post-media -->
-
-                        <div class="post-body">
-                            <h2 class="post-title">
-                                <a href="single.html">Perfect Accessories</a>
-                            </h2>
-                            <div class="post-content">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras non placerat mi. Etiam
-                                    non
-                                    tellus
-                                    sem. Aenean...</p>
-                            </div><!-- End .post-content -->
-                            <a href="single.html" class="post-comment">0 Comments</a>
-                        </div><!-- End .post-body -->
-                    </article><!-- End .post -->
                 </div>
 
                 <hr class="mt-0 m-b-5">

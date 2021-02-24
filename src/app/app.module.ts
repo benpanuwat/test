@@ -27,6 +27,8 @@ import { CategoryComponent } from './category/category.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { BlogComponent } from './blog/blog.component';
 import { BlogDetailComponent } from './blog-detail/blog-detail.component';
+import { NewsComponent } from './news/news.component';
+import { NewsDetailComponent } from './news-detail/news-detail.component';
 
 @NgModule({
   declarations: [
@@ -47,6 +49,8 @@ import { BlogDetailComponent } from './blog-detail/blog-detail.component';
     CategoryComponent,
     BlogComponent,
     BlogDetailComponent,
+    NewsComponent,
+    NewsDetailComponent
   ],
   imports: [
     BrowserModule,

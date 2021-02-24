@@ -57,6 +57,11 @@ export class HomeComponent implements OnInit {
           value.cat_url = btoa(value.id);
         });
 
+        this.data.news.forEach(function (value) {
+          value.path = that.service.url + "/" + value.path
+          value.url = btoa(value.id);
+        });
+
         this.service.loaded();
       }
     });

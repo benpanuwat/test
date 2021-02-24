@@ -4,23 +4,23 @@ import { ActivatedRoute } from '@angular/router';
 import { AppService } from 'src/app/app.service';
 
 @Component({
-  selector: 'app-blog',
-  templateUrl: './blog.component.html',
-  styleUrls: ['./blog.component.css']
+  selector: 'app-news',
+  templateUrl: './news.component.html',
+  styleUrls: ['./news.component.css']
 })
-export class BlogComponent implements OnInit {
+export class NewsComponent implements OnInit {
 
   public headers: HttpHeaders;
 
-  public blog_date: any = [{
-    blog_month: '',
-    blog_year: '',
+  public news_date: any = [{
+    news_month: '',
+    news_year: '',
     count: 0,
-    blog_month_th: ''
+    news_month_th: ''
   }];
 
 
-  public blogs: any = [{
+  public news: any = [{
     id: '',
     title: '',
     detail: '',
@@ -68,9 +68,9 @@ export class BlogComponent implements OnInit {
         this.filter.year = year;
     });
 
-    this.http.post<any>(this.service.url + '/api/get_blog_date', {}, { headers: this.headers }).subscribe(res => {
+    this.http.post<any>(this.service.url + '/api/get_news_date', {}, { headers: this.headers }).subscribe(res => {
       if (res.code == 200) {
-        this.blog_date = res.data;
+        this.news_date = res.data;
       }
     });
 
@@ -81,11 +81,11 @@ export class BlogComponent implements OnInit {
 
     this.filter.start = (this.page.page_current - 1) * this.filter.length;
 
-    this.http.post<any>(this.service.url + '/api/get_blog_page', this.filter, {}).subscribe(res => {
-      this.blogs = res.data;
+    this.http.post<any>(this.service.url + '/api/get_news_page', this.filter, {}).subscribe(res => {
+      this.news = res.data;
 
       let that = this;
-      this.blogs.forEach(function (value) {
+      this.news.forEach(function (value) {
         value.path = that.service.url + "/" + value.path
         value.url = btoa(value.id);
       });
@@ -115,7 +115,7 @@ export class BlogComponent implements OnInit {
   }
 
   clickSearch() {
-    window.location.href = 'blog?search=' + this.filter.search;
+    window.location.href = 'news?search=' + this.filter.search;
   }
 
   clickPage(but) {

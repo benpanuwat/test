@@ -3,7 +3,7 @@
         <div class="container">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href=""><i class="icon-home"></i></a></li>
-                <li class="breadcrumb-item active" aria-current="page"> {{blog.title}}</li>
+                <li class="breadcrumb-item active" aria-current="page"> {{news.title}}</li>
             </ol>
         </div><!-- End .container -->
     </nav>
@@ -14,23 +14,23 @@
                 <article class="post single">
                     <div class="post-media">
                         <div class="post-slider owl-carousel owl-theme">
-                            <img *ngFor="let img of blog.blog_images" [src]="img.path" alt="Post">
+                            <img *ngFor="let img of news.news_images" [src]="img.path" alt="Post">
                         </div><!-- End .post-slider -->
                     </div><!-- End .post-media -->
 
                     <div class="post-body">
                         <div class="post-date">
-                            <span class="day">{{blog.day}}</span>
-                            <span class="month">{{blog.month}}</span>
+                            <span class="day">{{news.day}}</span>
+                            <span class="month">{{news.month}}</span>
                         </div><!-- End .post-date -->
 
                         <h2 class="post-title">
-                            {{blog.title}}
+                            {{news.title}}
                         </h2>
 
                         <div class="post-meta">
-                            <span><i class="icon-calendar"></i>{{blog.day}} {{blog.month}} {{blog.year}}</span>
-                            <span><i class="icon-user"></i>โดย <a href="javascript:void(0)">{{blog.fname}} {{blog.lname}}</a></span>
+                            <span><i class="icon-calendar"></i>{{news.day}} {{news.month}} {{news.year}}</span>
+                            <span><i class="icon-user"></i>โดย <a href="javascript:void(0)">{{news.fname}} {{news.lname}}</a></span>
                             <!-- <span><i class="icon-folder-open"></i>
                                 <a href="#">Haircuts & hairstyles</a>,
                                 <a href="#">Fashion trends</a>,
@@ -39,7 +39,7 @@
                         </div><!-- End .post-meta -->
 
                         <div class="post-content">
-                            <p style="white-space: pre-line;">{{blog.detail}}</p>
+                            <p style="white-space: pre-line;">{{news.detail}}</p>
                         </div><!-- End .post-content -->
 
                         <!-- <div class="post-share">
@@ -122,36 +122,6 @@
                     </div><!-- End .post-body -->
                 </article><!-- End .post -->
 
-                <div class="related-posts">
-                    <h4 class="light-title">บทความอื่นๆ</h4>
-
-                    <div class="owl-carousel owl-theme related-posts-carousel">
-                        <article class="post" *ngFor="let blog of blog.blog_other">
-                            <div class="post-media">
-                                <a href="blog_detail?b={{blog.url}}">
-                                    <img [src]="blog.path" alt="Post">
-                                </a>
-                            </div><!-- End .post-media -->
-
-                            <div class="post-body">
-                                <div class="post-date">
-                                    <span class="day">{{blog.day}}</span>
-                                    <span class="month">{{blog.month}}</span>
-                                </div><!-- End .post-date -->
-
-                                <h2 class="post-title">
-                                    <a href="blog_detail?b={{blog.url}}">{{blog.title}}</a>
-                                </h2>
-
-                                <div class="post-content">
-                                    <p>{{blog.detail}}</p>
-
-                                    <a href="blog_detail?b={{blog.url}}" class="read-more">อ่านเพิ่มเติม <i class="icon-angle-double-right"></i></a>
-                                </div><!-- End .post-content -->
-                            </div><!-- End .post-body -->
-                        </article>
-                    </div><!-- End .owl-carousel -->
-                </div><!-- End .related-posts -->
             </div><!-- End .col-lg-9 -->
 
             <aside class="sidebar col-lg-3">
@@ -227,8 +197,8 @@
                         <h4 class="widget-title">บทความ</h4>
 
                         <ul class="list">
-                            <li><a href="blog" >บทความทั้งหมด</a></li>
-                            <li *ngFor="let bd of blog_date"><a href="blog?month={{bd.blog_month}}&year={{bd.blog_year}}&" >{{bd.blog_month_th}} {{bd.blog_year}} ({{bd.count}})</a></li>
+                            <li><a href="news" >บทความทั้งหมด</a></li>
+                            <li *ngFor="let nd of news_date"><a href="news?month={{nd.news_month}}&year={{nd.news_year}}&" >{{nd.news_month_th}} {{nd.news_year}} ({{nd.count}})</a></li>
                         </ul>
                     </div><!-- End .widget -->
 
