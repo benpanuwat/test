@@ -20,6 +20,7 @@ export class CategoryComponent implements OnInit {
   public category: any = [{
     id: '',
     name: '',
+    name_en: '',
     url: ''
   }];
 
@@ -44,6 +45,7 @@ export class CategoryComponent implements OnInit {
   public filter: any = {
     category_id: '',
     category_name: '',
+    category_name_en: '',
     length: 12,
     search: '',
     start: 0,
@@ -69,13 +71,14 @@ export class CategoryComponent implements OnInit {
     });
 
     this.http.post<any>(this.service.url + '/api/get_data_page', this.filter, {}).subscribe(res => {
-      if (res.status) {
+      if (res.code == 200) {
         this.data = res.data;
 
         let category = this.data.category.find(e => e.id == this.filter.category_id);
 
         if (category != undefined) {
           this.filter.category_name = category.name;
+          this.filter.category_name_en = category.name_en;
         }
 
         this.data.category.forEach(function (value) {
@@ -88,9 +91,15 @@ export class CategoryComponent implements OnInit {
           value.url = btoa(value.product_id);
         });
 
+        this.data.banner_category.forEach(function (value) {
+          value.path = that.service.url + "/" + value.path
+        });
+
         this.service.loaded();
       }
+      
     });
+
 
     this.loadProduct();
   }
@@ -107,10 +116,6 @@ export class CategoryComponent implements OnInit {
         value.path = that.service.url + "/" + value.path
         value.url = btoa(value.product_id);
         value.cat_url = btoa(value.id);
-      });
-
-      this.data.banner_category.forEach(function (value) {
-        value.path = that.service.url + "/" + value.path
       });
 
       this.page.page_button = [];

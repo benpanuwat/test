@@ -3,7 +3,7 @@
         <div class="container">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="index.html"><i class="icon-home"></i></a></li>
-                <li class="breadcrumb-item active" aria-current="page">เข้าสู่ระบบ</li>
+                <li class="breadcrumb-item active" aria-current="page"> {{ 'login' | translate}}</li>
             </ol>
         </div><!-- End .container -->
     </nav>
@@ -12,26 +12,26 @@
         <div class="row">
             <div class="col-md-6">
                 <div class="heading">
-                    <h2 class="title">เข้าสู่ระบบ</h2>
-                    <p>หากคุณมีบัญชีกับเรากรุณาเข้าสู่ระบบ</p>
+                    <h2 class="title">{{ 'login' | translate}}</h2>
+                    <p>{{ 'login_text' | translate}}</p>
                 </div><!-- End .heading -->
 
                 <form #login="ngForm" (ngSubmit)="clickLogin(login)" novalidate>
-                    <input type="email" class="form-control" placeholder="อีเมล" [(ngModel)]="userlogin.email"
+                    <input type="email" class="form-control" placeholder="{{ 'email' | translate}}" [(ngModel)]="userlogin.email"
                         name="email" required>
-                    <input type="password" class="form-control" placeholder="รหัสผ่าน" [(ngModel)]="userlogin.password"
+                    <input type="password" class="form-control" placeholder="{{ 'password' | translate}}" [(ngModel)]="userlogin.password"
                         name="password" required>
 
                     <div class="form-footer">
                         <div class="row">
                             <div class="col-md-12">
                                 <div *ngIf="loginValidation" class="alert alert-warning">
-                                    <strong>แจ้งเตือน!</strong> {{loginMass}}
+                                    <strong>{{ 'message' | translate}}!</strong> {{loginMass}}
                                 </div>
                             </div>
                             <div class="col-md-12">
-                                <button type="submit" class="btn btn-primary">เข้าสู่ระบบ</button>
-                                <a href="#" class="forget-pass"> ลืมรหัสผ่าน</a>
+                                <button type="submit" class="btn btn-primary">{{ 'login' | translate}}</button>
+                                <!-- <a href="#" class="forget-pass"> ลืมรหัสผ่าน</a> -->
                             </div>
                         </div>
                     </div>
@@ -48,42 +48,41 @@
 
             <div class="col-md-6">
                 <div class="heading">
-                    <h2 class="title">สมัครสมาชิก</h2>
-                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;การสมัครใช้งาน Truelinemed
-                        ถือว่าคุณได้ยอมรับข้อตกลงในการใช้งานและนโยบายความเป็นส่วนตัวกับทาง Truelinemed
-                        <a style="color: red;" href="termsofservice">ข้อตกลงในการให้บริการ</a> & <a style="color: red;"
-                            href="privacy">นโยบายความเป็นส่วนตัว</a>
+                    <h2 class="title">{{ 'register' | translate}}</h2>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ 'register_text' | translate}}
+                        <a style="color: red;" href="termsofservice">{{ 'termsofservice' | translate}}</a> & <a style="color: red;"
+                            href="privacy">{{ 'privacy' | translate}}</a>
                 </div><!-- End .heading -->
 
                 <form #createAccount="ngForm" (ngSubmit)="clickCreateAccount(createAccount)" novalidate>
-                    <input type="text" class="form-control" placeholder="ชื่อ" [(ngModel)]="member.fname" name="fname"
+                    <input type="text" class="form-control" placeholder="{{ 'fname' | translate}}" [(ngModel)]="member.fname" name="fname"
                         maxlength="100" required>
 
-                    <input type="text" class="form-control" placeholder="นามสกุล" [(ngModel)]="member.lname"
+                    <input type="text" class="form-control" placeholder="{{ 'lname' | translate}}" [(ngModel)]="member.lname"
                         name="lname" maxlength="100" required>
 
-                    <h2 class="title mb-2">ข้อมูลเข้าระบบ</h2>
-                    <input type="email" class="form-control" placeholder="อีเมล" [(ngModel)]="member.email" name="email"
+                    <h2 class="title mb-2">{{ 'login_information' | translate}}</h2>
+                    <input type="email" class="form-control" placeholder="{{ 'email' | translate}}" [(ngModel)]="member.email" name="email"
                         maxlength="50" required>
 
-                    <input type="password" class="form-control" placeholder="รหัสผ่าน" [(ngModel)]="member.password"
+                    <input type="password" class="form-control" placeholder="{{ 'password' | translate}}" [(ngModel)]="member.password"
                         name="password" maxlength="15" required>
 
-                    <app-password-strength-bar [passwordToCheck]="member.password" [barLabel]="barLabel">
+                    <app-password-strength-bar [passwordToCheck]="member.password">
                     </app-password-strength-bar>
 
-                    <input type="password" class="form-control" placeholder="ยืนยันรหัสผ่าน"
+                    <input type="password" class="form-control" placeholder="{{'confirm_password' | translate}}"
                         [(ngModel)]="member.confirm_password" name="confirm_password" maxlength="15" required>
 
                     <div class="form-footer">
                         <div class="row">
                             <div class="col-md-12">
                                 <div *ngIf="createValidation" class="alert alert-warning">
-                                    <strong>แจ้งเตือน!</strong> {{createMass}}
+                                    <strong>{{'message' | translate}}!</strong> {{createMass}}
                                 </div>
                             </div>
                             <div class="col-md-12">
-                                <button type="submit" class="btn btn-primary">สร้างบัญชี</button>
+                                <button type="submit" class="btn btn-primary">{{'create_account' | translate}}</button>
                             </div>
                         </div>
                     </div>

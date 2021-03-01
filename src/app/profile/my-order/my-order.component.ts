@@ -77,6 +77,9 @@ export class MyOrderComponent implements OnInit {
         localStorage.clear();
         window.location.href = "login";
       }
+      else {
+        this.warnMessage(res.massage);
+      }
     });
 
   }

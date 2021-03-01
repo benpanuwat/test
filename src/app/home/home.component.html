@@ -1,15 +1,14 @@
 <main class="main">
-     <div class="home-slider owl-carousel owl-theme owl-carousel-lazy show-nav-hover nav-big mb-2 text-uppercase"
+    <div class="home-slider owl-carousel owl-theme owl-carousel-lazy show-nav-hover nav-big mb-2 text-uppercase"
         data-owl-options="{
               'loop': true
           }">
         <div class="home-slide home-slide1" *ngFor="let banner of data.banners">
-            <img class="slide-bg" [src]="banner.path" >
+            <img class="slide-bg" [src]="banner.path">
         </div>
     </div>
-
-
-        <!-- <div class="container">
+    
+    <!-- <div class="container">
         <div class="info-boxes-slider owl-carousel owl-theme mb-2" data-owl-options="{
                   'dots': false,
                   'loop': false,
@@ -95,62 +94,61 @@
         </div>
     </div>End .container -->
 
-        <section class="featured-products-section">
-            <div class="container">
-                <h2 class="section-title heading-border ls-20 border-0">สินค้าแนะนำ</h2>
+    <section class="featured-products-section">
+        <div class="container">
+            <h2 class="section-title heading-border ls-20 border-0">{{ 'recommended_products' | translate}}</h2>
 
-                <div class="products-slider custom-products owl-carousel owl-theme nav-outer show-nav-hover nav-image-center"
-                    data-owl-options="{
+            <div class="products-slider custom-products owl-carousel owl-theme nav-outer show-nav-hover nav-image-center"
+                data-owl-options="{
                       'dots': false,
                       'nav': true
                   }">
-                    <div class="product-default" *ngFor="let product of data.product_recommend">
-                        <figure>
-                            <a href="product?p={{ product.url }}">
-                                <img [src]="product.path" alt="product">
-                            </a>
-                            <div class="label-group">
-                                <div *ngIf="product.discount > 0" class="product-label label-sale">ลด
-                                    {{product.discount}}%
-                                </div>
+                <div class="product-default" *ngFor="let product of data.product_recommend">
+                    <figure>
+                        <a href="product?p={{ product.url }}">
+                            <img [src]="product.path" alt="product">
+                        </a>
+                        <div class="label-group">
+                            <div *ngIf="product.discount > 0" class="product-label label-sale">{{ 'discount' | translate}}
+                                {{product.discount}}%
                             </div>
-                        </figure>
-                        <div class="product-details">
-                            <div class="category-list">
-                                <a href="category?c={{ product.cat_url }}"
-                                    class="product-category">{{product.category_name}}</a>
-                            </div>
-                            <h3 class="product-title">
-                                <a href="product?p={{ product.url }}">{{product.name}}</a>
-                            </h3>
-                            <div class="ratings-container">
-                                <div class="product-ratings">
-                                    <span class="ratings" style="width:80%"></span><!-- End .ratings -->
-                                    <span class="tooltiptext tooltip-top"></span>
-                                </div><!-- End .product-ratings -->
-                            </div><!-- End .product-container -->
-                            <div class="price-box">
-                                <del class="old-price"
-                                    *ngIf="product.discount > 0 && product.discount < product.price">฿{{product.standard_price|
-                                    number:'1.0-2'}}</del>
-                                <span class="product-price">฿{{product.price| number:'1.0-2'}}</span>
-                            </div><!-- End .price-box -->
-                            <div class="product-action">
-                                <button class="btn-icon btn-add-cart"
-                                    (click)="addOrder(product)">สั่งซื้อสินค้า</button>
-                            </div>
-                        </div><!-- End .product-details -->
-                    </div>
-                </div><!-- End .featured-proucts -->
-            </div>
-        </section>
+                        </div>
+                    </figure>
+                    <div class="product-details">
+                        <div class="category-list">
+                            <a href="category?c={{ product.cat_url }}"
+                                class="product-category">{{ 'category_name' | translate:product}}</a>
+                        </div>
+                        <h3 class="product-title">
+                            <a href="product?p={{ product.url }}">{{ 'name' | translate:product}}</a>
+                        </h3>
+                        <div class="ratings-container">
+                            <div class="product-ratings">
+                                <span class="ratings" style="width:80%"></span><!-- End .ratings -->
+                                <span class="tooltiptext tooltip-top"></span>
+                            </div><!-- End .product-ratings -->
+                        </div><!-- End .product-container -->
+                        <div class="price-box">
+                            <del class="old-price"
+                                *ngIf="product.discount > 0 && product.discount < product.price">฿{{product.standard_price|
+                                number:'1.0-2'}}</del>
+                            <span class="product-price">฿{{product.price| number:'1.0-2'}}</span>
+                        </div><!-- End .price-box -->
+                        <div class="product-action">
+                            <button class="btn-icon btn-add-cart" (click)="addOrder(product)">{{ 'buy' | translate}}</button>
+                        </div>
+                    </div><!-- End .product-details -->
+                </div>
+            </div><!-- End .featured-proucts -->
+        </div>
+    </section>
 
-        <section class="new-products-section">
-            <div class="container">
-                <h2 class="section-title heading-border ls-20 border-0">สินค้าใหม่</h2>
+    <section class="new-products-section">
+        <div class="container">
+            <h2 class="section-title heading-border ls-20 border-0">{{ 'new_products' | translate}}</h2>
 
-                <div class="products-slider custom-products owl-carousel owl-theme nav-outer show-nav-hover nav-image-center"
-                    data-owl-options="{
+            <div class="products-slider custom-products owl-carousel owl-theme nav-outer show-nav-hover nav-image-center"
+                data-owl-options="{
                       'dots': false,
                       'nav': true,
                       'responsive': {
@@ -159,47 +157,47 @@
                           }
                       }
                   }">
-                    <div class="product-default" *ngFor="let product of data.product_new">
-                        <figure>
-                            <a href="product?p={{ product.url }}">
-                                <img [src]="product.path" alt="product">
-                            </a>
-                            <div class="label-group">
-                                <div class="product-label label-hot">ใหม่</div>
-                                <div *ngIf="product.discount > 0" class="product-label label-sale">ลด
-                                    {{product.discount}}%
-                                </div>
+                <div class="product-default" *ngFor="let product of data.product_new">
+                    <figure>
+                        <a href="product?p={{ product.url }}">
+                            <img [src]="product.path" alt="product">
+                        </a>
+                        <div class="label-group">
+                            <div class="product-label label-hot">{{ 'new' | translate}}</div>
+                            <div *ngIf="product.discount > 0" class="product-label label-sale">{{ 'discount' | translate}}
+                                {{product.discount}}%
                             </div>
-                        </figure>
-                        <div class="product-details">
-                            <div class="category-list">
-                                <a href="category?c={{ product.cat_url }}"
-                                    class="product-category">{{product.category_name}}</a>
+                        </div>
+                    </figure>
+                    <div class="product-details">
+                        <div class="category-list">
+                            <a href="category?c={{ product.cat_url }}"
+                                class="product-category">{{ 'category_name' | translate:product}}</a>
+                        </div>
+                        <h3 class="product-title">
+                            <a href="product?p={{ product.url }}">{{ 'name' | translate:product}}</a>
+                        </h3>
+                        <div class="ratings-container">
+                            <div class="product-ratings">
+                                <span class="ratings" style="width:80%"></span>
+                                <span class="tooltiptext tooltip-top"></span>
                             </div>
-                            <h3 class="product-title">
-                                <a href="product?p={{ product.url }}">{{product.name}}</a>
-                            </h3>
-                            <div class="ratings-container">
-                                <div class="product-ratings">
-                                    <span class="ratings" style="width:80%"></span>
-                                    <span class="tooltiptext tooltip-top"></span>
-                                </div>
-                            </div>
-                            <div class="price-box">
-                                <del class="old-price"
-                                    *ngIf="product.discount > 0 && product.discount < product.price">฿{{product.standard_price|
-                                    number:'1.0-2'}}</del>
-                                <span class="product-price">฿{{product.price| number:'1.0-2'}}</span>
-                            </div><!-- End .price-box -->
-                            <div class="product-action">
-                                <button class="btn-icon btn-add-cart" (click)="addOrder(product)">สั่งซื้อ</button>
-                            </div>
-                        </div><!-- End .product-details -->
-                    </div>
+                        </div>
+                        <div class="price-box">
+                            <del class="old-price"
+                                *ngIf="product.discount > 0 && product.discount < product.price">฿{{product.standard_price|
+                                number:'1.0-2'}}</del>
+                            <span class="product-price">฿{{product.price| number:'1.0-2'}}</span>
+                        </div><!-- End .price-box -->
+                        <div class="product-action">
+                            <button class="btn-icon btn-add-cart" (click)="addOrder(product)">{{ 'buy' | translate}}</button>
+                        </div>
+                    </div><!-- End .product-details -->
+                </div>
 
-                </div><!-- End .featured-proucts -->
+            </div><!-- End .featured-proucts -->
 
-                <!-- <div class="banner banner-big-sale mb-5"
+            <!-- <div class="banner banner-big-sale mb-5"
                 style="background: #2A95CB center/cover url('assets/images/banners/banner-4.jpg');">
                 <div class="banner-content row align-items-center py-4 mx-0">
                     <div class="col-md-9">
@@ -215,70 +213,70 @@
                 </div>
             </div> -->
 
-                <h2 class="section-title heading-border border-0 mb-5">หมวดหมู่สินค้า</h2>
+            <h2 class="section-title heading-border border-0 mb-5">{{ 'category' | translate}}</h2>
 
-                <div class="categories-slider owl-carousel owl-theme show-nav-hover nav-outer">
-                    <div class="product-category" *ngFor="let cat of data.category">
-                        <a href="category?c={{ cat.cat_url }}">
-                            <figure>
-                                <img [src]="cat.path" alt="category">
-                            </figure>
-                            <div class="category-content">
-                                <h3>{{cat.name}}</h3>
-                                <span><mark>{{cat.product_count}}</mark> สินค้า</span>
-                            </div>
-                        </a>
-                    </div>
+            <div class="categories-slider owl-carousel owl-theme show-nav-hover nav-outer">
+                <div class="product-category" *ngFor="let cat of data.category">
+                    <a href="category?c={{ cat.cat_url }}">
+                        <figure>
+                            <img [src]="cat.path" alt="category">
+                        </figure>
+                        <div class="category-content">
+                            <h3>{{ 'name' | translate:cat}}</h3>
+                            <span><mark>{{cat.product_count}}</mark> {{ 'product' | translate}}</span>
+                        </div>
+                    </a>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <section class="feature-boxes-container">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="feature-box px-sm-5 feature-box-simple text-center">
-                            <i class="fa fa-shopping-cart"></i>
+    <section class="feature-boxes-container">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="feature-box px-sm-5 feature-box-simple text-center">
+                        <i class="fa fa-shopping-cart"></i>
 
-                            <div class="feature-box-content">
-                                <h3 class="m-b-1">เลือกสินค้าบนเว็บไซต์</h3>
-                                <h5 class="m-b-3"></h5>
+                        <div class="feature-box-content">
+                            <h3 class="m-b-1">{{ 'home_massage1' | translate}}</h3>
+                            <h5 class="m-b-3"></h5>
 
-                                <p>สามารถรับทราบข้อมูลสินค้าและคุณสมบัติได้จากเว็บไซต์ของเรา</p>
-                            </div><!-- End .feature-box-content -->
-                        </div><!-- End .feature-box -->
-                    </div><!-- End .col-md-4 -->
+                            <p>{{ 'home_massage1_detail' | translate}}</p>
+                        </div><!-- End .feature-box-content -->
+                    </div><!-- End .feature-box -->
+                </div><!-- End .col-md-4 -->
 
-                    <div class="col-md-4">
-                        <div class="feature-box px-sm-5 feature-box-simple text-center">
-                            <i class="icon-credit-card"></i>
+                <div class="col-md-4">
+                    <div class="feature-box px-sm-5 feature-box-simple text-center">
+                        <i class="icon-credit-card"></i>
 
-                            <div class="feature-box-content">
-                                <h3 class="m-b-1">สั่งซื้อและชำระเงิน</h3>
-                                <h5 class="m-b-3"></h5>
+                        <div class="feature-box-content">
+                            <h3 class="m-b-1">{{ 'home_massage2' | translate}}</h3>
+                            <h5 class="m-b-3"></h5>
 
-                                <p>ติดต่อผู้แทนขายเพื่อสอบถามโปรโมชั่น ราคา และเงื่อนไขการชำระเงิน</p>
-                            </div><!-- End .feature-box-content -->
-                        </div><!-- End .feature-box -->
-                    </div><!-- End .col-md-4 -->
+                            <p>{{ 'home_massage2_detail' | translate}}</p>
+                        </div><!-- End .feature-box-content -->
+                    </div><!-- End .feature-box -->
+                </div><!-- End .col-md-4 -->
 
-                    <div class="col-md-4">
-                        <div class="feature-box px-sm-5 feature-box-simple text-center">
-                            <i class="fa fa-truck"></i>
+                <div class="col-md-4">
+                    <div class="feature-box px-sm-5 feature-box-simple text-center">
+                        <i class="fa fa-truck"></i>
 
-                            <div class="feature-box-content">
-                                <h3 class="m-b-1">การขนส่งสินค้า</h3>
-                                <h5 class="m-b-3"></h5>
+                        <div class="feature-box-content">
+                            <h3 class="m-b-1">{{ 'home_massage3' | translate}}</h3>
+                            <h5 class="m-b-3"></h5>
 
-                                <p>เรามีบริการจัดส่งสินค้าทั่วประเทศ</p>
-                            </div><!-- End .feature-box-content -->
-                        </div><!-- End .feature-box -->
-                    </div><!-- End .col-md-4 -->
-                </div><!-- End .row -->
-            </div><!-- End .container-->
-        </section><!-- End .feature-boxes-container -->
+                            <p>{{ 'home_massage3_detail' | translate}}</p>
+                        </div><!-- End .feature-box-content -->
+                    </div><!-- End .feature-box -->
+                </div><!-- End .col-md-4 -->
+            </div><!-- End .row -->
+        </div><!-- End .container-->
+    </section><!-- End .feature-boxes-container -->
 
-        <!-- <section class="promo-section bg-dark" data-parallax="{'speed': 1.8, 'enableOnMobile': true}"
+    <!-- <section class="promo-section bg-dark" data-parallax="{'speed': 1.8, 'enableOnMobile': true}"
         data-image-src="assets/images/banners/banner-5.jpg">
         <div class="promo-banner banner container text-uppercase">
             <div class="banner-content row align-items-center text-center">
@@ -297,11 +295,11 @@
         </div>
     </section> -->
 
-        <section class="blog-section">
-            <div class="container">
-                <h2 class="section-title heading-border border-0 mb-2">ข่าวสาร</h2>
+    <section class="blog-section">
+        <div class="container">
+            <h2 class="section-title heading-border border-0 mb-2">{{ 'news' | translate}}</h2>
 
-                <div class="owl-carousel owl-theme" data-owl-options="{
+            <div class="owl-carousel owl-theme" data-owl-options="{
                       'loop': false,
                       'margin': 20,
                       'autoHeight': true,
@@ -317,38 +315,38 @@
                           }
                       }
                   }">
-                    <article class="post" *ngFor="let n of data.news">
-                        <div class="post-media">
-                            <a href="news_detail?b={{n.url}}">
-                                <img [src]="n.path" alt="Post" width="225" height="280">
-                            </a>
-                            <div class="post-date">
-                                <span class="day">{{n.day}}</span>
-                                <span class="month">{{n.month}}</span>
-                            </div>
-                        </div><!-- End .post-media -->
+                <article class="post" *ngFor="let n of data.news">
+                    <div class="post-media">
+                        <a href="news_detail?b={{n.url}}">
+                            <img [src]="n.path" alt="Post" width="225" height="280">
+                        </a>
+                        <div class="post-date">
+                            <span class="day">{{n.day}}</span>
+                            <span class="month">{{ 'month_name' | translate:n}}</span>
+                        </div>
+                    </div><!-- End .post-media -->
 
-                        <div class="post-body">
-                            <h2 class="post-title">
-                                <a href="news_detail?b={{n.url}}">{{n.title}}</a>
-                            </h2>
-                            <div class="post-content">
-                                <p style="white-space: pre-line;">{{n.detail}}</p>
-                            </div><!-- End .post-content -->
-                        </div><!-- End .post-body -->
-                    </article><!-- End .post -->
+                    <div class="post-body">
+                        <h2 class="post-title">
+                            <a href="news_detail?b={{n.url}}">{{ 'title' | translate:n}}</a>
+                        </h2>
+                        <div class="post-content">
+                            <p style="white-space: pre-line;">{{ 'detail' | translate:n}}</p>
+                        </div><!-- End .post-content -->
+                    </div><!-- End .post-body -->
+                </article><!-- End .post -->
 
-                </div>
+            </div>
 
-                <hr class="mt-0 m-b-5">
+            <hr class="mt-0 m-b-5">
 
-                <div class="brands-slider owl-carousel owl-theme images-center pb-2">
-                    <img [src]="par.path" width="140" height="60" alt="brand" *ngFor="let par of data.partner">
-                </div><!-- End .brands-slider -->
+            <div class="brands-slider owl-carousel owl-theme images-center pb-2">
+                <img [src]="par.path" width="140" height="60" alt="brand" *ngFor="let par of data.partner">
+            </div><!-- End .brands-slider -->
 
-                <!-- <hr class="mt-4 m-b-5"> -->
+            <!-- <hr class="mt-4 m-b-5"> -->
 
-                <!-- <div class="product-widgets-container row mb-2 pb-2">
+            <!-- <div class="product-widgets-container row mb-2 pb-2">
                 <div class="col-lg-3 col-sm-6 pb-5 pb-md-0">
                     <h4 class="section-sub-title mb-2">Featured Products</h4>
                     <div class="product-default left-details product-widget">
@@ -614,6 +612,6 @@
                     </div>
                 </div>
             </div> -->
-            </div>
-        </section>
+        </div>
+    </section>
 </main><!-- End .main -->

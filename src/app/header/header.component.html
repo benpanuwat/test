@@ -2,7 +2,7 @@
     <div class="header-top">
         <div class="container">
             <div class="header-left d-none d-sm-block">
-                <p class="top-message text-uppercase">บริษัท ทรูไลน์ เมด จำกัด</p>
+                <p class="top-message text-uppercase">บริษัท ทรูไลน์ เมด จำกัด </p>
             </div><!-- End .header-left -->
 
             <div class="header-right header-dropdowns ml-0 ml-sm-auto w-sm-100">
@@ -10,12 +10,12 @@
                     <a href="#">Links</a>
                     <div class="header-menu">
                         <ul>
-                            <li><a href="myorder">รายการสั่งซื้อสินค้า </a></li>
-                            <li><a href="#">ใบรับประกันสินค้า</a></li>
-                            <li><a href="news">ข่าวสาร</a></li>
-                            <li><a href="blog">บล็อก</a></li>
-                            <li><a href="about">เกี่ยวกับเรา</a></li>
-                            <li><a href="contact">ติดต่อเรา</a></li>
+                            <li><a href="myorder">{{ 'menu_order_list' | translate}}</a></li>
+                            <li><a href="#">{{ 'menu_warranty' | translate}}</a></li>
+                            <li><a href="news">{{ 'menu_news' | translate}}</a></li>
+                            <li><a href="blog">{{ 'menu_blog' | translate}}</a></li>
+                            <li><a href="about">{{ 'menu_about' | translate}}</a></li>
+                            <li><a href="contact">{{ 'menu_contact' | translate}}</a></li>
                             <!-- <li><a href="help">ช่วยเหลือ</a></li> -->
                         </ul>
                     </div><!-- End .header-menu -->
@@ -24,11 +24,16 @@
                 <span class="separator"></span>
 
                 <div class="header-dropdown mr-auto mr-sm-3 mr-md-0">
-                    <a href="#"><img src="assets/images/flags/th.png" alt="ไทย"></a>
+                    <a *ngIf="language != 'en'" href="javascript:void(0)"><img src="assets/images/flags/th.png"
+                            alt="ไทย"></a>
+                    <a *ngIf="language == 'en'" href="javascript:void(0)"><img src="assets/images/flags/en.png"
+                            alt="ENG"></a>
                     <div class="header-menu">
                         <ul>
-                            <li><a href="#"><img src="assets/images/flags/th.png" alt="ไทย">ไทย</a></li>
-                            <li><a href="#"><img src="assets/images/flags/en.png" alt="English">ENG</a></li>
+                            <li><a href="javascript:void(0)" (click)="changeLanguage('th')"><img
+                                        src="assets/images/flags/th.png" alt="ไทย">ไทย</a></li>
+                            <li><a href="javascript:void(0)" (click)="changeLanguage('en')"><img
+                                        src="assets/images/flags/en.png" alt="English">ENG</a></li>
                         </ul>
                     </div><!-- End .header-menu -->
                 </div><!-- End .header-dropown -->
@@ -38,7 +43,8 @@
                 <div class="social-icons">
                     <a href="#" class="social-icon social-instagram icon-instagram" target="_blank"></a>
                     <a href="#" class="social-icon social-twitter icon-twitter" target="_blank"></a>
-                    <a href="https://www.facebook.com/truelinemed86" class="social-icon social-facebook icon-facebook" target="_blank"></a>
+                    <a href="https://www.facebook.com/truelinemed86" class="social-icon social-facebook icon-facebook"
+                        target="_blank"></a>
                 </div><!-- End .social-icons -->
             </div><!-- End .header-right -->
         </div><!-- End .container -->
@@ -61,11 +67,12 @@
                     <a href="#" class="search-toggle" role="button"><i class="icon-search-3"></i></a>
                     <form action="#" method="get">
                         <div class="header-search-wrapper">
-                            <input type="search" class="form-control" placeholder="ค้นหา..." [(ngModel)]="search_data.search" name="search">
+                            <input type="search" class="form-control" placeholder="{{ 'search' | translate}}"
+                                [(ngModel)]="search_data.search" name="search">
                             <div class="select-custom">
-                                <select name="cat"  [(ngModel)]="search_data.category_id">
-                                    <option value="">สินค้าทั่งหมด</option>
-                                    <option *ngFor="let cat of data.category" value="{{cat.id}}">{{cat.name}}
+                                <select name="cat" [(ngModel)]="search_data.category_id">
+                                    <option value="">{{ 'all_category' | translate}}</option>
+                                    <option *ngFor="let cat of data.category" value="{{cat.id}}">{{ 'name' | translate:cat}}
                                     </option>
                                 </select>
                             </div><!-- End .select-custom -->
@@ -76,10 +83,10 @@
 
                 <div class="header-contact d-none d-lg-flex pl-4 ml-3 mr-xl-5 pr-4">
                     <img alt="phone" src="assets/images/phone.png" width="30" height="30" class="pb-1">
-                    <h6>ติดต่อฉัน<a href="tel:#" class="text-dark font1">02 9185241-2</a></h6>
+                    <h6>{{ 'contact' | translate}}<a href="tel:#" class="text-dark font1">02 9185241-2</a></h6>
                 </div>
-                <a href="myaccount" class="header-icon" title="ข้อมูลส่วนตัว"><i class="icon-user-2"></i></a>
-                <a href="myorder" class="header-icon" title="รายการสั่งซื่อ"><i class="icon-truck"></i></a>
+                <a href="myaccount" class="header-icon" title="{{ 'profile' | translate}}"><i class="icon-user-2"></i></a>
+                <a href="myorder" class="header-icon" title="{{ 'order_list' | translate}}"><i class="icon-truck"></i></a>
 
                 <!-- <a href="#" class="header-icon"><i class="icon-wishlist-2"></i></a> -->
 
@@ -93,16 +100,15 @@
                     <div class="dropdown-menu">
                         <div class="dropdownmenu-wrapper">
                             <div class="dropdown-cart-header">
-                                <span>{{data.cart.count_total}} รายการ</span>
+                                <span>{{data.cart.count_total}} {{ 'order' | translate}}</span>
 
-                                <a href="checkout" class="float-right">ตะกร้าสินค้า</a>
                             </div><!-- End .dropdown-cart-header -->
 
                             <div class="dropdown-cart-products">
                                 <div class="product" *ngFor="let pro of data.cart.products">
                                     <div class="product-details">
                                         <h4 class="product-title">
-                                            <a href="product?p={{ pro.url }}">{{pro.name}}</a>
+                                            <a href="product?p={{ pro.url }}">{{ 'name' | translate:pro}}</a>
                                         </h4>
 
                                         <span class="cart-product-info">
@@ -115,19 +121,21 @@
                                         <a href="product?p={{ pro.url }}" class="product-image">
                                             <img [src]="pro.path" alt="product" width="80" height="80">
                                         </a>
-                                        <a href="javascript:void(0)" class="btn-remove icon-cancel" title="ยกเลิกรายการสั่งซื้อ" (click)="clickDelectCart(pro)"></a>
+                                        <a href="javascript:void(0)" class="btn-remove icon-cancel"
+                                            title="ยกเลิกรายการสั่งซื้อ" (click)="clickDelectCart(pro)"></a>
                                     </figure>
                                 </div>
                             </div><!-- End .cart-product -->
 
                             <div class="dropdown-cart-total">
-                                <span>ราคารวม</span>
+                                <span>{{ 'price_total' | translate}}</span>
 
-                                <span class="cart-total-price float-right">{{data.cart.price_total| number:'1.0-2'}}</span>
+                                <span class="cart-total-price float-right">{{data.cart.price_total|
+                                    number:'1.0-2'}}</span>
                             </div><!-- End .dropdown-cart-total -->
 
                             <div class="dropdown-cart-action">
-                                <a href="checkout?step=3" class="btn btn-dark btn-block">ชำระเงิน</a>
+                                <a href="checkout" class="btn btn-dark btn-block">{{ 'cart' | translate}}</a>
                             </div><!-- End .dropdown-cart-total -->
                         </div><!-- End .dropdownmenu-wrapper -->
                     </div><!-- End .dropdown-menu -->
@@ -140,31 +148,32 @@
         <div class="container">
             <nav class="main-nav w-100">
                 <ul class="menu">
-                    <li class="active">
-                        <a href="">หน้าหลัก</a>
+                    <li [ngClass]="url === ''? 'active' : 'null'">
+                        <a href="">{{ 'menu_home' | translate}}</a>
                     </li>
-                    <li>
-                        <a href="category">หมวดหมู่สินค้า</a>
+                    <li [ngClass]="url === 'category'? 'active' : 'null'">
+                        <a href="category">{{ 'menu_category' | translate}}</a>
                         <div class="megamenu megamenu-fixed-width megamenu-3cols">
                             <div class="row">
                                 <div class="col-lg-12">
                                     <!-- <a href="#" class="nolink">VARIATION 1</a> -->
                                     <ul class="submenu">
-                                        <li *ngFor="let cat of data.category"><a href="category?c={{ cat.url }}">{{cat.name}}</a></li>
+                                        <li *ngFor="let cat of data.category"><a
+                                                href="category?c={{ cat.url }}">{{ 'name' | translate:cat}}</a></li>
                                     </ul>
                                 </div>
                             </div>
                         </div><!-- End .megamenu -->
                     </li>
-                    <li><a href="news">ข่าวสาร</a></li>
-                    <li><a href="blog">บล็อก</a></li>
-                    <li><a href="about">เกี่ยวกับเรา</a></li>
-                    <li><a href="contact">ติดต่อเรา</a></li>
+                    <li [ngClass]="url === 'news'? 'active' : 'null'"><a href="news">{{ 'menu_news' | translate}}</a></li>
+                    <li [ngClass]="url === 'blog'? 'active' : 'null'"><a href="blog">{{ 'menu_blog' | translate}}</a></li>
+                    <li [ngClass]="url === 'contact'? 'active' : 'null'"><a href="contact">{{ 'menu_about' | translate}}</a></li>
+                    <li [ngClass]="url === 'about'? 'active' : 'null'"><a href="about">{{ 'menu_contact' | translate}}</a></li>
 
                     <li *ngIf="userLogin.auth!='true'" class="float-right mr-0"><a href="login"
-                            class="px-4">เข้าสู่ระบบ</a></li>
+                            class="px-4">{{ 'menu_login' | translate}}</a></li>
                     <li *ngIf="userLogin.auth=='true'" class="float-right mr-0"><a href="javascript:void(0)"
-                            class="px-4" (click)="clickLogout()">ออกจากระบบ</a>
+                            class="px-4" (click)="clickLogout()">{{ 'menu_logout' | translate}}</a>
                     </li>
 
                     <!-- <li *ngIf="userLogin.auth=='true'" class="float-right mr-0"><a href="#"
@@ -174,4 +183,3 @@
         </div><!-- End .container -->
     </div><!-- End .header-bottom -->
 </header><!-- End .header -->
-

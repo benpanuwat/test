@@ -1,7 +1,6 @@
 <main class="main">
     <div class="category-banner-container bg-gray" *ngFor="let bc of data.banner_category">
-        <div class="category-banner banner text-uppercase"
-            style="background: no-repeat 100%/cover url('{{bc.path}}');">
+        <div class="category-banner banner text-uppercase" style="background: no-repeat 100%/cover url('{{bc.path}}');">
             <div class="container position-relative">
             </div>
         </div>
@@ -11,9 +10,10 @@
         <nav aria-label="breadcrumb" class="breadcrumb-nav">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href=""><i class="icon-home"></i></a></li>
-                <li class="breadcrumb-item"><a href="">หน้าหลัก</a></li>
-                <li class="breadcrumb-item active" aria-current="page">สินค้า</li>
-                <li class="breadcrumb-item active" aria-current="page" *ngIf="filter.category_id != ''">{{filter.category_name}}</li>
+                <li class="breadcrumb-item"><a href="">{{ 'menu_home' | translate}}</a></li>
+                <li class="breadcrumb-item active" aria-current="page">{{ 'product' | translate}}</li>
+                <li class="breadcrumb-item active" aria-current="page" *ngIf="filter.category_id != ''">{{
+                    'category_name'|translate:filter}}</li>
             </ol>
         </nav>
 
@@ -22,13 +22,14 @@
                 <nav class="toolbox">
                     <div class="toolbox-left">
                         <div class="toolbox-item toolbox-sort">
-                            <label>จัดเรียงโดย</label>
+                            <label>{{ 'order_by' | translate}}</label>
 
                             <div class="select-custom">
-                                <select name="orderby" class="form-control"  [(ngModel)]="filter.order_by" (change)="changeOrderBy()">
-                                    <option value="">สินค้าใหม่</option>
-                                    <option value="price">ราคาจากน้อยไปมาก</option>
-                                    <option value="price-desc">ราคาจากมากไปน้อย</option>
+                                <select name="orderby" class="form-control" [(ngModel)]="filter.order_by"
+                                    (change)="changeOrderBy()">
+                                    <option value="">{{ 'new_products' | translate}}</option>
+                                    <option value="price">{{ 'price_low_to_high' | translate}}</option>
+                                    <option value="price-desc">{{ 'price_high_to_low' | translate}}</option>
                                 </select>
                             </div><!-- End .select-custom -->
 
@@ -38,7 +39,7 @@
 
                     <div class="toolbox-right">
                         <div class="toolbox-item toolbox-show">
-                            <label>แสดง</label>
+                            <label>{{ 'show' | translate}}</label>
 
                             <div class="select-custom">
                                 <select name="count" class="form-control" [(ngModel)]="filter.length"
@@ -51,10 +52,12 @@
                         </div><!-- End .toolbox-item -->
 
                         <div class="toolbox-item layout-modes">
-                            <a href="javascript:void(0)" class="layout-btn btn-grid active" title="Grid" [ngClass]="{'active': !product_list}" (click)="clickShowGrid()">
+                            <a href="javascript:void(0)" class="layout-btn btn-grid active" title="Grid"
+                                [ngClass]="{'active': !product_list}" (click)="clickShowGrid()">
                                 <i class="icon-mode-grid"></i>
                             </a>
-                            <a href="javascript:void(0)" class="layout-btn btn-list" title="List" [ngClass]="{'active': product_list}" (click)="clickShowList()">
+                            <a href="javascript:void(0)" class="layout-btn btn-list" title="List"
+                                [ngClass]="{'active': product_list}" (click)="clickShowList()">
                                 <i class="icon-mode-list"></i>
                             </a>
                         </div><!-- End .layout-modes -->
@@ -69,21 +72,23 @@
                                     <img [src]="product.path" alt="product">
                                 </a>
                                 <div class="label-group">
-                                    <div *ngIf="product.discount > 0" class="product-label label-sale">ลด
+                                    <div *ngIf="product.discount > 0" class="product-label label-sale">{{ 'discount' | translate}}
                                         {{product.discount}}%
                                     </div>
                                 </div>
-                                
-                                <a href="product?p={{ product.url }}" class="btn-quickview" title="รายละเอียดสินค้า">รายละเอียดสินค้า</a>
+
+                                <a href="product?p={{ product.url }}" class="btn-quickview"
+                                    title="รายละเอียดสินค้า">{{ 'product_detail' | translate}}</a>
                             </figure>
                             <div class="product-details">
                                 <div class="category-wrap">
                                     <div class="category-list">
-                                        <a href="category?c={{ product.cat_url }}" class="product-category">{{product.category_name}}</a>
+                                        <a href="category?c={{ product.cat_url }}"
+                                            class="product-category">{{ 'category_name' | translate:product}}</a>
                                     </div>
                                 </div>
                                 <h2 class="product-title">
-                                    <a href="product?p={{ product.url }}">{{product.name}}</a>
+                                    <a href="product?p={{ product.url }}">{{ 'name' | translate:product}}</a>
                                 </h2>
                                 <div class="ratings-container">
                                     <div class="product-ratings">
@@ -109,17 +114,18 @@
                                 <img [src]="product.path">
                             </a>
                             <div class="label-group">
-                                <div *ngIf="product.discount > 0" class="product-label label-sale">ลด
+                                <div *ngIf="product.discount > 0" class="product-label label-sale">{{ 'discount' | translate}}
                                     {{product.discount}}%
                                 </div>
                             </div>
                         </figure>
                         <div class="product-details">
                             <div class="category-list">
-                                <a href="category?c={{ product.cat_url }}" class="product-category">{{product.category_name}}</a>
+                                <a href="category?c={{ product.cat_url }}"
+                                    class="product-category">{{ 'category_name' | translate:product}}</a>
                             </div>
                             <h2 class="product-title">
-                                <a href="product?p={{ product.url }}">{{product.name}}</a>
+                                <a href="product?p={{ product.url }}">{{ 'name' | translate:product}}</a>
                             </h2>
                             <div class="ratings-container">
                                 <div class="product-ratings">
@@ -127,15 +133,16 @@
                                     <span class="tooltiptext tooltip-top"></span>
                                 </div><!-- End .product-ratings -->
                             </div><!-- End .product-container -->
-                            <p class="product-description">{{product.description}}</p>
+                            <p class="product-description">{{ 'description' | translate:product}}</p>
                             <div class="price-box">
                                 <del class="old-price"
-                                        *ngIf="product.discount > 0 && product.discount < product.price">฿{{product.standard_price|
-                                        number:'1.0-2'}}</del>
-                                    <span class="product-price">฿{{product.price| number:'1.0-2'}}</span>
+                                    *ngIf="product.discount > 0 && product.discount < product.price">฿{{product.standard_price|
+                                    number:'1.0-2'}}</del>
+                                <span class="product-price">฿{{product.price| number:'1.0-2'}}</span>
                             </div><!-- End .price-box -->
                             <div class="product-action">
-                                <button class="btn-icon btn-add-cart"><i class="icon-shopping-cart"></i>สั่งซื้อสินค้า</button>
+                                <button class="btn-icon btn-add-cart"><i
+                                        class="icon-shopping-cart"></i>{{ 'buy_product' | translate}}</button>
                             </div>
                         </div><!-- End .product-details -->
                     </div>
@@ -143,7 +150,7 @@
 
                 <nav class="toolbox toolbox-pagination">
                     <div class="toolbox-item toolbox-show">
-                        <label>แสดง</label>
+                        <label>{{ 'show' | translate}}</label>
 
                         <div class="select-custom">
                             <select name="count" class="form-control" [(ngModel)]="filter.length"
@@ -180,17 +187,17 @@
                     <div class="widget">
                         <h3 class="widget-title">
                             <a data-toggle="collapse" href="#widget-body-2" role="button" aria-expanded="true"
-                                aria-controls="widget-body-2">หมวดหมู่สินค้า</a>
+                                aria-controls="widget-body-2">{{ 'category' | translate}}</a>
                         </h3>
 
                         <div class="collapse show" id="widget-body-2">
                             <div class="widget-body">
                                 <ul class="cat-list">
                                     <li>
-                                        <a href="category?c=">สินค้าทั้งหมด</a>
+                                        <a href="category?c=">{{ 'all_category' | translate}}</a>
                                     </li>
                                     <li *ngFor="let cat of data.category">
-                                        <a href="category?c={{ cat.url }}">{{cat.name}}</a>
+                                        <a href="category?c={{ cat.url }}">{{ 'name' | translate:cat}}</a>
                                     </li>
                                 </ul>
                             </div><!-- End .widget-body -->
@@ -198,12 +205,13 @@
                     </div><!-- End .widget -->
 
                     <div class="widget widget-featured">
-                        <h3 class="widget-title">สินค้าแนะนำ</h3>
+                        <h3 class="widget-title">{{ 'recommended_products' | translate}}</h3>
 
                         <div class="widget-body">
                             <div class="owl-carousel widget-featured-products">
                                 <div class="featured-col">
-                                    <div class="product-default left-details product-widget" *ngFor="let product of data.product_recommend">
+                                    <div class="product-default left-details product-widget"
+                                        *ngFor="let product of data.product_recommend">
                                         <figure>
                                             <a href="product?p={{ product.url }}">
                                                 <img [src]="product.path" alt="product">
@@ -211,7 +219,7 @@
                                         </figure>
                                         <div class="product-details">
                                             <h2 class="product-title">
-                                                <a href="product?p={{ product.url }}">{{product.name}}</a>
+                                                <a href="product?p={{ product.url }}">{{ 'name' | translate:product}}</a>
                                             </h2>
                                             <div class="ratings-container">
                                                 <div class="product-ratings">

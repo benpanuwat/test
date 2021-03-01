@@ -102,6 +102,10 @@ export class CheckoutComponent implements OnInit {
 
         this.service.loaded();
       }
+      else if (res.code == 401) {
+        localStorage.clear();
+        window.location.href = "login";
+      }
     });
   }
 
@@ -177,6 +181,10 @@ export class CheckoutComponent implements OnInit {
         this.checkout.payment = res.data;
         this.checkout.step = 4;
       }
+      else if (res.code == 401) {
+        localStorage.clear();
+        window.location.href = "login";
+      }
     });
   }
 
@@ -212,6 +220,10 @@ export class CheckoutComponent implements OnInit {
     this.http.post<any>(this.service.url + '/api/create_order', req, { headers: this.headers }).subscribe(res => {
       if (res.code == 200) {
         this.checkout.step = 5;
+      }
+      else if (res.code == 401) {
+        localStorage.clear();
+        window.location.href = "login";
       }
     });
   }

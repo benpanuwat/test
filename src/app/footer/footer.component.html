@@ -4,16 +4,14 @@
             <div class="row">
                 <div class="col-lg-3 col-sm-6">
                     <div class="widget">
-                        <h4 class="widget-title">ข้อมูลบริษัท</h4>
+                        <h4 class="widget-title">{{ 'company' | translate}}</h4>
                         <ul class="contact-info">
                             <li>
-                                <span class="contact-info-label">ที่อยู่</span>8/8 ซ.รามอินทรา 86
-                                ถ.รามอินทรา แขวงมีนบุรี
-                                เขตมีนบุรี จ. กรุงเทพฯ 10510
+                                <span class="contact-info-label">{{ 'address' | translate}}</span>{{ 'company_address' | translate}}
                             </li>
                             <li>
-                                <span class="contact-info-label">เวเลาทำการ</span>
-                                จันทร์-ศุกร์ / 8:00 - 17:00
+                                <span class="contact-info-label">{{ 'business_hours' | translate}}</span>
+                                {{ 'company_business_hours' | translate}}
                             </li>
                         </ul>
                     </div><!-- End .widget -->
@@ -21,25 +19,25 @@
 
                 <div class="col-lg-3 col-sm-6">
                     <div class="widget">
-                        <h4 class="widget-title">หมวดหมู่สินค้า</h4>
+                        <h4 class="widget-title">{{ 'menu_category' | translate}}</h4>
 
                         <div class="tagcloud">
-                            <a href="category?c={{ cat.url }}" *ngFor="let cat of data.category">{{cat.name}}</a>
+                            <a href="category?c={{ cat.url }}" *ngFor="let cat of data.category">{{ 'name' | translate:cat}}</a>
                         </div>
                     </div><!-- End .widget -->
                 </div><!-- End .col-lg-3 -->
 
                 <div class="col-lg-3 col-sm-6">
                     <div class="widget">
-                        <h4 class="widget-title">บริการลูกค้า</h4>
+                        <h4 class="widget-title">{{ 'menu' | translate}}</h4>
 
                         <ul class="links">
-                            <li><a href="myorder">รายการสั่งซื้อสินค้า</a></li>
-                            <li><a href="#">ใบรับประกันสินค้า</a></li>
-                            <li><a href="news">ข่าวสาร</a></li>
-                            <li><a href="blog">บล็อก</a></li>
-                            <li><a href="about">เกี่ยวกับเรา</a></li>
-                            <li><a href="contact">ติดต่อเรา</a></li>
+                            <li><a href="myorder">{{ 'menu_order_list' | translate}}</a></li>
+                            <li><a href="#">{{ 'menu_warranty' | translate}}</a></li>
+                            <li><a href="news">{{ 'menu_news' | translate}}</a></li>
+                            <li><a href="blog">{{ 'menu_blog' | translate}}</a></li>
+                            <li><a href="about">{{ 'menu_about' | translate}}</a></li>
+                            <li><a href="contact">{{ 'menu_contact' | translate}}</a></li>
                             <!-- <li><a href="help">ช่วยเหลือ</a></li> -->
                         </ul>
                     </div><!-- End .widget -->
@@ -47,16 +45,16 @@
 
                 <div class="col-lg-3 col-sm-6">
                     <div class="widget">
-                        <h4 class="widget-title">ติดต่อ</h4>
+                        <h4 class="widget-title">{{ 'contact' | translate}}</h4>
                         <ul class="contact-info">
                             <li>
-                                <span class="contact-info-label">โทร </span><a href="tel:">02 9185241-2</a>
+                                <span class="contact-info-label">{{ 'tel' | translate}} </span><a href="tel:">02 9185241-2</a>
                             </li>
                             <li>
-                                <span class="contact-info-label">แฟกซ์ </span>02-9185243
+                                <span class="contact-info-label">{{ 'fax' | translate}} </span>02-9185243
                             </li>
                             <li>
-                                <span class="contact-info-label">อีเมล</span> <a href="mailto: tlm@truelinemed.com">
+                                <span class="contact-info-label">{{ 'email' | translate}}</span> <a href="mailto: tlm@truelinemed.com">
                                     tlm@truelinemed.com</a>
                             </li>
                         </ul>

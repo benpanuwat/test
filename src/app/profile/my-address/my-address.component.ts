@@ -152,9 +152,12 @@ export class MyAddressComponent implements OnInit {
           this.loadAddress();
           this.succMessage("บันทึกข้อมูลสำเร็จ");
         }
+        else if (res.code == 401) {
+          localStorage.clear();
+          window.location.href = "login";
+        }
         else {
-          this.warnMessage("ระบบไม่สามารถบันทึกข้อมูลได้");
-
+          this.warnMessage(res.massage);
         }
       });
     }

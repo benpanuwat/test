@@ -3,7 +3,7 @@
         <nav aria-label="breadcrumb" class="breadcrumb-nav">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="hmoe"><i class="icon-home"></i></a></li>
-                <li class="breadcrumb-item"><a href="#">{{product.name}}</a></li>
+                <li class="breadcrumb-item"><a href="#">{{ 'name' | translate:product}}</a></li>
             </ol>
         </nav>
         <div class="product-single-container product-single-default">
@@ -25,14 +25,14 @@
                 </div><!-- End .product-single-gallery -->
 
                 <div class="col-md-7 product-single-details">
-                    <h1 class="product-title">{{product.name}}</h1>
+                    <h1 class="product-title">{{ 'name' | translate:product}}</h1>
 
                     <div class="ratings-container">
                         <div class="product-ratings">
                             <span class="ratings" style="width:60%"></span><!-- End .ratings -->
                         </div><!-- End .product-ratings -->
 
-                        <a href="#" class="rating-link">( 6 Reviews )</a>
+                        <a href="#" class="rating-link"></a>
                     </div><!-- End .ratings-container -->
 
                     <hr class="short-divider">
@@ -43,17 +43,17 @@
 
                     <div class="product-desc">
                         <p style="white-space: pre-line;">
-                            {{product.description}}
+                            {{ 'description' | translate:product}}
                         </p>
                     </div><!-- End .product-desc -->
 
                     <div class="product-filters-container" style="margin-bottom: 1rem;">
                         <div class="form-group">
-                            <label for="acc-name">ประเภท</label>
+                            <label for="acc-name">{{ 'type' | translate}}</label>
                             <select class="select form-control" [(ngModel)]="product.product_type_id"
                                 (change)="changeType()">
                                 <option *ngFor="let type of product.product_type" value="{{type.id}}">
-                                    {{type.name}}
+                                    {{ 'name' | translate:type}}
                                 </option>
                             </select>
                         </div>
@@ -64,8 +64,7 @@
                     <div class="product-action">
                         <div class="row">
                             <div class="col-md-12">
-                                <samp style="font-size: 12px;color: red;">สินค้าคงเหลือ
-                                    {{productTypeSelect.stock}} ชิ้น</samp>
+                                <samp style="font-size: 12px;color: red;">{{ 'in_stock' | translate:productTypeSelect}}</samp>
                             </div>
 
                             <div class="col-md-12">
@@ -95,7 +94,7 @@
 
                                 <button class="btn btn-primary add-cart icon-shopping-cart" style="width: 170px;"
                                     (click)="addOrder()">
-                                    สั่งซื้อสินค้า</button>
+                                    {{ 'buy_product' | translate}}</button>
 
                             </div>
                         </div>
@@ -128,14 +127,14 @@
             <ul class="nav nav-tabs" role="tablist">
                 <li class="nav-item">
                     <a class="nav-link active" id="product-tab-desc" data-toggle="tab" href="#product-desc-content"
-                        role="tab" aria-controls="product-desc-content" aria-selected="true">รายละเอียดสินค้า</a>
+                        role="tab" aria-controls="product-desc-content" aria-selected="true">{{ 'product_detail' | translate}}</a>
                 </li>
             </ul>
             <div class="tab-content">
                 <div class="tab-pane fade show active" id="product-desc-content" role="tabpanel"
                     aria-labelledby="product-tab-desc">
                     <div class="product-desc-content">
-                        <p style="white-space: pre-line;">{{product.detail}}</p>
+                        <p style="white-space: pre-line;">{{ 'detail' | translate:product}}</p>
 
                     </div><!-- End .product-desc-content -->
                 </div><!-- End .tab-pane -->
@@ -144,7 +143,7 @@
         </div><!-- End .product-single-tabs -->
 
         <div class="products-section pt-0">
-            <h2 class="section-title">สินค้าในหมวดหมู่เดียวกัน</h2>
+            <h2 class="section-title">{{ 'product_same_category' | translate}}</h2>
 
             <div class="products-slider owl-carousel owl-theme dots-top">
                 <div class="product-default inner-quickview inner-icon"
@@ -154,21 +153,21 @@
                             <img [src]="product.path">
                         </a>
                         <div class="label-group">
-                            <div *ngIf="product.discount > 0" class="product-label label-sale">ลด
+                            <div *ngIf="product.discount > 0" class="product-label label-sale">{{ 'discount' | translate}}
                                 {{product.discount}}%
                             </div>
                         </div>
 
-                        <a href="product?p={{ product.url }}"  title="รายละเอียดสินค้า">รายละเอียดสินค้า</a>
+                        <a href="product?p={{ product.url }}" class="btn-quickview" title="{{ 'product_detail' | translate}}">{{ 'product_detail' | translate}}</a>
                     </figure>
                     <div class="product-details">
                         <div class="category-wrap">
                             <div class="category-list">
-                                <a href="category?c={{ product.cat_url }}" class="product-category">{{product.category_name}}</a>
+                                <a href="category?c={{ product.cat_url }}" class="product-category">{{ 'category_name' | translate:product}}</a>
                             </div>
                         </div>
                         <h3 class="product-title">
-                            <a href="product?p={{ product.url }}">{{product.name}}</a>
+                            <a href="product?p={{ product.url }}">{{ 'name' | translate:product}}</a>
                         </h3>
                         <div class="ratings-container">
                             <div class="product-ratings">

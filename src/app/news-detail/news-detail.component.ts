@@ -54,7 +54,6 @@ export class NewsDetailComponent implements OnInit {
       if (res.code == 200) {
 
         this.news = res.data;
-
         let that = this;
         this.news.news_images.forEach(function (value) {
           value.path = that.service.url + "/" + value.path

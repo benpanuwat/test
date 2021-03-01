@@ -111,6 +111,10 @@ export class ProductComponent implements OnInit {
         if (res.code == 200) {
           window.location.reload();
         }
+        else if (res.code == 401) {
+          localStorage.clear();
+          window.location.href = "login";
+        }
       });
 
     }

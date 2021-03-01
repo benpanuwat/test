@@ -48,8 +48,12 @@ export class MyAccountComponent implements OnInit {
         if (res.code == 200) {
           this.succMessage("บันทึกข้อมูลสำเร็จ");
         }
+        else if (res.code == 401) {
+          localStorage.clear();
+          window.location.href = "login";
+        }
         else {
-          this.succMessage("ระบบไม่สามารถบันทึกข้อมูลได้");
+          this.warnMessage(res.massage);
         }
       });
     }

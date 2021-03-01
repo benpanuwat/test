@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute, Event, NavigationStart, NavigationEnd, NavigationError } from '@angular/router'
 import { AppService } from 'src/app/app.service';
-import { isUndefined } from 'util';
+import { TranslateService } from '@ngx-translate/core';
+
 
 @Component({
   selector: 'app-header',
@@ -12,6 +13,14 @@ import { isUndefined } from 'util';
 export class HeaderComponent implements OnInit {
 
   public headers: HttpHeaders;
+  public translate: TranslateService;
+  public language: string;
+  public url;
+
+  public param = {
+    a: "aaaaa",
+    b: "กกกกก"
+  }
 
   public userLogin = {
     auth: "",
@@ -33,7 +42,26 @@ export class HeaderComponent implements OnInit {
     category_id: ''
   };
 
-  constructor(private activatedRoute: ActivatedRoute, private http: HttpClient, private service: AppService) {
+  constructor(private activatedRoute: ActivatedRoute, private http: HttpClient, private service: AppService, translate: TranslateService, private router: Router,) {
+
+    router.events.subscribe((event: Event) => {
+      if (event instanceof NavigationEnd) {
+        this.url = event.url.split('/')[1].split("?")[0];
+      }
+    });
+
+    this.translate = translate;
+    this.language = localStorage.getItem('language')
+    if (this.language == 'en')
+      this.translate.setDefaultLang('en');
+    else
+      this.translate.setDefaultLang('th');
+  }
+
+  changeLanguage(lang: string) {
+    this.translate.use(lang);
+    localStorage.setItem("language", lang);
+    this.language = lang;
   }
 
   ngOnInit(): void {

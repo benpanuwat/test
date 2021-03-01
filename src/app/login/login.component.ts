@@ -10,8 +10,6 @@ import { SocialAuthService, FacebookLoginProvider, GoogleLoginProvider, SocialUs
 })
 export class LoginComponent implements OnInit {
 
-  public barLabel: string = "ความปลอดภัยของรหัสผ่าน :";
-
   user: SocialUser;
 
   public userlogin = {

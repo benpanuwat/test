@@ -2,8 +2,8 @@
     <nav aria-label="breadcrumb" class="breadcrumb-nav">
         <div class="container">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="index.html"><i class="icon-home"></i></a></li>
-                <li class="breadcrumb-item active" aria-current="page">ข้อมูลส่วนตัว</li>
+                <li class="breadcrumb-item"><a href=""><i class="icon-home"></i></a></li>
+                <li class="breadcrumb-item active" aria-current="page">{{ 'account' | translate}}</li>
             </ol>
         </div><!-- End .container -->
     </nav>
@@ -11,23 +11,23 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-9 order-lg-last dashboard-content">
-                <h2>ข้อมูลส่วนตัว</h2>
+                <h2>{{ 'profile' | translate}}</h2>
 
                 <form #formAccount="ngForm" (ngSubmit)="clickSaveAccount(formAccount)" novalidate>
                     <div class="row">
                         <div class="col-sm-12">
                             <div *ngIf="warnValidation" class="alert alert-warning">
-                                <strong>แจ้งเตือน!</strong> {{warnMass}}
+                                <strong>{{ 'message' | translate}}!</strong> {{warnMass}}
                             </div>
                             <div *ngIf="succValidation" class="alert alert-success">
-                                <strong>แจ้งเตือน!</strong> {{succMass}}
+                                <strong>{{ 'message' | translate}}!</strong> {{succMass}}
                             </div>
                         </div>
                         <div class="col-sm-12">
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group required-field">
-                                        <label for="acc-name">ชื่อ</label>
+                                        <label for="acc-name">{{ 'fname' | translate}}</label>
                                         <input type="text" class="form-control" [(ngModel)]="member.fname" name="fname"
                                             required>
                                     </div><!-- End .form-group -->
@@ -35,7 +35,7 @@
 
                                 <div class="col-md-6">
                                     <div class="form-group required-field">
-                                        <label for="acc-mname">นามสกุล</label>
+                                        <label for="acc-mname">{{ 'lname' | translate}}</label>
                                         <input type="text" class="form-control" [(ngModel)]="member.lname" name="lname"
                                             required>
                                     </div><!-- End .form-group -->
@@ -45,19 +45,19 @@
                     </div><!-- End .row -->
 
                     <div class="form-group required-field">
-                        <label for="acc-email">อีเมล</label>
+                        <label for="acc-email">{{ 'email' | translate}}</label>
                         <input type="email" class="form-control" [(ngModel)]="member.email" name="email" required>
                     </div><!-- End .form-group -->
 
                     <div class="form-group required-field">
-                        <label for="acc-email">เบอร์โทรศัพท์</label>
+                        <label for="acc-email">{{ 'tel' | translate}}</label>
                         <input type="email" class="form-control" [(ngModel)]="member.tel" name="tel" required>
                     </div><!-- End .form-group -->
 
-                    <div class="required text-right">* จำเป็นต้องกรอก</div>
+                    <div class="required text-right">* {{ 'required' | translate}}</div>
                     <div class="form-footer">
                         <div class="form-footer-right">
-                            <button type="submit" class="btn btn-primary">บันทึก</button>
+                            <button type="submit" class="btn btn-primary">{{ 'save' | translate}}</button>
                         </div>
                     </div><!-- End .form-footer -->
                 </form>
@@ -65,13 +65,13 @@
 
             <aside class="sidebar col-lg-3">
                 <div class="widget widget-dashboard">
-                    <h3 class="widget-title">ข้อมูลส่วนตัว</h3>
+                    <h3 class="widget-title">{{ 'account' | translate}}</h3>
 
                     <ul class="list">
-                        <li class="active"><a href="myaccount">จัดการข้อมูลส่วนตัว</a></li>
-                        <li><a href="myaddress">จัดการที่อยู่</a></li>
-                        <li><a href="myorder">รายการสั่งซื้อ</a></li>
-                        <li><a href="mypassword">เปลี่ยนรหัสผ่าน</a></li>
+                        <li class="active"><a href="myaccount">{{ 'manage_profile' | translate}}</a></li>
+                        <li><a href="myaddress">{{ 'manage_address' | translate}}</a></li>
+                        <li><a href="myorder">{{ 'order_list' | translate}}</a></li>
+                        <li><a href="mypassword">{{ 'change_password' | translate}}</a></li>
                     </ul>
                 </div><!-- End .widget -->
             </aside><!-- End .col-lg-3 -->
